@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://City/Downtown.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://GUI/Menu.gd" type="Script" id=6]
 [ext_resource path="res://GUI/title_panel.png" type="Texture" id=7]
 [ext_resource path="res://GUI/news_panel.png" type="Texture" id=8]
+[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -314,7 +315,6 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -504,6 +504,7 @@ _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="Rect" type="NinePatchRect" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -524,6 +525,7 @@ _sections_unfolded = [ "Axis Stretch", "Patch Margin", "Size Flags" ]
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -560,7 +562,6 @@ _sections_unfolded = [ "Size Flags" ]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -581,28 +582,72 @@ scroll_vertical = 0
 scroll_deadzone = 0
 _sections_unfolded = [ "Anchor", "Scroll", "Size Flags" ]
 
-[node name="Menu Items" type="VBoxContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="1"]
+[node name="Menu Items" type="VBoxContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_right = 500.0
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Button" type="Button" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 500.0
+margin_bottom = 19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 9 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Hey Whatup"
+flat = false
+align = 0
+_sections_unfolded = [ "Theme" ]
+
+[node name="VSeparator" type="VSeparator" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 504.0
+margin_right = 508.0
+margin_bottom = 164.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="CenterContainer" type="MarginContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 512.0
 margin_right = 956.0
 margin_bottom = 164.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -611,7 +656,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-use_top_left = false
 _sections_unfolded = [ "Size Flags" ]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/CenterContainer" index="0"]
@@ -620,27 +664,28 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 226.0
-margin_top = 82.0
-margin_right = 226.0
-margin_bottom = 82.0
+margin_left = 8.0
+margin_right = 444.0
+margin_bottom = 164.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = ""
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "Hello Text and descripion here"
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "Here will go descriptions and stuff"
+text = "Hello Text and descripion here"
 scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
+_sections_unfolded = [ "BBCode", "Rect", "Size Flags", "Theme" ]
 
 [node name="EnterTween" type="Tween" parent="GUI/VBoxContainer/Container/Menu Panel" index="1"]
 
@@ -662,7 +707,6 @@ playback/speed = 1.0
 
 [node name="Chyron" type="NinePatchRect" parent="GUI/VBoxContainer" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -707,22 +751,24 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 8.0
-margin_right = 1003.0
-margin_bottom = 22.0
+margin_left = 45.0
+margin_top = 2.0
+margin_right = 978.0
+margin_bottom = 27.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+theme = ExtResource( 9 )
 text = "f dsafds f aags asdg sag sdgs gfd ga dfgsad gg  fdsasad g gsagd  asgsa ds dfgsag  AF F DSG gdsd g fd g dag sd s dfsa dg sg asd g adsg AF  DF gd sgda sg a s gs"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Chyron" index="1"]
 
