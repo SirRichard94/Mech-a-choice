@@ -11,21 +11,25 @@ var menu_height = 250
 var tween_time = 0.7
 
 func _ready():
-	$EnterTween.interpolate_property(self, "margin_top", margin_bottom, -menu_height
-		, tween_time, Tween.TRANS_BACK, Tween.EASE_OUT )
-	$ExitTween.interpolate_property(self, "margin_top",-menu_height, margin_bottom
-		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
+	pass
+	
 
 func appear():
 	visible = true
-	$EnterTween.start()
-	yield($EnterTween,"tween_completed") #continue when completed
+	
+	$Tween.interpolate_property(self, "margin_top", margin_bottom, -menu_height
+		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
+	$Tween.start()
+	yield($Tween,"tween_completed") #continue when completed
+	
 	item_container.get_child(0).grab_focus()
 
 func disappear():
-	$ExitTween.start()
+	$Tween.interpolate_property(self, "margin_top",-menu_height, margin_bottom
+		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
+	$Tween.start()
 	release_focus()
-	yield($ExitTween,"tween_completed") #continue when completed
+	yield($Tween,"tween_completed") #continue when completed
 	visible = false
 
 func refresh_items():
@@ -40,7 +44,7 @@ func refresh_items():
 		m_item.theme = MenuItemTheme
 		m_item.align = Button.ALIGN_LEFT
 		
-		m_item.connect("pressed", item, "doit_faggot")
+		m_item.connect("pressed", item, "do_action")
 		m_item.connect("pressed", self, "disappear")
 		
 		item_container.add_child(m_item)

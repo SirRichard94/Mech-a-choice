@@ -1,50 +1,30 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://City/Downtown.png" type="Texture" id=1]
-[ext_resource path="res://Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=4]
-[ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=5]
-[ext_resource path="res://GUI/Menu.gd" type="Script" id=6]
-[ext_resource path="res://GUI/title_panel.png" type="Texture" id=7]
-[ext_resource path="res://GUI/news_panel.png" type="Texture" id=8]
-[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=9]
-
-[sub_resource type="Animation" id=1]
-
-resource_name = "Idle"
-length = 1.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 193.982, 326.578 ), Vector2( 187.844, 380.599 ), Vector2( 193.982, 326.578 ) ]
-}
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends Node
-
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-func doit_faggot():
-	get_tree().root.get_child(0).get_node(\"Enemies/KingApe/AnimationPlayer\").play(\"Drop Kick\")
-	"
+[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=2]
+[ext_resource path="res://Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=4]
+[ext_resource path="res://Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=5]
+[ext_resource path="res://Player/Robot/Robo-part-16.png" type="Texture" id=6]
+[ext_resource path="res://Player/Robot/Robo-part-15.png" type="Texture" id=7]
+[ext_resource path="res://Player/Robot/Robo-part-3.png" type="Texture" id=8]
+[ext_resource path="res://Player/Robot/Robo-part-14.png" type="Texture" id=9]
+[ext_resource path="res://Player/Robot/Robo-part-2.png" type="Texture" id=10]
+[ext_resource path="res://Player/Robot/Robo-part-7.png" type="Texture" id=11]
+[ext_resource path="res://Player/Robot/Robo-part-8.png" type="Texture" id=12]
+[ext_resource path="res://Player/Robot/Robo-part-12.png" type="Texture" id=13]
+[ext_resource path="res://Player/Robot/Robo-part-13.png" type="Texture" id=14]
+[ext_resource path="res://Player/Robot/Robo-part-9.png" type="Texture" id=15]
+[ext_resource path="res://Player/Robot/Robo-part-11.png" type="Texture" id=16]
+[ext_resource path="res://Player/Robot/Robo-part-10.png" type="Texture" id=17]
+[ext_resource path="res://Player/Robot/Robo-part-4.png" type="Texture" id=18]
+[ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=19]
+[ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=20]
+[ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=21]
+[ext_resource path="res://GUI/Menu.gd" type="Script" id=22]
+[ext_resource path="res://GUI/title_panel.png" type="Texture" id=23]
+[ext_resource path="res://GUI/news_panel.png" type="Texture" id=24]
+[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=25]
 
 [sub_resource type="Animation" id=3]
 
@@ -196,7 +176,59 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Node
+
+var description = \"\"\"
+	This Action Has a Description
+\"\"\"
+onready var menu_panel = get_tree().root.get_child(0).get_node(\"GUI/Container/Container/Menu Panel\")
+onready var animator = $\"../../AnimationPlayer\"
+
+func _ready():
+	$Timer.connect(\"timeout\", menu_panel, \"appear\")
+
+func do_action():
+	animator.play(\"Punch\")
+	yield(animator,\"animation_finished\")
+	$Timer.start()
+	animator.play(\"Idle\")"
+
+[sub_resource type="SpriteFrames" id=8]
+
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Back",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Back",
+"speed": 5.0
+} ]
+
 [node name="Scene" type="Node" index="0"]
+
+__meta__ = {
+"_edit_horizontal_guides_": [ 530.0 ],
+"_edit_vertical_guides_": [ 130.0, 250.0 ]
+}
 
 [node name="City" type="Node" parent="." index="0"]
 
@@ -226,39 +258,7 @@ texture = ExtResource( 1 )
 expand = true
 stretch_mode = 0
 
-[node name="Player" type="Node2D" parent="." index="2"]
-
-editor/display_folded = true
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="Player" index="0"]
-
-position = Vector2( 190.299, 358.99 )
-texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" index="1"]
-
-root_node = NodePath("..")
-autoplay = "Idle"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/Idle = SubResource( 1 )
-blend_times = [  ]
-
-[node name="Actions" type="Node" parent="Player" index="2"]
-
-[node name="Attack" type="Node" parent="Player/Actions" index="0"]
-
-script = SubResource( 2 )
-
-[node name="Defend" type="Node" parent="Player/Actions" index="1"]
-
-[node name="Special" type="Node" parent="Player/Actions" index="2"]
-
-[node name="Enemies" type="Node2D" parent="." index="3"]
+[node name="Enemies" type="Node2D" parent="." index="2"]
 
 editor/display_folded = true
 
@@ -266,10 +266,10 @@ editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Enemies/KingApe" index="0"]
 
-position = Vector2( 753.534, 386.094 )
+position = Vector2( 779.019, 325.152 )
 rotation = -0.156929
 scale = Vector2( 0.464317, 0.464317 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="State" type="Node" parent="Enemies/KingApe" index="1"]
@@ -302,10 +302,215 @@ anims/Leave = SubResource( 6 )
 anims/Punch = SubResource( 7 )
 blend_times = [  ]
 
-[node name="GUI" type="Control" parent="." index="4"]
+[node name="Player" type="Node2D" parent="." index="3"]
+
+script = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" index="0"]
+
+root_node = NodePath("..")
+autoplay = "Idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Idle = ExtResource( 4 )
+anims/Punch = ExtResource( 5 )
+blend_times = [  ]
+
+[node name="Actions" type="Node" parent="Player" index="1"]
+
+[node name="Attack" type="Node" parent="Player/Actions" index="0"]
+
+script = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="Player/Actions/Attack" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Defend" type="Node" parent="Player/Actions" index="1"]
+
+[node name="Special" type="Node" parent="Player/Actions" index="2"]
+
+[node name="Root" type="Node2D" parent="Player" index="2"]
 
 editor/display_folded = true
-visible = false
+position = Vector2( 192.054, 301.016 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Hips" type="Sprite" parent="Player/Root" index="0"]
+
+position = Vector2( 11.9962, -23.2265 )
+texture = ExtResource( 6 )
+offset = Vector2( 3.16732, 40.8775 )
+
+[node name="Torso" type="AnimatedSprite" parent="Player/Root/Hips" index="0"]
+
+position = Vector2( -6.80496, -22.2803 )
+frames = SubResource( 8 )
+animation = "Front"
+offset = Vector2( 9.97229, -90.8586 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Head" type="AnimatedSprite" parent="Player/Root/Hips/Torso" index="0"]
+
+position = Vector2( -23.8153, -203.646 )
+frames = SubResource( 9 )
+animation = "Front"
+offset = Vector2( 24.9233, -103.278 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Forehead" type="Position2D" parent="Player/Root/Hips/Torso/Head" index="0"]
+
+position = Vector2( 37.9999, -102 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R arm" type="Sprite" parent="Player/Root/Hips/Torso" index="1"]
+
+position = Vector2( -88.4851, -176.173 )
+texture = ExtResource( 11 )
+offset = Vector2( -18.4325, 47.8727 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R forearm" type="Sprite" parent="Player/Root/Hips/Torso/R arm" index="0"]
+
+position = Vector2( -57.7036, 122.774 )
+texture = ExtResource( 12 )
+offset = Vector2( 24.5547, 62.6145 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Hand End" type="Position2D" parent="Player/Root/Hips/Torso/R arm/R forearm" index="0"]
+
+position = Vector2( -19.1124, 155.839 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L arm" type="Sprite" parent="Player/Root/Hips/Torso" index="2"]
+
+show_behind_parent = true
+position = Vector2( 69.8928, -178.628 )
+texture = ExtResource( 13 )
+offset = Vector2( 29.4656, 46.6539 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L forearm" type="Sprite" parent="Player/Root/Hips/Torso/L arm" index="0"]
+
+position = Vector2( 42.9707, 109.268 )
+rotation = -0.103351
+texture = ExtResource( 14 )
+offset = Vector2( 25.7825, 95.7634 )
+_sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Hand End" type="Position2D" parent="Player/Root/Hips/Torso/L arm/L forearm" index="0"]
+
+position = Vector2( 42.6353, 183.773 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Leg" type="Sprite" parent="Player/Root/Hips" index="1"]
+
+show_behind_parent = true
+position = Vector2( 52.9467, 62.353 )
+texture = ExtResource( 15 )
+offset = Vector2( 4.50994, 82.0331 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
+
+[node name="L Sheen" type="Sprite" parent="Player/Root/Hips/L Leg" index="0"]
+
+position = Vector2( 11.6884, 172.892 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 16 )
+offset = Vector2( 22.9764, 120.157 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Foot" type="Sprite" parent="Player/Root/Hips/L Leg/L Sheen" index="0"]
+
+show_behind_parent = true
+position = Vector2( 17.3394, 222.243 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 17 )
+offset = Vector2( 37.901, 23.043 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Foot End" type="Position2D" parent="Player/Root/Hips/L Leg/L Sheen/L Foot" index="0"]
+
+position = Vector2( 101.443, 51.4564 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Leg" type="Sprite" parent="Player/Root/Hips" index="2"]
+
+position = Vector2( -61.0141, 63.8947 )
+texture = ExtResource( 18 )
+offset = Vector2( -13.8778, 82.2058 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
+
+[node name="R Sheen" type="Sprite" parent="Player/Root/Hips/R Leg" index="0"]
+
+position = Vector2( -40.8879, 174.286 )
+texture = ExtResource( 19 )
+offset = Vector2( -28.2379, 112.952 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Foot" type="Sprite" parent="Player/Root/Hips/R Leg/R Sheen" index="0"]
+
+show_behind_parent = true
+position = Vector2( -43.2678, 214.297 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 20 )
+offset = Vector2( 22.7391, 52.9626 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Foot end" type="Position2D" parent="Player/Root/Hips/R Leg/R Sheen/R Foot" index="0"]
+
+position = Vector2( 80.86, 80.86 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="GUI" type="Control" parent="." index="4"]
+
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -318,7 +523,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Visibility" ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI" index="0"]
+[node name="Container" type="VBoxContainer" parent="GUI" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -334,7 +539,7 @@ custom_constants/separation = 5
 alignment = 2
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="Container" type="Control" parent="GUI/VBoxContainer" index="0"]
+[node name="Container" type="Control" parent="GUI/Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -350,7 +555,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 _sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 
-[node name="Live" type="Control" parent="GUI/VBoxContainer/Container" index="0"]
+[node name="Live" type="Control" parent="GUI/Container/Container" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -371,7 +576,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="GUI/VBoxContainer/Container/Live" index="0"]
+[node name="CenterContainer" type="CenterContainer" parent="GUI/Container/Container/Live" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -385,7 +590,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/Container/Live/CenterContainer" index="0"]
+[node name="Label" type="Label" parent="GUI/Container/Container/Live/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -401,7 +606,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "LIVE"
 percent_visible = 1.0
@@ -409,7 +614,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="Menu Panel" type="Control" parent="GUI/VBoxContainer/Container" index="1"]
+[node name="Menu Panel" type="Control" parent="GUI/Container/Container" index="1"]
 
 anchor_left = 0.0
 anchor_top = 1.0
@@ -425,13 +630,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 5
 size_flags_vertical = 0
-script = ExtResource( 6 )
+script = ExtResource( 22 )
 _sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Container/Menu Panel" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Container/Container/Menu Panel" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -446,7 +651,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Title" type="NinePatchRect" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer" index="0"]
+[node name="Title" type="NinePatchRect" parent="GUI/Container/Container/Menu Panel/VBoxContainer" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -462,7 +667,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 0
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 23 )
 patch_margin_left = 11
 patch_margin_top = 11
 patch_margin_right = 11
@@ -472,7 +677,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Title" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Title" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -485,7 +690,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Title/MarginContainer" index="0"]
+[node name="Label" type="Label" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Title/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -500,14 +705,14 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 21 )
 text = "THE HERO MOVES!!"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
-[node name="Rect" type="NinePatchRect" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer" index="1"]
+[node name="Rect" type="NinePatchRect" parent="GUI/Container/Container/Menu Panel/VBoxContainer" index="1"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -523,12 +728,12 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 8 )
+texture = ExtResource( 24 )
 patch_margin_left = 14
 patch_margin_right = 14
 _sections_unfolded = [ "Axis Stretch", "Patch Margin", "Size Flags" ]
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -547,7 +752,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -565,7 +770,7 @@ size_flags_vertical = 3
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -587,7 +792,7 @@ scroll_vertical = 0
 scroll_deadzone = 0
 _sections_unfolded = [ "Anchor", "Scroll", "Size Flags" ]
 
-[node name="Menu Items" type="VBoxContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="0"]
+[node name="Menu Items" type="VBoxContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -605,7 +810,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Button" type="Button" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items" index="0"]
+[node name="Button" type="Button" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -620,7 +825,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = ExtResource( 9 )
+theme = ExtResource( 25 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -630,7 +835,7 @@ flat = false
 align = 0
 _sections_unfolded = [ "Theme" ]
 
-[node name="VSeparator" type="VSeparator" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="1"]
+[node name="VSeparator" type="VSeparator" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -646,7 +851,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="CenterContainer" type="MarginContainer" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="2"]
+[node name="CenterContainer" type="MarginContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -663,7 +868,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/VBoxContainer/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/CenterContainer" index="0"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -678,7 +883,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 9 )
+theme = ExtResource( 25 )
 bbcode_enabled = true
 bbcode_text = "Hello Text and descripion here"
 visible_characters = -1
@@ -692,7 +897,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode", "Rect", "Size Flags", "Theme" ]
 
-[node name="EnterTween" type="Tween" parent="GUI/VBoxContainer/Container/Menu Panel" index="1"]
+[node name="Tween" type="Tween" parent="GUI/Container/Container/Menu Panel" index="1"]
 
 repeat = false
 playback_process_mode = 1
@@ -701,17 +906,9 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="ExitTween" type="Tween" parent="GUI/VBoxContainer/Container/Menu Panel" index="2"]
+[node name="Chyron" type="NinePatchRect" parent="GUI/Container" index="1"]
 
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
-[node name="Chyron" type="NinePatchRect" parent="GUI/VBoxContainer" index="1"]
-
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -726,7 +923,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 7 )
+texture = ExtResource( 23 )
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -736,7 +933,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="GUI/VBoxContainer/Chyron" index="0"]
+[node name="CenterContainer" type="CenterContainer" parent="GUI/Container/Chyron" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -750,7 +947,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/Chyron/CenterContainer" index="0"]
+[node name="Label" type="Label" parent="GUI/Container/Chyron/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -766,7 +963,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-theme = ExtResource( 9 )
+theme = ExtResource( 25 )
 text = "f dsafds f aags asdg sag sdgs gfd ga dfgsad gg  fdsasad g gsagd  asgsa ds dfgsag  AF F DSG gdsd g fd g dag sd s dfsa dg sg asd g adsg AF  DF gd sgda sg a s gs"
 align = 1
 valign = 1
@@ -775,7 +972,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Theme" ]
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Chyron" index="1"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Container/Chyron" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -790,7 +987,7 @@ size_flags_vertical = 1
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 
-position = Vector2( 512, 300 )
+position = Vector2( 510, 300 )
 anchor_mode = 1
 rotating = true
 current = true

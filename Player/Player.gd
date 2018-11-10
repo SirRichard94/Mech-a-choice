@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var menu_panel = get_node("../GUI/VBoxContainer/Container/Menu Panel")
+onready var menu_panel = get_node("../GUI/Container/Container/Menu Panel")
 
 func _ready():
 	var actions = $Actions.get_children()
