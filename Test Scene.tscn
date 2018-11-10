@@ -196,7 +196,7 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
-[node name="Node" type="Node" index="0"]
+[node name="Scene" type="Node" index="0"]
 
 [node name="City" type="Node" parent="." index="0"]
 
@@ -228,6 +228,7 @@ stretch_mode = 0
 
 [node name="Player" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -258,6 +259,8 @@ script = SubResource( 2 )
 [node name="Special" type="Node" parent="Player/Actions" index="2"]
 
 [node name="Enemies" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
 
 [node name="KingApe" type="Node2D" parent="Enemies" index="0"]
 
@@ -301,6 +304,8 @@ blend_times = [  ]
 
 [node name="GUI" type="Control" parent="." index="4"]
 
+editor/display_folded = true
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -590,7 +595,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 500.0
-margin_bottom = 43.0
+margin_bottom = 25.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -607,7 +612,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 500.0
-margin_bottom = 19.0
+margin_bottom = 25.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -782,5 +787,32 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
+
+position = Vector2( 512, 300 )
+anchor_mode = 1
+rotating = true
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Editor", "Transform" ]
 
 
