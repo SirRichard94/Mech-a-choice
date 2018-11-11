@@ -1,0 +1,333 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://General/Stat.gd" type="Script" id=2]
+[ext_resource path="res://Player/Actions/SubMenu.gd" type="Script" id=3]
+[ext_resource path="res://Player/Actions/Back.gd" type="Script" id=4]
+[ext_resource path="res://Player/Actions/Punch.gd" type="Script" id=5]
+[ext_resource path="res://Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=6]
+[ext_resource path="res://Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=7]
+[ext_resource path="res://Player/Robot/Robo-part-16.png" type="Texture" id=8]
+[ext_resource path="res://Player/Robot/Robo-part-15.png" type="Texture" id=9]
+[ext_resource path="res://Player/Robot/Robo-part-3.png" type="Texture" id=10]
+[ext_resource path="res://Player/Robot/Robo-part-14.png" type="Texture" id=11]
+[ext_resource path="res://Player/Robot/Robo-part-2.png" type="Texture" id=12]
+[ext_resource path="res://Player/Robot/Robo-part-7.png" type="Texture" id=13]
+[ext_resource path="res://Player/Robot/Robo-part-8.png" type="Texture" id=14]
+[ext_resource path="res://Player/Robot/Robo-part-12.png" type="Texture" id=15]
+[ext_resource path="res://Player/Robot/Robo-part-13.png" type="Texture" id=16]
+[ext_resource path="res://Player/Robot/Robo-part-9.png" type="Texture" id=17]
+[ext_resource path="res://Player/Robot/Robo-part-11.png" type="Texture" id=18]
+[ext_resource path="res://Player/Robot/Robo-part-10.png" type="Texture" id=19]
+[ext_resource path="res://Player/Robot/Robo-part-4.png" type="Texture" id=20]
+[ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=21]
+[ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=22]
+
+[sub_resource type="SpriteFrames" id=6]
+
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Back",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=7]
+
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Back",
+"speed": 5.0
+} ]
+
+[node name="Player" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ATBTimer" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="StatBlock" type="Node" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="HP" type="Node" parent="StatBlock" index="0"]
+
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="10" type="Node" parent="StatBlock/HP" index="0"]
+
+[node name="11" type="Node" parent="StatBlock/HP" index="1"]
+
+[node name="12" type="Node" parent="StatBlock/HP" index="2"]
+
+[node name="13" type="Node" parent="StatBlock/HP" index="3"]
+
+[node name="14" type="Node" parent="StatBlock/HP" index="4"]
+
+[node name="15" type="Node" parent="StatBlock/HP" index="5"]
+
+[node name="Energy" type="Node" parent="StatBlock" index="1"]
+
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="5" type="Node" parent="StatBlock/Energy" index="0"]
+
+[node name="6" type="Node" parent="StatBlock/Energy" index="1"]
+
+[node name="7" type="Node" parent="StatBlock/Energy" index="2"]
+
+[node name="8" type="Node" parent="StatBlock/Energy" index="3"]
+
+[node name="9" type="Node" parent="StatBlock/Energy" index="4"]
+
+[node name="10" type="Node" parent="StatBlock/Energy" index="5"]
+
+[node name="Shield" type="Node" parent="StatBlock" index="2"]
+
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="1" type="Node" parent="StatBlock/Shield" index="0"]
+
+[node name="2" type="Node" parent="StatBlock/Shield" index="1"]
+
+[node name="3" type="Node" parent="StatBlock/Shield" index="2"]
+
+[node name="ATB Base" type="Node" parent="StatBlock" index="3"]
+
+editor/display_folded = true
+script = ExtResource( 2 )
+
+[node name="2" type="Node" parent="StatBlock/ATB Base" index="0"]
+
+[node name="8" type="Node" parent="StatBlock/ATB Base" index="1"]
+
+[node name="Actions" type="Node" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="Attack" type="Node" parent="Actions" index="0"]
+
+script = ExtResource( 3 )
+
+[node name="Back" type="Node" parent="Actions/Attack" index="0"]
+
+script = ExtResource( 4 )
+
+[node name="Punch" type="Node" parent="Actions/Attack" index="1"]
+
+script = ExtResource( 5 )
+
+[node name="Defend" type="Node" parent="Actions" index="1"]
+
+[node name="Special" type="Node" parent="Actions" index="2"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = "Idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Idle = ExtResource( 6 )
+anims/Punch = ExtResource( 7 )
+blend_times = [  ]
+
+[node name="Root" type="Node2D" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 192.054, 301.016 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Hips" type="Sprite" parent="Root" index="0"]
+
+editor/display_folded = true
+position = Vector2( 11.4686, -11.7961 )
+texture = ExtResource( 8 )
+offset = Vector2( 3.16732, 40.8775 )
+
+[node name="Torso" type="AnimatedSprite" parent="Root/Hips" index="0"]
+
+position = Vector2( -6.80496, -22.2803 )
+frames = SubResource( 6 )
+animation = "Front"
+offset = Vector2( 9.97229, -90.8586 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Head" type="AnimatedSprite" parent="Root/Hips/Torso" index="0"]
+
+position = Vector2( -23.8153, -203.646 )
+frames = SubResource( 7 )
+animation = "Front"
+offset = Vector2( 24.9233, -103.278 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="Forehead" type="Position2D" parent="Root/Hips/Torso/Head" index="0"]
+
+position = Vector2( 37.9999, -102 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R arm" type="Sprite" parent="Root/Hips/Torso" index="1"]
+
+position = Vector2( -88.4851, -176.173 )
+texture = ExtResource( 13 )
+offset = Vector2( -18.4325, 47.8727 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R forearm" type="Sprite" parent="Root/Hips/Torso/R arm" index="0"]
+
+position = Vector2( -57.7036, 122.774 )
+texture = ExtResource( 14 )
+offset = Vector2( 24.5547, 62.6145 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Hand End" type="Position2D" parent="Root/Hips/Torso/R arm/R forearm" index="0"]
+
+position = Vector2( -19.1124, 155.839 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L arm" type="Sprite" parent="Root/Hips/Torso" index="2"]
+
+show_behind_parent = true
+position = Vector2( 69.8928, -178.628 )
+texture = ExtResource( 15 )
+offset = Vector2( 29.4656, 46.6539 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L forearm" type="Sprite" parent="Root/Hips/Torso/L arm" index="0"]
+
+position = Vector2( 42.9707, 109.268 )
+rotation = -0.103351
+texture = ExtResource( 16 )
+offset = Vector2( 25.7825, 95.7634 )
+_sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Hand End" type="Position2D" parent="Root/Hips/Torso/L arm/L forearm" index="0"]
+
+position = Vector2( 42.6353, 183.773 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Leg" type="Sprite" parent="Root/Hips" index="1"]
+
+show_behind_parent = true
+position = Vector2( 52.9467, 62.353 )
+rotation = -0.088683
+texture = ExtResource( 17 )
+offset = Vector2( 4.50994, 82.0331 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
+
+[node name="L Sheen" type="Sprite" parent="Root/Hips/L Leg" index="0"]
+
+position = Vector2( 11.8653, 172.717 )
+rotation = 0.14843
+texture = ExtResource( 18 )
+offset = Vector2( 22.9764, 120.157 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Foot" type="Sprite" parent="Root/Hips/L Leg/L Sheen" index="0"]
+
+show_behind_parent = true
+position = Vector2( 17.3393, 222.243 )
+rotation = -0.0597465
+texture = ExtResource( 19 )
+offset = Vector2( 37.901, 23.043 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="L Foot End" type="Position2D" parent="Root/Hips/L Leg/L Sheen/L Foot" index="0"]
+
+position = Vector2( 101.443, 51.4564 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Leg" type="Sprite" parent="Root/Hips" index="2"]
+
+position = Vector2( -61.0141, 63.8947 )
+rotation = 0.056639
+texture = ExtResource( 20 )
+offset = Vector2( -13.8778, 82.2058 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
+
+[node name="R Sheen" type="Sprite" parent="Root/Hips/R Leg" index="0"]
+
+position = Vector2( -40.8879, 174.286 )
+rotation = 0.138264
+texture = ExtResource( 21 )
+offset = Vector2( -28.2379, 112.952 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Foot" type="Sprite" parent="Root/Hips/R Leg/R Sheen" index="0"]
+
+show_behind_parent = true
+position = Vector2( -43.2678, 214.298 )
+rotation = -0.234517
+texture = ExtResource( 22 )
+offset = Vector2( 22.7391, 52.9626 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="R Foot end" type="Position2D" parent="Root/Hips/R Leg/R Sheen/R Foot" index="0"]
+
+position = Vector2( 80.86, 80.86 )
+__meta__ = {
+"_edit_bone_": true
+}
+
+
