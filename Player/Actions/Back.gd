@@ -7,7 +7,7 @@ extends "res://Player/Actions/ActionItem.gd"
 func _ready():
 	description = ""
 	for child in get_parent().get_parent().get_children():
-		description += child.name+"\n"
+		description += "- " + child.name+"\n"
 
 func _do_action():
 	player.action_menu.title_text = "HERO PONDERS: "+ get_parent().get_parent().name 

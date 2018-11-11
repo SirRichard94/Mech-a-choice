@@ -217,7 +217,7 @@ animations = [ {
 render_priority = 0
 shader = ExtResource( 31 )
 shader_param/range = 0.01
-shader_param/noiseQuality = 300.0
+shader_param/noiseQuality = 230.0
 shader_param/noiseIntensity = 0.001
 shader_param/offsetIntensity = 0.02
 shader_param/colorOffsetIntensity = 0.3
@@ -318,11 +318,8 @@ autostart = false
 
 [node name="StatBlock" type="Node" parent="Player" index="1"]
 
-editor/display_folded = true
-
 [node name="HP" type="Node" parent="Player/StatBlock" index="0"]
 
-editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="10" type="Node" parent="Player/StatBlock/HP" index="0"]
@@ -1052,6 +1049,7 @@ texture = ExtResource( 32 )
 expand = true
 stretch_mode = 0
 script = ExtResource( 33 )
+_sections_unfolded = [ "Material" ]
 
 [node name="Label" type="Label" parent="GUI/Pause" index="0"]
 
