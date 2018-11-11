@@ -1,35 +1,38 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://City/Downtown.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=2]
 [ext_resource path="res://Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://General/Stat.gd" type="Script" id=4]
-[ext_resource path="res://Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=5]
-[ext_resource path="res://Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=6]
-[ext_resource path="res://Player/Robot/Robo-part-16.png" type="Texture" id=7]
-[ext_resource path="res://Player/Robot/Robo-part-15.png" type="Texture" id=8]
-[ext_resource path="res://Player/Robot/Robo-part-3.png" type="Texture" id=9]
-[ext_resource path="res://Player/Robot/Robo-part-14.png" type="Texture" id=10]
-[ext_resource path="res://Player/Robot/Robo-part-2.png" type="Texture" id=11]
-[ext_resource path="res://Player/Robot/Robo-part-7.png" type="Texture" id=12]
-[ext_resource path="res://Player/Robot/Robo-part-8.png" type="Texture" id=13]
-[ext_resource path="res://Player/Robot/Robo-part-12.png" type="Texture" id=14]
-[ext_resource path="res://Player/Robot/Robo-part-13.png" type="Texture" id=15]
-[ext_resource path="res://Player/Robot/Robo-part-9.png" type="Texture" id=16]
-[ext_resource path="res://Player/Robot/Robo-part-11.png" type="Texture" id=17]
-[ext_resource path="res://Player/Robot/Robo-part-10.png" type="Texture" id=18]
-[ext_resource path="res://Player/Robot/Robo-part-4.png" type="Texture" id=19]
-[ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=20]
-[ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=21]
-[ext_resource path="res://GUI/GUI.gd" type="Script" id=22]
-[ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=23]
-[ext_resource path="res://GUI/Menu.gd" type="Script" id=24]
-[ext_resource path="res://GUI/title_panel.png" type="Texture" id=25]
-[ext_resource path="res://GUI/news_panel.png" type="Texture" id=26]
-[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=27]
-[ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=28]
-[ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=29]
-[ext_resource path="res://GUI/Pause.gd" type="Script" id=30]
+[ext_resource path="res://Player/Actions/SubMenu.gd" type="Script" id=5]
+[ext_resource path="res://Player/Actions/Back.gd" type="Script" id=6]
+[ext_resource path="res://Player/Actions/Punch.gd" type="Script" id=7]
+[ext_resource path="res://Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=8]
+[ext_resource path="res://Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=9]
+[ext_resource path="res://Player/Robot/Robo-part-16.png" type="Texture" id=10]
+[ext_resource path="res://Player/Robot/Robo-part-15.png" type="Texture" id=11]
+[ext_resource path="res://Player/Robot/Robo-part-3.png" type="Texture" id=12]
+[ext_resource path="res://Player/Robot/Robo-part-14.png" type="Texture" id=13]
+[ext_resource path="res://Player/Robot/Robo-part-2.png" type="Texture" id=14]
+[ext_resource path="res://Player/Robot/Robo-part-7.png" type="Texture" id=15]
+[ext_resource path="res://Player/Robot/Robo-part-8.png" type="Texture" id=16]
+[ext_resource path="res://Player/Robot/Robo-part-12.png" type="Texture" id=17]
+[ext_resource path="res://Player/Robot/Robo-part-13.png" type="Texture" id=18]
+[ext_resource path="res://Player/Robot/Robo-part-9.png" type="Texture" id=19]
+[ext_resource path="res://Player/Robot/Robo-part-11.png" type="Texture" id=20]
+[ext_resource path="res://Player/Robot/Robo-part-10.png" type="Texture" id=21]
+[ext_resource path="res://Player/Robot/Robo-part-4.png" type="Texture" id=22]
+[ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=23]
+[ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=24]
+[ext_resource path="res://GUI/GUI.gd" type="Script" id=25]
+[ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=26]
+[ext_resource path="res://GUI/Menu.gd" type="Script" id=27]
+[ext_resource path="res://GUI/title_panel.png" type="Texture" id=28]
+[ext_resource path="res://GUI/news_panel.png" type="Texture" id=29]
+[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=30]
+[ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=31]
+[ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=32]
+[ext_resource path="res://GUI/Pause.gd" type="Script" id=33]
 
 [sub_resource type="Animation" id=1]
 
@@ -181,57 +184,38 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="SpriteFrames" id=6]
 
-script/source = "extends Node
-
-var description = \"\"\"
-	This Action Has a Description
-\"\"\"
-onready var menu_panel = get_tree().root.get_child(0).get_node(\"GUI/Container/Container/Menu Panel\")
-onready var animator = $\"../../AnimationPlayer\"
-
-func _ready():
-	$Timer.connect(\"timeout\", menu_panel, \"appear\")
-
-func do_action():
-	animator.play(\"Punch\")
-	yield(animator,\"animation_finished\")
-	$Timer.start()
-	animator.play(\"Idle\")"
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Back",
+"speed": 5.0
+} ]
 
 [sub_resource type="SpriteFrames" id=7]
 
 animations = [ {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "Front",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "Back",
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
-
-animations = [ {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Front",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "Back",
-"speed": 5.0
-} ]
-
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=8]
 
 render_priority = 0
-shader = ExtResource( 28 )
+shader = ExtResource( 31 )
 shader_param/range = 0.01
 shader_param/noiseQuality = 300.0
 shader_param/noiseIntensity = 0.001
@@ -381,21 +365,28 @@ script = ExtResource( 4 )
 
 [node name="3" type="Node" parent="Player/StatBlock/Shield" index="2"]
 
-[node name="Actions" type="Node" parent="Player" index="2"]
+[node name="ATB Base" type="Node" parent="Player/StatBlock" index="3"]
 
 editor/display_folded = true
+script = ExtResource( 4 )
+
+[node name="2" type="Node" parent="Player/StatBlock/ATB Base" index="0"]
+
+[node name="8" type="Node" parent="Player/StatBlock/ATB Base" index="1"]
+
+[node name="Actions" type="Node" parent="Player" index="2"]
 
 [node name="Attack" type="Node" parent="Player/Actions" index="0"]
 
-editor/display_folded = true
-script = SubResource( 6 )
+script = ExtResource( 5 )
 
-[node name="Timer" type="Timer" parent="Player/Actions/Attack" index="0"]
+[node name="Back" type="Node" parent="Player/Actions/Attack" index="0"]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
+script = ExtResource( 6 )
+
+[node name="Punch" type="Node" parent="Player/Actions/Attack" index="1"]
+
+script = ExtResource( 7 )
 
 [node name="Defend" type="Node" parent="Player/Actions" index="1"]
 
@@ -408,8 +399,8 @@ autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Idle = ExtResource( 5 )
-anims/Punch = ExtResource( 6 )
+anims/Idle = ExtResource( 8 )
+anims/Punch = ExtResource( 9 )
 blend_times = [  ]
 
 [node name="Root" type="Node2D" parent="Player" index="4"]
@@ -422,13 +413,13 @@ _sections_unfolded = [ "Transform" ]
 
 editor/display_folded = true
 position = Vector2( 11.4686, -11.7961 )
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 offset = Vector2( 3.16732, 40.8775 )
 
 [node name="Torso" type="AnimatedSprite" parent="Player/Root/Hips" index="0"]
 
 position = Vector2( -6.80496, -22.2803 )
-frames = SubResource( 7 )
+frames = SubResource( 6 )
 animation = "Front"
 offset = Vector2( 9.97229, -90.8586 )
 __meta__ = {
@@ -438,7 +429,7 @@ __meta__ = {
 [node name="Head" type="AnimatedSprite" parent="Player/Root/Hips/Torso" index="0"]
 
 position = Vector2( -23.8153, -203.646 )
-frames = SubResource( 8 )
+frames = SubResource( 7 )
 animation = "Front"
 offset = Vector2( 24.9233, -103.278 )
 __meta__ = {
@@ -455,7 +446,7 @@ __meta__ = {
 [node name="R arm" type="Sprite" parent="Player/Root/Hips/Torso" index="1"]
 
 position = Vector2( -88.4851, -176.173 )
-texture = ExtResource( 12 )
+texture = ExtResource( 15 )
 offset = Vector2( -18.4325, 47.8727 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -465,7 +456,7 @@ __meta__ = {
 [node name="R forearm" type="Sprite" parent="Player/Root/Hips/Torso/R arm" index="0"]
 
 position = Vector2( -57.7036, 122.774 )
-texture = ExtResource( 13 )
+texture = ExtResource( 16 )
 offset = Vector2( 24.5547, 62.6145 )
 __meta__ = {
 "_edit_bone_": true
@@ -482,7 +473,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 69.8928, -178.628 )
-texture = ExtResource( 14 )
+texture = ExtResource( 17 )
 offset = Vector2( 29.4656, 46.6539 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -493,7 +484,7 @@ __meta__ = {
 
 position = Vector2( 42.9707, 109.268 )
 rotation = -0.103351
-texture = ExtResource( 15 )
+texture = ExtResource( 18 )
 offset = Vector2( 25.7825, 95.7634 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
@@ -512,7 +503,7 @@ __meta__ = {
 show_behind_parent = true
 position = Vector2( 52.9467, 62.353 )
 rotation = -0.088683
-texture = ExtResource( 16 )
+texture = ExtResource( 19 )
 offset = Vector2( 4.50994, 82.0331 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -524,7 +515,7 @@ __meta__ = {
 
 position = Vector2( 11.8653, 172.717 )
 rotation = 0.14843
-texture = ExtResource( 17 )
+texture = ExtResource( 20 )
 offset = Vector2( 22.9764, 120.157 )
 __meta__ = {
 "_edit_bone_": true
@@ -535,7 +526,7 @@ __meta__ = {
 show_behind_parent = true
 position = Vector2( 17.3393, 222.243 )
 rotation = -0.0597465
-texture = ExtResource( 18 )
+texture = ExtResource( 21 )
 offset = Vector2( 37.901, 23.043 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -553,7 +544,7 @@ __meta__ = {
 
 position = Vector2( -61.0141, 63.8947 )
 rotation = 0.056639
-texture = ExtResource( 19 )
+texture = ExtResource( 22 )
 offset = Vector2( -13.8778, 82.2058 )
 __meta__ = {
 "_edit_bone_": true,
@@ -564,7 +555,7 @@ __meta__ = {
 
 position = Vector2( -40.8879, 174.286 )
 rotation = 0.138264
-texture = ExtResource( 20 )
+texture = ExtResource( 23 )
 offset = Vector2( -28.2379, 112.952 )
 __meta__ = {
 "_edit_bone_": true
@@ -575,7 +566,7 @@ __meta__ = {
 show_behind_parent = true
 position = Vector2( -43.2678, 214.298 )
 rotation = -0.234517
-texture = ExtResource( 21 )
+texture = ExtResource( 24 )
 offset = Vector2( 22.7391, 52.9626 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -601,14 +592,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 22 )
+script = ExtResource( 25 )
 _sections_unfolded = [ "Visibility" ]
 action_menu = NodePath("Container/Container/Menu Panel")
 pause_menu = NodePath("Pause")
 
 [node name="Container" type="VBoxContainer" parent="GUI" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -690,7 +680,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 23 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "LIVE"
 percent_visible = 1.0
@@ -700,6 +690,7 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Menu Panel" type="Control" parent="GUI/Container/Container" index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -714,7 +705,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 5
 size_flags_vertical = 0
-script = ExtResource( 24 )
+script = ExtResource( 27 )
 _sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 __meta__ = {
 "_edit_group_": true
@@ -737,6 +728,7 @@ _sections_unfolded = [ "Size Flags" ]
 
 [node name="Title" type="NinePatchRect" parent="GUI/Container/Container/Menu Panel/VBoxContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -750,7 +742,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 0
 size_flags_vertical = 1
-texture = ExtResource( 25 )
+texture = ExtResource( 28 )
 patch_margin_left = 11
 patch_margin_top = 11
 patch_margin_right = 11
@@ -788,7 +780,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 23 )
+custom_fonts/font = ExtResource( 26 )
 text = "THE HERO MOVES!!"
 percent_visible = 1.0
 lines_skipped = 0
@@ -797,7 +789,6 @@ _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="Rect" type="NinePatchRect" parent="GUI/Container/Container/Menu Panel/VBoxContainer" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -811,14 +802,13 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 26 )
+texture = ExtResource( 29 )
 patch_margin_left = 14
 patch_margin_right = 14
 _sections_unfolded = [ "Axis Stretch", "Patch Margin", "Size Flags" ]
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -877,46 +867,20 @@ _sections_unfolded = [ "Anchor", "Scroll", "Size Flags" ]
 
 [node name="Menu Items" type="VBoxContainer" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 500.0
-margin_bottom = 25.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+focus_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Size Flags" ]
-
-[node name="Button" type="Button" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 500.0
-margin_bottom = 25.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme = ExtResource( 27 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Hey Whatup"
-flat = false
-align = 0
-_sections_unfolded = [ "Theme" ]
+_sections_unfolded = [ "Focus", "Size Flags" ]
 
 [node name="VSeparator" type="VSeparator" parent="GUI/Container/Container/Menu Panel/VBoxContainer/Rect/MarginContainer/HBoxContainer" index="1"]
 
@@ -966,7 +930,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 27 )
+theme = ExtResource( 30 )
 bbcode_enabled = true
 bbcode_text = "Hello Text and descripion here"
 visible_characters = -1
@@ -978,7 +942,7 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "BBCode", "Rect", "Size Flags", "Theme" ]
+_sections_unfolded = [ "BBCode", "Focus", "Rect", "Size Flags", "Theme" ]
 
 [node name="Tween" type="Tween" parent="GUI/Container/Container/Menu Panel" index="1"]
 
@@ -1006,7 +970,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 25 )
+texture = ExtResource( 28 )
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -1046,7 +1010,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-theme = ExtResource( 27 )
+theme = ExtResource( 30 )
 text = "f dsafds f aags asdg sag sdgs gfd ga dfgsad gg  fdsasad g gsagd  asgsa ds dfgsag  AF F DSG gdsd g fd g dag sd s dfsa dg sg asd g adsg AF  DF gd sgda sg a s gs"
 align = 1
 valign = 1
@@ -1073,7 +1037,7 @@ size_flags_vertical = 1
 pause_mode = 2
 editor/display_folded = true
 visible = false
-material = SubResource( 10 )
+material = SubResource( 8 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -1084,10 +1048,10 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 29 )
+texture = ExtResource( 32 )
 expand = true
 stretch_mode = 0
-script = ExtResource( 30 )
+script = ExtResource( 33 )
 
 [node name="Label" type="Label" parent="GUI/Pause" index="0"]
 
@@ -1105,7 +1069,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 23 )
+custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0.152667, 0.984375, 0.00769043, 1 )
 text = "PAUSE"
 percent_visible = 1.0

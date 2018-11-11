@@ -23,7 +23,7 @@ func level_up(amnt = 1):
 
 func set_level(level):
 	assert level >= 0
-	current_level = max(level, get_child_count()-1)
+	current_level = min(level, get_child_count()-1)
 	var old = maximum
 	self.maximum = int(get_child(current_level).name) #set max stat to nth child
 	self.current += maximum - old #add diference
