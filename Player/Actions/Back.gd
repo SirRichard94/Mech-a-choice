@@ -10,6 +10,6 @@ func _ready():
 		description += "- " + child.name+"\n"
 
 func _do_action():
-	player.action_menu.title_text = "HERO PONDERS: "+ get_parent().get_parent().name 
-	player.action_menu.menu_items = get_parent().get_parent().get_children()
+	player.gui.action_menu.title_text = "HERO PONDERS: "+ get_parent().get_parent().name 
+	player.gui.action_menu.menu_items = get_parent().get_parent().get_children()
 	

@@ -1,14 +1,15 @@
 extends Node2D
 
-onready var city = get_node("../City")
-onready var gui = get_node("../GUI")
-onready var action_menu = gui.get_node(gui.action_menu)
+onready var gui = get_tree().current_scene.get_node("GUI")
+
+var location
 
 func _ready():
 	$ATBTimer.connect("timeout", self, "choose_action")
 	start_ATBTimer()
 
 func choose_action():
+	var action_menu = gui.action_menu
 	var actions = $Actions.get_children()
 	action_menu.title_text = "HERO CHOOSES BRAVE ACTION !"
 	action_menu.menu_items = actions

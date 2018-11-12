@@ -23,7 +23,7 @@
 [ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=21]
 [ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=22]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 9 ) ],
@@ -37,7 +37,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 11 ) ],
@@ -169,7 +169,7 @@ offset = Vector2( 3.16732, 40.8775 )
 [node name="Torso" type="AnimatedSprite" parent="Root/Hips" index="0"]
 
 position = Vector2( -6.80496, -22.2803 )
-frames = SubResource( 6 )
+frames = SubResource( 1 )
 animation = "Front"
 offset = Vector2( 9.97229, -90.8586 )
 __meta__ = {
@@ -179,7 +179,7 @@ __meta__ = {
 [node name="Head" type="AnimatedSprite" parent="Root/Hips/Torso" index="0"]
 
 position = Vector2( -23.8153, -203.646 )
-frames = SubResource( 7 )
+frames = SubResource( 2 )
 animation = "Front"
 offset = Vector2( 24.9233, -103.278 )
 __meta__ = {

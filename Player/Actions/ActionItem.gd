@@ -5,7 +5,7 @@ var description = """
 """
 var energy_cost = 0
 
-onready var player = get_tree().root.get_child(0).get_node("Player")
+onready var player = get_tree().current_scene.get_node("Player")
 onready var animator = player.get_node("AnimationPlayer")
 onready var ATBTimer = player.get_node("ATBTimer")
 
