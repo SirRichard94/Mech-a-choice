@@ -157,7 +157,7 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
-[node name="MainGame" type="Node"]
+[node name="MainGame" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -248,14 +248,17 @@ blend_times = [  ]
 
 [node name="Camera" type="Node2D" parent="." index="4"]
 
+position = Vector2( 512, 300 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
-shake_x = 100.0
-shake_y = 70
+shake_x = 250.0
+shake_y = 300.0
+max_shake_time = 2.0
+max_rotation = 0.04
 
 [node name="Camera2D" type="Camera2D" parent="Camera" index="0"]
 
-anchor_mode = 0
+anchor_mode = 1
 rotating = true
 current = true
 zoom = Vector2( 1, 1 )
