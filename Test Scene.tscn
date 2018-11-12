@@ -2,8 +2,8 @@
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
 [ext_resource path="res://City/Area.gd" type="Script" id=2]
-[ext_resource path="res://City/Downtown.png" type="Texture" id=3]
-[ext_resource path="res://General/Stat.gd" type="Script" id=4]
+[ext_resource path="res://General/Stat.gd" type="Script" id=3]
+[ext_resource path="res://City/Areas/PowerPlant.gd" type="Script" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/KingApe/KingApe.gd" type="Script" id=6]
 [ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=7]
@@ -160,7 +160,7 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
-[node name="MainGame" type="Node"]
+[node name="MainGame" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -171,77 +171,59 @@ starting_area = "./City/TestArea"
 
 [node name="City" type="Node" parent="." index="0"]
 
-[node name="TestArea" type="Node2D" parent="City" index="0"]
-
-visible = false
-script = ExtResource( 2 )
-conected_locations = [ "Military Base", "Mountains", "Transmission Tower" ]
-
-[node name="Background" type="TextureRect" parent="City/TestArea" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -90.0
-margin_top = -56.0
-margin_right = 1120.0
-margin_bottom = 653.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 0
-
-[node name="StatBlock" type="Node" parent="City/TestArea" index="1"]
-
-[node name="HP" type="Node" parent="City/TestArea/StatBlock" index="0"]
-
 editor/display_folded = true
-script = ExtResource( 4 )
 
-[node name="10" type="Node" parent="City/TestArea/StatBlock/HP" index="0"]
-
-[node name="Transmission Tower" type="Node2D" parent="City" index="1"]
+[node name="Mountains" type="Node2D" parent="City" index="0"]
 
 editor/display_folded = true
 visible = false
 script = ExtResource( 2 )
-conected_locations = [ "Military Base" ]
 
-[node name="tRNASM TOWR" type="Label" parent="City/Transmission Tower" index="0"]
+[node name="Paths" type="Node" parent="City/Mountains" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 390.0
-margin_top = 110.0
-margin_right = 430.0
-margin_bottom = 124.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "tRNASM TOWR"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+editor/display_folded = true
+
+[node name="Military Base" type="Node" parent="City/Mountains/Paths" index="0"]
+
+[node name="Beach" type="Node2D" parent="City" index="1"]
+
+editor/display_folded = true
+visible = false
+script = ExtResource( 2 )
+
+[node name="Paths" type="Node" parent="City/Beach" index="0"]
+
+editor/display_folded = true
+
+[node name="Downtown" type="Node" parent="City/Beach/Paths" index="0"]
+
+[node name="StatBlock" type="Node" parent="City/Beach" index="1"]
+
+editor/display_folded = true
+
+[node name="HP" type="Node" parent="City/Beach/StatBlock" index="0"]
+
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="10" type="Node" parent="City/Beach/StatBlock/HP" index="0"]
 
 [node name="Military Base" type="Node2D" parent="City" index="2"]
 
 editor/display_folded = true
 visible = false
 script = ExtResource( 2 )
-conected_locations = [ "Transmission Tower" ]
 
-[node name="label" type="Label" parent="City/Military Base" index="0"]
+[node name="ATBTimer" type="Timer" parent="City/Military Base" index="0" groups=[
+"ATB Timers",
+]]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="label" type="Label" parent="City/Military Base" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -262,14 +244,45 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Mountains" type="Node2D" parent="City" index="3"]
+[node name="Paths" type="Node" parent="City/Military Base" index="2"]
+
+editor/display_folded = true
+
+[node name="Shield" type="Node" parent="City/Military Base/Paths" index="0"]
+
+[node name="Park" type="Node" parent="City/Military Base/Paths" index="1"]
+
+[node name="Comms Tower" type="Node" parent="City/Military Base/Paths" index="2"]
+
+[node name="Power Plant" type="Node" parent="City/Military Base/Paths" index="3"]
+
+[node name="StatBlock" type="Node" parent="City/Military Base" index="3"]
+
+editor/display_folded = true
+
+[node name="HP" type="Node" parent="City/Military Base/StatBlock" index="0"]
+
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="10" type="Node" parent="City/Military Base/StatBlock/HP" index="0"]
+
+[node name="Power Plant" type="Node2D" parent="City" index="3"]
 
 editor/display_folded = true
 visible = false
-script = ExtResource( 2 )
-conected_locations = null
+script = ExtResource( 4 )
 
-[node name="label" type="Label" parent="City/Mountains" index="0"]
+[node name="ATBTimer" type="Timer" parent="City/Power Plant" index="0" groups=[
+"ATB Timers",
+]]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="label" type="Label" parent="City/Power Plant" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -285,44 +298,39 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Mountains"
+text = "military base"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Apartment Zone" type="Node2D" parent="City" index="4"]
+[node name="Paths" type="Node" parent="City/Power Plant" index="2"]
 
 editor/display_folded = true
-visible = false
-script = ExtResource( 2 )
-conected_locations = null
 
-[node name="label2" type="Label" parent="City/Apartment Zone" index="0"]
+[node name="Shield" type="Node" parent="City/Power Plant/Paths" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 390.0
-margin_top = 110.0
-margin_right = 484.0
-margin_bottom = 124.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "APARTMENTS "
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+[node name="Park" type="Node" parent="City/Power Plant/Paths" index="1"]
+
+[node name="Comms Tower" type="Node" parent="City/Power Plant/Paths" index="2"]
+
+[node name="StatBlock" type="Node" parent="City/Power Plant" index="3"]
+
+editor/display_folded = true
+
+[node name="HP" type="Node" parent="City/Power Plant/StatBlock" index="0"]
+
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="10" type="Node" parent="City/Power Plant/StatBlock/HP" index="0"]
 
 [node name="Player" parent="." index="1" groups=[
 "Area Members",
 ] instance=ExtResource( 5 )]
 
 [node name="Enemies" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="KingApe" type="Node2D" parent="Enemies" index="0" groups=[
 "Area Members",
@@ -338,21 +346,17 @@ scale = Vector2( 0.464317, 0.464317 )
 texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="State" type="Node" parent="Enemies/KingApe" index="1"]
+[node name="Actions" type="Node" parent="Enemies/KingApe" index="1"]
 
-editor/display_folded = true
+[node name="Punch" type="Node" parent="Enemies/KingApe/Actions" index="0"]
 
-[node name="Waiting" type="Node" parent="Enemies/KingApe/State" index="0"]
+[node name="Throw" type="Node" parent="Enemies/KingApe/Actions" index="1"]
 
-[node name="Punch" type="Node" parent="Enemies/KingApe/State" index="1"]
+[node name="Dropkick" type="Node" parent="Enemies/KingApe/Actions" index="2"]
 
-[node name="Throw" type="Node" parent="Enemies/KingApe/State" index="2"]
+[node name="Hit Ground" type="Node" parent="Enemies/KingApe/Actions" index="3"]
 
-[node name="DropKick" type="Node" parent="Enemies/KingApe/State" index="3"]
-
-[node name="GroundHit" type="Node" parent="Enemies/KingApe/State" index="4"]
-
-[node name="Escape" type="Node" parent="Enemies/KingApe/State" index="5"]
+[node name="Move" type="Node" parent="Enemies/KingApe/Actions" index="4"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/KingApe" index="2"]
 

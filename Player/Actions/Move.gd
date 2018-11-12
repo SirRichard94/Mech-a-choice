@@ -9,21 +9,22 @@ func _ready():
 
 
 func _do_action():
+	var location = player.location
+	var paths = location.get_paths()
+	
+	if paths.empty():
+		description = "Nowhere to Go"
+		return
+	
 	for child in get_children():
 		child.queue_free()
 	
 	yield(get_tree(), "idle_frame")
 	
-	var location = player.location
-	if location.conected_locations == null:
-		print ("no paths")
-		return
-	
-	for path in location.conected_locations:
+	for path in paths:
 		var move_to = MoveLocationScene.instance()
-		var target = location.get_parent().get_node(path)
-		move_to.target = target
-		move_to.name = target.name
+		move_to.target = path
+		move_to.name = path.name
 		
 		add_child(move_to)
 		

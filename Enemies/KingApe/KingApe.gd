@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var location = get_tree().current_scene.get_node("City/Transmission Tower")
+onready var location = get_tree().current_scene.get_node("City/Mountains")
 
 func _ready():
 	# Called when the node is added to the scene for the first time.

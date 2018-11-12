@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=2]
@@ -9,6 +9,21 @@
 [ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=7]
 [ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=8]
 [ext_resource path="res://GUI/Pause.gd" type="Script" id=9]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Label
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	var scene = get_tree().current_scene
+	scene.connect(\"area_changed\", self, \"change_text\")
+
+func change_text(area):
+	text = area.name"
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -67,14 +82,14 @@ _sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 
 [node name="Live" type="Control" parent="Container/Container" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 8.0
-margin_right = 127.0
-margin_bottom = 76.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 182.0
+margin_bottom = 80.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -86,12 +101,30 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Container/Container/Live" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Container/Live" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 13
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="Container/Container/Live/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 45.0
+margin_bottom = 60.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -100,16 +133,15 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 
-[node name="Label" type="Label" parent="Container/Container/Live/CenterContainer" index="0"]
+[node name="Label" type="Label" parent="Container/Container/Live/HBoxContainer/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 37.0
-margin_top = 16.0
-margin_right = 82.0
-margin_bottom = 59.0
+margin_top = 8.0
+margin_right = 45.0
+margin_bottom = 51.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -119,10 +151,36 @@ size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "LIVE"
+align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Label" type="Label" parent="Container/Container/Live/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 58.0
+margin_top = 23.0
+margin_right = 129.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Area Name"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 2 )
 
 [node name="Menu Panel" type="Control" parent="Container/Container" index="1"]
 

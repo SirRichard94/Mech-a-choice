@@ -13,7 +13,7 @@ func _do_action():
 	gui.action_menu.disappear()
 	
 	var animator = player.get_node("AnimationPlayer")
-	if player.location.enemies_in_area() > 0:
+	if player.location.enemy_count() > 0:
 		animator.play("Retreat")
 	else:
 		animator.play("Leave")

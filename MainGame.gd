@@ -14,7 +14,7 @@ func _ready():
 func set_current_area(new_area):
 	
 	if new_area == null:
-		new_area = $Areas.get_child(0)
+		new_area = $City.get_child(0)
 	current_area.visible = false
 	new_area.visible = true
 	

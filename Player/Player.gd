@@ -2,7 +2,7 @@ extends Node2D
 
 onready var gui = get_tree().current_scene.get_node("GUI")
 
-onready var location = get_tree().current_scene.get_node("City/TestArea")
+onready var location = get_tree().current_scene.get_node("City").get_child(0)
 
 func _ready():
 	$ATBTimer.connect("timeout", self, "choose_action")
