@@ -10,5 +10,5 @@ func _ready():
 		description += "- " + child.name + "\n"
 
 func _do_action():
-	player.gui.action_menu.title_text = name + " Actions"
-	player.gui.action_menu.menu_items = get_children()
+	gui.action_menu.title_text = name + " Actions"
+	gui.action_menu.menu_items = get_children()

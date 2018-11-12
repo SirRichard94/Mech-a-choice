@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
-[ext_resource path="res://City/Downtown.png" type="Texture" id=2]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=4]
-[ext_resource path="res://Camera.gd" type="Script" id=5]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://City/Area.gd" type="Script" id=2]
+[ext_resource path="res://City/Downtown.png" type="Texture" id=3]
+[ext_resource path="res://General/Stat.gd" type="Script" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/KingApe/KingApe.gd" type="Script" id=6]
+[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=7]
+[ext_resource path="res://Camera.gd" type="Script" id=8]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -157,7 +160,7 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
-[node name="MainGame" type="Node" index="0"]
+[node name="MainGame" type="Node"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -170,7 +173,9 @@ starting_area = "./City/TestArea"
 
 [node name="TestArea" type="Node2D" parent="City" index="0"]
 
-editor/display_folded = true
+visible = false
+script = ExtResource( 2 )
+conected_locations = [ "Military Base", "Mountains", "Transmission Tower" ]
 
 [node name="Background" type="TextureRect" parent="City/TestArea" index="0"]
 
@@ -188,30 +193,149 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 0
 
+[node name="StatBlock" type="Node" parent="City/TestArea" index="1"]
+
+[node name="HP" type="Node" parent="City/TestArea/StatBlock" index="0"]
+
+editor/display_folded = true
+script = ExtResource( 4 )
+
+[node name="10" type="Node" parent="City/TestArea/StatBlock/HP" index="0"]
+
 [node name="Transmission Tower" type="Node2D" parent="City" index="1"]
+
+editor/display_folded = true
+visible = false
+script = ExtResource( 2 )
+conected_locations = [ "Military Base" ]
+
+[node name="tRNASM TOWR" type="Label" parent="City/Transmission Tower" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 390.0
+margin_top = 110.0
+margin_right = 430.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "tRNASM TOWR"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="Military Base" type="Node2D" parent="City" index="2"]
 
-[node name="Apartment Zone" type="Node2D" parent="City" index="3"]
+editor/display_folded = true
+visible = false
+script = ExtResource( 2 )
+conected_locations = [ "Transmission Tower" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
+[node name="label" type="Label" parent="City/Military Base" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 390.0
+margin_top = 110.0
+margin_right = 484.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "military base"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Mountains" type="Node2D" parent="City" index="3"]
+
+editor/display_folded = true
+visible = false
+script = ExtResource( 2 )
+conected_locations = null
+
+[node name="label" type="Label" parent="City/Mountains" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 390.0
+margin_top = 110.0
+margin_right = 484.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Mountains"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Apartment Zone" type="Node2D" parent="City" index="4"]
+
+editor/display_folded = true
+visible = false
+script = ExtResource( 2 )
+conected_locations = null
+
+[node name="label2" type="Label" parent="City/Apartment Zone" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 390.0
+margin_top = 110.0
+margin_right = 484.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "APARTMENTS "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Player" parent="." index="1" groups=[
+"Area Members",
+] instance=ExtResource( 5 )]
 
 [node name="Enemies" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
+[node name="KingApe" type="Node2D" parent="Enemies" index="0" groups=[
+"Area Members",
+]]
 
-[node name="KingApe" type="Node2D" parent="Enemies" index="0"]
+script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Enemies/KingApe" index="0"]
 
 position = Vector2( 779.019, 325.152 )
 rotation = -0.156929
 scale = Vector2( 0.464317, 0.464317 )
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="State" type="Node" parent="Enemies/KingApe" index="1"]
@@ -248,8 +372,9 @@ blend_times = [  ]
 
 [node name="Camera" type="Node2D" parent="." index="4"]
 
+editor/display_folded = true
 position = Vector2( 512, 300 )
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 shake_x = 250.0
 shake_y = 300.0
@@ -282,6 +407,6 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
-[node name="GUI" parent="." index="5" instance=ExtResource( 6 )]
+[node name="GUI" parent="." index="5" instance=ExtResource( 9 )]
 
 

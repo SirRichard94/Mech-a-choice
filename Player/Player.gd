@@ -2,11 +2,14 @@ extends Node2D
 
 onready var gui = get_tree().current_scene.get_node("GUI")
 
-var location
+onready var location = get_tree().current_scene.get_node("City/TestArea")
 
 func _ready():
 	$ATBTimer.connect("timeout", self, "choose_action")
 	start_ATBTimer()
+
+func add_shake(f):
+	get_tree().current_scene.get_node("Camera").add_shake(f)
 
 func choose_action():
 	var action_menu = gui.action_menu

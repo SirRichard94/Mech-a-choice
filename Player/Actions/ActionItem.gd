@@ -5,8 +5,8 @@ var description = """
 """
 var energy_cost = 0
 
+onready var gui = get_tree().current_scene.get_node("GUI")
 onready var player = get_tree().current_scene.get_node("Player")
-onready var animator = player.get_node("AnimationPlayer")
 onready var ATBTimer = player.get_node("ATBTimer")
 
 func _ready():
