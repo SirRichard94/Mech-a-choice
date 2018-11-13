@@ -64,6 +64,10 @@ func refresh_items():
 		m_item.connect("focus_entered", description_box, "set",["text",desc])
 		m_item.connect("mouse_entered", description_box, "set",["text",desc])
 		
+		# SET DISABLED
+		var disabled = item.is_disabled() if item.has_method("is_disabled")  else true
+		m_item.disabled = disabled
+		
 		item_container.add_child(m_item)
 	
 	yield(get_tree(),"idle_frame")

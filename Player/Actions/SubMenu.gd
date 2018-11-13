@@ -12,3 +12,6 @@ func _ready():
 func _do_action():
 	gui.action_menu.title_text = name + " Actions"
 	gui.action_menu.menu_items = get_children()
+
+func is_disabled():
+	return player.get_node("AreaComponent").get_area().enemy_count() == 0

@@ -17,6 +17,6 @@ func enemy_count():
 func get_enemies():
 	var enemies = []
 	for area_comp in get_tree().get_nodes_in_group("Area Components"):
-		if area_comp.owner.is_in_group("Enemies"):
+		if area_comp.owner.is_in_group("Enemies") and area_comp.get_area() == self:
 			enemies.append(area_comp.owner)
 	return enemies

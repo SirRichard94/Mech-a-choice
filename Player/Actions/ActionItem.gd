@@ -15,3 +15,6 @@ func _do_action():
 
 func _on_hover():
 	pass
+
+func is_disabled():
+	return false

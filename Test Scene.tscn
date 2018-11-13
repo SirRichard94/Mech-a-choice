@@ -385,12 +385,11 @@ script = SubResource( 1 )
 "Enemies",
 ]]
 
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="AreaComponent" parent="Enemies/KingApe" index="0" instance=ExtResource( 7 )]
 
-starting_area = "Mountains"
+starting_area = "Park"
 
 [node name="StatBlock" parent="Enemies/KingApe" index="1" instance=ExtResource( 8 )]
 
