@@ -1,6 +1,6 @@
 extends "res://Player/Actions/ActionItem.gd"
 
-var MoveToAction = preload("res://Player/Actions/MoveLocation.tscn")
+var MoveToAction = preload("res://Player/Actions/MoveToLocation.tscn")
 var BackAction = preload("res://Player/Actions/Back.tscn")
 
 
