@@ -1,10 +1,10 @@
-extends Node2D
+extends Node
 
+signal action_started(action)
+signal action_ended(action)
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	owner = get_parent()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.

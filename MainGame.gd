@@ -1,6 +1,6 @@
 extends Node
 
-export (NodePath) var starting_area = "./City/TestArea"
+export (String) var starting_area = "Park"
 
 var current_area
 signal area_changed(new_area)
@@ -8,18 +8,18 @@ signal area_changed(new_area)
 func _ready():
 	current_area = $City.get_child(0)
 	
-	set_current_area(get_node(starting_area))
+	set_current_area(starting_area)
 	
 
-func set_current_area(new_area):
-	
+func set_current_area(area_name):
+	var new_area = $City.get_node(area_name)
 	if new_area == null:
-		new_area = $City.get_child(0)
+		return false
 	current_area.visible = false
 	new_area.visible = true
 	
-	for member in get_tree().get_nodes_in_group("Area Members"):
-		member.visible = member.location == new_area
+	for area_comp in get_tree().get_nodes_in_group("Area Components"):
+		area_comp.owner.visible = area_comp.get_area() == new_area
 	
 	current_area = new_area
 	

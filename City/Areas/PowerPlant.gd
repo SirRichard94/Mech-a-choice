@@ -2,7 +2,7 @@ extends "res://City/Area.gd"
 
 onready var player = get_tree().current_scene.get_node("Player")
 
-func _on_ATB_turn():
+func _on_ATBTimer_timeout():
 	var player_stats = player.get_node("StatBlock")
-	player_stats.get_node("Energy").current += 10
+	player_stats.add("Energy", 1)
 	print("added_energy")

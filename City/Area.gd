@@ -1,13 +1,5 @@
 extends Node2D
 
-
-func _ready():
-	if get_node("ATBTimer"):
-		$ATBTimer.connect("timeout", self, "_on_ATB_turn")
-
-func _on_ATB_turn():
-	pass
-
 func get_paths():
 	assert get_node("Paths") != null
 	var list = []
@@ -24,7 +16,7 @@ func enemy_count():
 
 func get_enemies():
 	var enemies = []
-	for enemy in get_tree().current_scene.get_node("Enemies").get_children():
-		if enemy.location == self: 
-			enemies.append(enemy)
+	for area_comp in get_tree().get_nodes_in_group("Area Components"):
+		if area_comp.owner.is_in_group("Enemies"):
+			enemies.append(area_comp.owner)
 	return enemies

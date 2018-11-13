@@ -9,8 +9,8 @@ func _ready():
 
 
 func _do_action():
-	var location = player.location
-	var paths = location.get_paths()
+	var area = player.get_node("AreaComponent").get_area()
+	var paths = area.get_paths()
 	
 	if paths.empty():
 		description = "Nowhere to Go"

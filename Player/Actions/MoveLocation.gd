@@ -11,17 +11,18 @@ func _ready():
 
 func _do_action():
 	gui.action_menu.disappear()
-	
+	var area_comp = player.get_node("AreaComponent")
 	var animator = player.get_node("AnimationPlayer")
-	if player.location.enemy_count() > 0:
+	
+	if area_comp.get_area().enemy_count() > 0:
 		animator.play("Retreat")
 	else:
 		animator.play("Leave")
 	
 	yield(animator,"animation_finished")
 	
-	player.location = target
-	get_tree().current_scene.set_current_area(target)
+	area_comp.set_area( target.name )
+	get_tree().current_scene.set_current_area(target.name)
 	
 	animator.play("Arrive") 
 	

@@ -1,8 +1,6 @@
 extends Node
 
-var description = """
-	This Action Has a Description
-"""
+var description = "This Action Has a Description"
 var energy_cost = 0
 
 onready var gui = get_tree().current_scene.get_node("GUI")

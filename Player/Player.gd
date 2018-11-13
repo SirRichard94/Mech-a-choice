@@ -2,7 +2,6 @@ extends Node2D
 
 onready var gui = get_tree().current_scene.get_node("GUI")
 
-onready var location = get_tree().current_scene.get_node("City").get_child(0)
 
 func _ready():
 	$ATBTimer.connect("timeout", self, "choose_action")
@@ -25,5 +24,5 @@ func start_ATBTimer(modifier = 1):
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):
 		timer.paused = false
 	
-	$ATBTimer.wait_time = $"StatBlock/ATB Base".current * modifier ## add city mod
+	$ATBTimer.wait_time = $"StatBlock".get_current("ATB Base") * modifier ## add city mod
 	$ATBTimer.start()
