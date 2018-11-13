@@ -1,7 +1,6 @@
-extends Node2D
+extends "res://General/Unit.gd"
 
 onready var gui = get_tree().current_scene.get_node("GUI")
-
 
 func _ready():
 	$ATBTimer.connect("timeout", self, "choose_action")

@@ -386,6 +386,7 @@ script = SubResource( 1 )
 ]]
 
 script = ExtResource( 6 )
+screen_shake_modifier = 1.0
 
 [node name="AreaComponent" parent="Enemies/KingApe" index="0" instance=ExtResource( 7 )]
 

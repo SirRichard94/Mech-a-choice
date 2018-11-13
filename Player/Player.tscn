@@ -1472,7 +1472,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" index="0"]
+[node name="Player" type="Node2D" groups=[
+"Player",
+]]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -1480,6 +1482,7 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 520.0 ],
 "_edit_vertical_guides_": [ 100.0, 240.0 ]
 }
+screen_shake_modifier = 1.0
 
 [node name="AreaComponent" type="Node" parent="." index="0"]
 

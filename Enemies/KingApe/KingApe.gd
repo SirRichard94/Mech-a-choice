@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://General/Unit.gd"
 
 
 func _ready():
