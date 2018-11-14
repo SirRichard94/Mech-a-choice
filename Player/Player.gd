@@ -9,6 +9,10 @@ func _ready():
 func add_shake(f):
 	get_tree().current_scene.get_node("Camera").add_shake(f)
 
+func _on_death():
+	self.visible = false
+	$ATBTimer.paused = true
+
 func choose_action():
 	var action_menu = gui.action_menu
 	var actions = $Actions.get_children()

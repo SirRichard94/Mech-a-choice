@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
 [ext_resource path="res://City/Area.tscn" type="PackedScene" id=2]
@@ -7,9 +7,12 @@
 [ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=8]
-[ext_resource path="res://Camera.gd" type="Script" id=9]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/KingApe/Actions/Punch.gd" type="Script" id=9]
+[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=10]
+[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=11]
+[ext_resource path="res://Camera.gd" type="Script" id=12]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=2]
 
@@ -160,8 +163,53 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "animation_event", "hit" ],
+"method": "emit_signal"
+} ]
+}
 
-[node name="MainGame" type="Node"]
+[sub_resource type="Animation" id=7]
+
+resource_name = "Taunt"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 790.377, 364.58 ), Vector2( 810.783, 155.083 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -7.70801, -7.70801 ]
+}
+
+[node name="MainGame" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -232,6 +280,8 @@ editor/display_folded = true
 "Area Members",
 ] instance=ExtResource( 3 )]
 
+_sections_unfolded = [ "Pause", "Transform" ]
+
 [node name="Enemies" type="Node2D" parent="." index="2"]
 
 [node name="KingApe" type="Node2D" parent="Enemies" index="0" groups=[
@@ -247,13 +297,21 @@ starting_area = "Park"
 
 [node name="StatBlock" parent="Enemies/KingApe" index="1" instance=ExtResource( 6 )]
 
+[node name="Speed" parent="Enemies/KingApe/StatBlock" index="1"]
+
+editor/display_folded = false
+
+[node name="60" type="Node" parent="Enemies/KingApe/StatBlock/Speed" index="1"]
+
 [node name="ATBTimer" parent="Enemies/KingApe" index="2" instance=ExtResource( 7 )]
 
-[node name="Actions" type="Node" parent="Enemies/KingApe" index="3"]
+one_shot = true
 
-editor/display_folded = true
+[node name="Actions" parent="Enemies/KingApe" index="3" instance=ExtResource( 8 )]
 
 [node name="Punch" type="Node" parent="Enemies/KingApe/Actions" index="0"]
+
+script = ExtResource( 9 )
 
 [node name="Throw" type="Node" parent="Enemies/KingApe/Actions" index="1"]
 
@@ -265,10 +323,10 @@ editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Enemies/KingApe" index="4"]
 
-position = Vector2( 779.019, 325.152 )
-rotation = -0.156929
+position = Vector2( 790.377, 364.58 )
+rotation = -0.13453
 scale = Vector2( 0.464317, 0.464317 )
-texture = ExtResource( 8 )
+texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/KingApe" index="5"]
@@ -283,7 +341,9 @@ anims/Enter = SubResource( 3 )
 anims/Idle = SubResource( 4 )
 anims/Leave = SubResource( 5 )
 anims/Punch = SubResource( 6 )
+anims/Taunt = SubResource( 7 )
 blend_times = [  ]
+script = ExtResource( 11 )
 
 [node name="Alies" type="Node2D" parent="." index="3"]
 
@@ -291,7 +351,7 @@ blend_times = [  ]
 
 editor/display_folded = true
 position = Vector2( 512, 300 )
-script = ExtResource( 9 )
+script = ExtResource( 12 )
 _sections_unfolded = [ "Transform" ]
 shake_x = 250.0
 shake_y = 300.0
@@ -324,7 +384,7 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
-[node name="GUI" parent="." index="5" instance=ExtResource( 10 )]
+[node name="GUI" parent="." index="5" instance=ExtResource( 13 )]
 
 
 [editable path="City/Park"]
@@ -332,3 +392,5 @@ _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 [editable path="City/Comms Tower"]
 [editable path="City/Powerplant"]
 [editable path="City/Downtown"]
+[editable path="Enemies/KingApe/StatBlock"]
+[editable path="GUI"]

@@ -1,4 +1,4 @@
-extends "res://Player/Actions/ActionItem.gd"
+extends "res://Components/ActionItem.gd"
 
 var target
 
@@ -11,7 +11,7 @@ func _ready():
 
 func _do_action():
 	emit_signal("action_started")
-	
+
 	var area_comp = player.get_node("AreaComponent")
 	var animator = player.get_node("AnimationPlayer")
 	

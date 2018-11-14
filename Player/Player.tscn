@@ -11,21 +11,22 @@
 [ext_resource path="res://Player/Actions/Move.gd" type="Script" id=9]
 [ext_resource path="res://Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=10]
 [ext_resource path="res://Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=11]
-[ext_resource path="res://Player/Robot/Robo-part-16.png" type="Texture" id=12]
-[ext_resource path="res://Player/Robot/Robo-part-15.png" type="Texture" id=13]
-[ext_resource path="res://Player/Robot/Robo-part-3.png" type="Texture" id=14]
-[ext_resource path="res://Player/Robot/Robo-part-14.png" type="Texture" id=15]
-[ext_resource path="res://Player/Robot/Robo-part-2.png" type="Texture" id=16]
-[ext_resource path="res://Player/Robot/Robo-part-7.png" type="Texture" id=17]
-[ext_resource path="res://Player/Robot/Robo-part-8.png" type="Texture" id=18]
-[ext_resource path="res://Player/Robot/Robo-part-12.png" type="Texture" id=19]
-[ext_resource path="res://Player/Robot/Robo-part-13.png" type="Texture" id=20]
-[ext_resource path="res://Player/Robot/Robo-part-9.png" type="Texture" id=21]
-[ext_resource path="res://Player/Robot/Robo-part-11.png" type="Texture" id=22]
-[ext_resource path="res://Player/Robot/Robo-part-10.png" type="Texture" id=23]
-[ext_resource path="res://Player/Robot/Robo-part-4.png" type="Texture" id=24]
-[ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=25]
-[ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=26]
+[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=12]
+[ext_resource path="res://Player/Robot/Robo-part-16.png" type="Texture" id=13]
+[ext_resource path="res://Player/Robot/Robo-part-15.png" type="Texture" id=14]
+[ext_resource path="res://Player/Robot/Robo-part-3.png" type="Texture" id=15]
+[ext_resource path="res://Player/Robot/Robo-part-14.png" type="Texture" id=16]
+[ext_resource path="res://Player/Robot/Robo-part-2.png" type="Texture" id=17]
+[ext_resource path="res://Player/Robot/Robo-part-7.png" type="Texture" id=18]
+[ext_resource path="res://Player/Robot/Robo-part-8.png" type="Texture" id=19]
+[ext_resource path="res://Player/Robot/Robo-part-12.png" type="Texture" id=20]
+[ext_resource path="res://Player/Robot/Robo-part-13.png" type="Texture" id=21]
+[ext_resource path="res://Player/Robot/Robo-part-9.png" type="Texture" id=22]
+[ext_resource path="res://Player/Robot/Robo-part-11.png" type="Texture" id=23]
+[ext_resource path="res://Player/Robot/Robo-part-10.png" type="Texture" id=24]
+[ext_resource path="res://Player/Robot/Robo-part-4.png" type="Texture" id=25]
+[ext_resource path="res://Player/Robot/Robo-part-5.png" type="Texture" id=26]
+[ext_resource path="res://Player/Robot/Robo-part-6.png" type="Texture" id=27]
 
 [sub_resource type="Animation" id=1]
 
@@ -1444,31 +1445,15 @@ tracks/38/keys = {
 } ]
 }
 
-[sub_resource type="GDScript" id=6]
-
-script/source = "extends AnimationPlayer
-
-signal animation_event(name)
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-"
-
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "Front",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "Back",
 "speed": 5.0
@@ -1477,18 +1462,18 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=5]
 
 animations = [ {
-"frames": [ ExtResource( 15 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "Front",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "Back",
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "Player",
 ]]
 
@@ -1567,7 +1552,7 @@ anims/Leave = SubResource( 2 )
 anims/Punch = ExtResource( 11 )
 anims/Retreat = SubResource( 3 )
 blend_times = [  ]
-script = SubResource( 6 )
+script = ExtResource( 12 )
 
 [node name="Root" type="Node2D" parent="." index="5"]
 
@@ -1578,7 +1563,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Hips" type="Sprite" parent="Root" index="0"]
 
 position = Vector2( 11.9962, -23.2265 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 offset = Vector2( 3.16732, 40.8775 )
 
 [node name="Torso" type="AnimatedSprite" parent="Root/Hips" index="0"]
@@ -1611,7 +1596,7 @@ __meta__ = {
 [node name="R arm" type="Sprite" parent="Root/Hips/Torso" index="1"]
 
 position = Vector2( -88.4851, -176.173 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 offset = Vector2( -18.4325, 47.8727 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -1621,7 +1606,7 @@ __meta__ = {
 [node name="R forearm" type="Sprite" parent="Root/Hips/Torso/R arm" index="0"]
 
 position = Vector2( -57.7036, 122.774 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 offset = Vector2( 24.5547, 62.6145 )
 __meta__ = {
 "_edit_bone_": true
@@ -1638,7 +1623,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 69.8928, -178.628 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 offset = Vector2( 29.4656, 46.6539 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1649,7 +1634,7 @@ __meta__ = {
 
 position = Vector2( 42.9707, 109.268 )
 rotation = -0.103351
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 offset = Vector2( 25.7825, 95.7634 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
@@ -1667,7 +1652,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 52.9467, 62.353 )
-texture = ExtResource( 21 )
+texture = ExtResource( 22 )
 offset = Vector2( 4.50994, 82.0331 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1678,7 +1663,7 @@ __meta__ = {
 [node name="L Sheen" type="Sprite" parent="Root/Hips/L Leg" index="0"]
 
 position = Vector2( 11.6884, 172.892 )
-texture = ExtResource( 22 )
+texture = ExtResource( 23 )
 offset = Vector2( 22.9764, 120.157 )
 __meta__ = {
 "_edit_bone_": true
@@ -1688,7 +1673,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 17.3394, 222.243 )
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 offset = Vector2( 37.901, 23.043 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1705,7 +1690,7 @@ __meta__ = {
 [node name="R Leg" type="Sprite" parent="Root/Hips" index="2"]
 
 position = Vector2( -61.0141, 63.8947 )
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 offset = Vector2( -13.8778, 82.2058 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1715,7 +1700,7 @@ __meta__ = {
 [node name="R Sheen" type="Sprite" parent="Root/Hips/R Leg" index="0"]
 
 position = Vector2( -40.8879, 174.286 )
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 offset = Vector2( -28.2379, 112.952 )
 __meta__ = {
 "_edit_bone_": true
@@ -1725,7 +1710,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( -43.2678, 214.297 )
-texture = ExtResource( 26 )
+texture = ExtResource( 27 )
 offset = Vector2( 22.7391, 52.9626 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {

@@ -2,11 +2,14 @@ extends "res://General/Unit.gd"
 
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	$ATBTimer.connect("timeout",self, "_on_ATB_timeout")
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _on_ATB_timeout():
+	print ("Ape turn!")
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	if player.is_dead():
+		$AnimationPlayer.play("Taunt")
+		return
+	$Actions/Punch._do_action()
+	yield($Actions,"action_ended")
+	$ATBTimer.start()
