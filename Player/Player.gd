@@ -1,7 +1,5 @@
 extends "res://General/Unit.gd"
 
-onready var gui = get_tree().current_scene.get_node("GUI")
-
 func _ready():
 	$ATBTimer.connect("timeout", self, "choose_action")
 	start_ATBTimer()
@@ -12,6 +10,7 @@ func add_shake(f):
 func _on_death():
 	self.visible = false
 	$ATBTimer.paused = true
+	gui.newscaster.announce("HERO HAS DIED", 1)
 
 func choose_action():
 	var action_menu = gui.action_menu

@@ -14,6 +14,10 @@ config/name="Mech a choice"
 run/main_scene="res://Test Scene.tscn"
 config/icon="res://Player/Robot/Robo-part-14.png"
 
+[autoload]
+
+DS="*res://Autoload/PriorityQueue.gd"
+
 [display]
 
 window/size/resizable=false

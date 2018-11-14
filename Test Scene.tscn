@@ -209,7 +209,7 @@ tracks/1/keys = {
 "values": [ -7.70801, -7.70801 ]
 }
 
-[node name="MainGame" type="Node" index="0"]
+[node name="MainGame" type="Node"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -385,6 +385,10 @@ editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
 [node name="GUI" parent="." index="5" instance=ExtResource( 13 )]
+
+[node name="NewsCaster" parent="GUI" index="1"]
+
+text_speed = 0.5
 
 
 [editable path="City/Park"]

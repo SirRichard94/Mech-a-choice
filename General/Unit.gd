@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var gui = get_tree().current_scene.get_node("GUI")
 onready var stats = get_node("StatBlock")
 
 export var screen_shake_modifier = 1.0
@@ -15,7 +16,7 @@ func _on_death():
 	queue_free()
 
 func _on_damage_taken(damage):
-	pass
+	gui.newscaster.announce(self.name + " has taken " + str(damage.amount) + " Damage")
 
 func attack(unit, amount, tags = ["Physical", "Melee"]):
 	var dmg = {}
