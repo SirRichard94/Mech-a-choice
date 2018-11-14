@@ -9,7 +9,7 @@ signal unit_died
 func _ready():
 	print("hi "+name)
 	assert stats != null
-	assert is_in_group("Enemies") or is_in_group("Alies") or is_in_group("Area") or is_in_group("Player")
+	assert is_in_group("Enemies") or is_in_group("Alies") or is_in_group("Areas") or is_in_group("Player")
 	
 
 func take_damage(damage):

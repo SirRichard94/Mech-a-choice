@@ -1476,6 +1476,7 @@ animations = [ {
 "Player",
 ]]
 
+editor/display_folded = true
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -1494,6 +1495,8 @@ starting_area = "Park"
 one_shot = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
+
+editor/display_folded = true
 
 [node name="HP" type="Node" parent="StatBlock" index="0"]
 
@@ -1547,6 +1550,7 @@ editor/display_folded = true
 
 [node name="Actions" type="Node" parent="." index="3"]
 
+editor/display_folded = true
 script = ExtResource( 5 )
 
 [node name="Attack" type="Node" parent="Actions" index="0"]

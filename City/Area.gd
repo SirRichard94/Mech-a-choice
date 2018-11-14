@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://General/Unit.gd"
 
 func get_paths():
 	assert get_node("Paths") != null

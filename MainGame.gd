@@ -6,13 +6,12 @@ var current_area
 signal area_changed(new_area)
 
 func _ready():
-	current_area = $City.get_child(0)
-	
+	current_area = get_tree().get_nodes_in_group("Areas")[0]
 	set_current_area(starting_area)
 	
 
 func set_current_area(area_name):
-	var new_area = $City.get_node(area_name)
+	var new_area = get_area(area_name)
 	if new_area == null:
 		return false
 	current_area.visible = false
@@ -24,3 +23,10 @@ func set_current_area(area_name):
 	current_area = new_area
 	
 	emit_signal("area_changed", new_area)
+
+func get_area(name):
+	var areas = get_tree().get_nodes_in_group("Areas")
+	for area in areas:
+		if area.name == name:
+			return area
+	return null

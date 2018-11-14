@@ -6,4 +6,34 @@
 
 script = ExtResource( 1 )
 
+[node name="HP" type="Node" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="10" type="Node" parent="HP" index="0"]
+
+[node name="Speed" type="Node" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="6" type="Node" parent="Speed" index="0"]
+
+[node name="Shield" type="Node" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="0" type="Node" parent="Shield" index="0"]
+
+[node name="Armor" type="Node" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="0" type="Node" parent="Armor" index="0"]
+
+[node name="Luck" type="Node" parent="." index="4"]
+
+editor/display_folded = true
+
+[node name="0" type="Node" parent="Luck" index="0"]
+
 
