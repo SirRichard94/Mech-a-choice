@@ -4,7 +4,7 @@
 [ext_resource path="res://Components/AreaComponent.gd" type="Script" id=2]
 [ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/ActionsManager.gd" type="Script" id=5]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/Actions/SubMenu.gd" type="Script" id=6]
 [ext_resource path="res://Player/Actions/Back.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player/Actions/Punch.gd" type="Script" id=8]
@@ -1533,10 +1533,7 @@ editor/display_folded = false
 
 editor/display_folded = false
 
-[node name="Actions" type="Node" parent="." index="3"]
-
-editor/display_folded = true
-script = ExtResource( 5 )
+[node name="Actions" parent="." index="3" instance=ExtResource( 5 )]
 
 [node name="Attack" type="Node" parent="Actions" index="0"]
 

@@ -18,6 +18,11 @@ func choose_action():
 	
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):
 		timer.paused = true
+	
+	yield($Actions, "action_started")
+	action_menu.disappear()
+	yield($Actions, "action_ended")
+	start_ATBTimer()
 
 func start_ATBTimer(modifier = 1):
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):

@@ -12,6 +12,8 @@ func is_disabled():
 	return area.get_enemies().empty()
 
 func _do_action():
+	emit_signal("action_started")
+	
 	gui.action_menu.disappear()
 	
 	var animator = player.get_node("AnimationPlayer")
@@ -24,4 +26,4 @@ func _do_action():
 	yield(animator,"animation_finished")
 	animator.play("Idle")
 	
-	player.start_ATBTimer()
+	emit_signal("action_ended")

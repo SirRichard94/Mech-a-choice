@@ -10,7 +10,8 @@ func _ready():
 	description = target.name
 
 func _do_action():
-	gui.action_menu.disappear()
+	emit_signal("action_started")
+	
 	var area_comp = player.get_node("AreaComponent")
 	var animator = player.get_node("AnimationPlayer")
 	
@@ -29,4 +30,4 @@ func _do_action():
 	yield(animator,"animation_finished")
 	
 	animator.play("Idle") 
-	player.start_ATBTimer()
+	emit_signal("action_ended")
