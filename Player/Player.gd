@@ -22,6 +22,8 @@ func choose_action():
 func start_ATBTimer(modifier = 1):
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):
 		timer.paused = false
+	var base_wait = 60/stats.get_current("Speed")
 	
-	$ATBTimer.wait_time = $"StatBlock".get_current("ATB Base") * modifier ## add city mod
+	$ATBTimer.wait_time = base_wait * modifier ## add city mod
 	$ATBTimer.start()
+	

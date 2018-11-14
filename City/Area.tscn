@@ -3,7 +3,7 @@
 [ext_resource path="res://City/Area.gd" type="Script" id=1]
 [ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=2]
 
-[node name="Area" type="Node2D" index="0" groups=[
+[node name="Area" type="Node2D" groups=[
 "Areas",
 ]]
 

@@ -17,9 +17,9 @@ func _ready():
 		stat["level"] = 0
 		stat["max"] = stat.level_value[0]
 		stat["current"] = stat.max
-		
 		stats[stat.name] = stat
-		set_level(stat.name, 0)
+		# First Stat is default, 2nd is the actual first level
+		set_level(stat.name, 1 if stat.level_value.size() > 1 else 0)
 
 func get_stat(stat_name):
 	var stat = stats[stat_name]

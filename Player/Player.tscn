@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Components/AreaComponent.gd" type="Script" id=2]
@@ -1444,6 +1444,22 @@ tracks/38/keys = {
 } ]
 }
 
+[sub_resource type="GDScript" id=6]
+
+script/source = "extends AnimationPlayer
+
+signal animation_event(name)
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+"
+
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
@@ -1472,11 +1488,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "Player",
 ]]
 
-editor/display_folded = true
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -1496,57 +1511,27 @@ one_shot = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
 
-editor/display_folded = true
+[node name="HP" parent="StatBlock" index="0"]
 
-[node name="HP" type="Node" parent="StatBlock" index="0"]
+editor/display_folded = false
 
-editor/display_folded = true
+[node name="Speed" parent="StatBlock" index="1"]
 
-[node name="10" type="Node" parent="StatBlock/HP" index="0"]
+editor/display_folded = false
 
-[node name="11" type="Node" parent="StatBlock/HP" index="1"]
+[node name="20" type="Node" parent="StatBlock/Speed" index="1"]
 
-[node name="12" type="Node" parent="StatBlock/HP" index="2"]
+[node name="Shield" parent="StatBlock" index="2"]
 
-[node name="13" type="Node" parent="StatBlock/HP" index="3"]
+editor/display_folded = false
 
-[node name="14" type="Node" parent="StatBlock/HP" index="4"]
+[node name="Armor" parent="StatBlock" index="3"]
 
-[node name="15" type="Node" parent="StatBlock/HP" index="5"]
+editor/display_folded = false
 
-[node name="Energy" type="Node" parent="StatBlock" index="1"]
+[node name="Luck" parent="StatBlock" index="4"]
 
-editor/display_folded = true
-
-[node name="5" type="Node" parent="StatBlock/Energy" index="0"]
-
-[node name="6" type="Node" parent="StatBlock/Energy" index="1"]
-
-[node name="7" type="Node" parent="StatBlock/Energy" index="2"]
-
-[node name="8" type="Node" parent="StatBlock/Energy" index="3"]
-
-[node name="9" type="Node" parent="StatBlock/Energy" index="4"]
-
-[node name="10" type="Node" parent="StatBlock/Energy" index="5"]
-
-[node name="Shield" type="Node" parent="StatBlock" index="2"]
-
-editor/display_folded = true
-
-[node name="1" type="Node" parent="StatBlock/Shield" index="0"]
-
-[node name="2" type="Node" parent="StatBlock/Shield" index="1"]
-
-[node name="3" type="Node" parent="StatBlock/Shield" index="2"]
-
-[node name="ATB Base" type="Node" parent="StatBlock" index="3"]
-
-editor/display_folded = true
-
-[node name="1" type="Node" parent="StatBlock/ATB Base" index="0"]
-
-[node name="8" type="Node" parent="StatBlock/ATB Base" index="1"]
+editor/display_folded = false
 
 [node name="Actions" type="Node" parent="." index="3"]
 
@@ -1585,6 +1570,7 @@ anims/Leave = SubResource( 2 )
 anims/Punch = ExtResource( 11 )
 anims/Retreat = SubResource( 3 )
 blend_times = [  ]
+script = SubResource( 6 )
 
 [node name="Root" type="Node2D" parent="." index="5"]
 
@@ -1594,7 +1580,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Hips" type="Sprite" parent="Root" index="0"]
 
-position = Vector2( 695.891, -142.031 )
+position = Vector2( 714.24, -160.074 )
 texture = ExtResource( 12 )
 offset = Vector2( 3.16732, 40.8775 )
 
@@ -1613,7 +1599,7 @@ __meta__ = {
 
 position = Vector2( -23.8153, -203.646 )
 frames = SubResource( 5 )
-animation = "Front"
+animation = "Back"
 offset = Vector2( 24.9233, -103.278 )
 __meta__ = {
 "_edit_bone_": true
@@ -1629,7 +1615,7 @@ __meta__ = {
 [node name="R arm" type="Sprite" parent="Root/Hips/Torso" index="1"]
 
 position = Vector2( 97.7526, -156.68 )
-rotation = -3.51224
+rotation = -3.15263
 texture = ExtResource( 17 )
 offset = Vector2( -18.4325, 47.8727 )
 _sections_unfolded = [ "Transform" ]
@@ -1658,7 +1644,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( -54.2456, -154.403 )
-rotation = 1.72548
+rotation = 1.64796
 texture = ExtResource( 19 )
 offset = Vector2( 29.4656, 46.6539 )
 _sections_unfolded = [ "Visibility" ]
@@ -1669,7 +1655,7 @@ __meta__ = {
 [node name="L forearm" type="Sprite" parent="Root/Hips/Torso/L arm" index="0"]
 
 position = Vector2( 42.9707, 109.268 )
-rotation = -0.103406
+rotation = -0.208274
 texture = ExtResource( 20 )
 offset = Vector2( 25.7825, 95.7634 )
 _sections_unfolded = [ "Z Index" ]
@@ -1688,7 +1674,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 52.9467, 62.353 )
-rotation = -1.25087
+rotation = -0.895013
 texture = ExtResource( 21 )
 offset = Vector2( 4.50994, 82.0331 )
 _sections_unfolded = [ "Visibility" ]
@@ -1700,7 +1686,7 @@ __meta__ = {
 [node name="L Sheen" type="Sprite" parent="Root/Hips/L Leg" index="0"]
 
 position = Vector2( 11.8655, 172.717 )
-rotation = 1.35016
+rotation = 0.93971
 texture = ExtResource( 22 )
 offset = Vector2( 22.9764, 120.157 )
 __meta__ = {
@@ -1711,7 +1697,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 17.339, 222.243 )
-rotation = -0.0885881
+rotation = 0.143851
 texture = ExtResource( 23 )
 offset = Vector2( 37.901, 23.043 )
 _sections_unfolded = [ "Visibility" ]
@@ -1729,7 +1715,7 @@ __meta__ = {
 [node name="R Leg" type="Sprite" parent="Root/Hips" index="2"]
 
 position = Vector2( -61.0141, 63.8947 )
-rotation = 0.0598943
+rotation = -0.147837
 texture = ExtResource( 24 )
 offset = Vector2( -13.8778, 82.2058 )
 __meta__ = {
@@ -1740,7 +1726,7 @@ __meta__ = {
 [node name="R Sheen" type="Sprite" parent="Root/Hips/R Leg" index="0"]
 
 position = Vector2( -40.8879, 174.286 )
-rotation = 0.233777
+rotation = 0.658883
 texture = ExtResource( 25 )
 offset = Vector2( -28.2379, 112.952 )
 __meta__ = {
@@ -1750,8 +1736,8 @@ __meta__ = {
 [node name="R Foot" type="Sprite" parent="Root/Hips/R Leg/R Sheen" index="0"]
 
 show_behind_parent = true
-position = Vector2( -43.2689, 214.298 )
-rotation = 1.13881
+position = Vector2( -43.2688, 214.298 )
+rotation = 0.904202
 texture = ExtResource( 26 )
 offset = Vector2( 22.7391, 52.9626 )
 _sections_unfolded = [ "Visibility" ]
@@ -1767,3 +1753,4 @@ __meta__ = {
 }
 
 
+[editable path="StatBlock"]

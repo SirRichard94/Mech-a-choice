@@ -161,7 +161,7 @@ tracks/1/keys = {
 "values": [ -16.4051, -16.4051, -27.6465, -16.9258 ]
 }
 
-[node name="MainGame" type="Node" index="0"]
+[node name="MainGame" type="Node"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -173,6 +173,12 @@ starting_area = "Park"
 [node name="City" type="Node" parent="." index="0"]
 
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+
+[node name="Paths" parent="City/Park" index="0"]
+
+editor/display_folded = true
 
 [node name="Military" type="Node" parent="City/Park/Paths" index="0"]
 
@@ -211,6 +217,8 @@ editor/display_folded = true
 editor/display_folded = true
 
 [node name="Downtown" parent="City" index="4" instance=ExtResource( 2 )]
+
+editor/display_folded = true
 
 [node name="Park" type="Node" parent="City/Downtown/Paths" index="0"]
 
