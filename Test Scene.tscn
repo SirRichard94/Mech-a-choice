@@ -1,20 +1,24 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
 [ext_resource path="res://City/Area.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemies/KingApe/KingApe.gd" type="Script" id=4]
-[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemies/KingApe/Actions/Punch.gd" type="Script" id=9]
-[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=10]
-[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=11]
-[ext_resource path="res://Camera.gd" type="Script" id=12]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=13]
+[ext_resource path="res://City/Icons/park.png" type="Texture" id=3]
+[ext_resource path="res://City/Icons/military.png" type="Texture" id=4]
+[ext_resource path="res://City/Icons/comms.png" type="Texture" id=5]
+[ext_resource path="res://City/Icons/downtown.png" type="Texture" id=6]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/KingApe/KingApe.gd" type="Script" id=8]
+[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemies/KingApe/Actions/Punch.gd" type="Script" id=13]
+[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=14]
+[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=15]
+[ext_resource path="res://Camera.gd" type="Script" id=16]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=17]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 
 length = 1.5
 loop = false
@@ -44,7 +48,7 @@ tracks/1/keys = {
 "values": [ -8.99136, -9.76519, 21.6389, 76.6042, 76.6042, 65.2009, 84.0759, -8.99136 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 length = 1.0
 loop = false
@@ -74,7 +78,7 @@ tracks/1/keys = {
 "values": [ 0.795736, 39.1333, -10.4733, 2.03291 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 length = 1.0
 loop = true
@@ -104,7 +108,7 @@ tracks/1/keys = {
 "values": [ Vector2( 790.377, 364.58 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 
 length = 1.0
 loop = false
@@ -134,7 +138,7 @@ tracks/1/keys = {
 "values": [ 0.795736, 39.1333, -10.4733, 2.03291 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 
 length = 1.0
 loop = false
@@ -178,7 +182,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 
 resource_name = "Taunt"
 length = 1.0
@@ -223,6 +227,7 @@ starting_area = "Park"
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+icon = ExtResource( 3 )
 
 [node name="Paths" parent="City/Park" index="0"]
 
@@ -239,6 +244,7 @@ editor/display_folded = true
 [node name="Military" parent="City" index="1" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+icon = ExtResource( 4 )
 
 [node name="Park" type="Node" parent="City/Military/Paths" index="0"]
 
@@ -249,6 +255,7 @@ editor/display_folded = true
 [node name="Comms Tower" parent="City" index="2" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+icon = ExtResource( 5 )
 
 [node name="Downtown" type="Node" parent="City/Comms Tower/Paths" index="0"]
 
@@ -259,6 +266,7 @@ editor/display_folded = true
 [node name="Powerplant" parent="City" index="3" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+icon = null
 
 [node name="StatBlock" parent="City/Powerplant" index="1"]
 
@@ -267,6 +275,7 @@ editor/display_folded = true
 [node name="Downtown" parent="City" index="4" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+icon = ExtResource( 6 )
 
 [node name="Park" type="Node" parent="City/Downtown/Paths" index="0"]
 
@@ -278,7 +287,7 @@ editor/display_folded = true
 
 [node name="Player" parent="." index="1" groups=[
 "Area Members",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 7 )]
 
 _sections_unfolded = [ "Pause", "Transform" ]
 
@@ -288,14 +297,20 @@ _sections_unfolded = [ "Pause", "Transform" ]
 "Enemies",
 ]]
 
-script = ExtResource( 4 )
+script = ExtResource( 8 )
 screen_shake_modifier = 1.0
 
-[node name="AreaComponent" parent="Enemies/KingApe" index="0" instance=ExtResource( 5 )]
+[node name="AreaComponent" parent="Enemies/KingApe" index="0" instance=ExtResource( 9 )]
 
 starting_area = "Park"
 
-[node name="StatBlock" parent="Enemies/KingApe" index="1" instance=ExtResource( 6 )]
+[node name="StatBlock" parent="Enemies/KingApe" index="1" instance=ExtResource( 10 )]
+
+editor/display_folded = true
+
+[node name="HP" parent="Enemies/KingApe/StatBlock" index="0"]
+
+editor/display_folded = false
 
 [node name="Speed" parent="Enemies/KingApe/StatBlock" index="1"]
 
@@ -303,15 +318,17 @@ editor/display_folded = false
 
 [node name="60" type="Node" parent="Enemies/KingApe/StatBlock/Speed" index="1"]
 
-[node name="ATBTimer" parent="Enemies/KingApe" index="2" instance=ExtResource( 7 )]
+[node name="ATBTimer" parent="Enemies/KingApe" index="2" instance=ExtResource( 11 )]
 
 one_shot = true
 
-[node name="Actions" parent="Enemies/KingApe" index="3" instance=ExtResource( 8 )]
+[node name="Actions" parent="Enemies/KingApe" index="3" instance=ExtResource( 12 )]
+
+editor/display_folded = true
 
 [node name="Punch" type="Node" parent="Enemies/KingApe/Actions" index="0"]
 
-script = ExtResource( 9 )
+script = ExtResource( 13 )
 
 [node name="Throw" type="Node" parent="Enemies/KingApe/Actions" index="1"]
 
@@ -326,7 +343,7 @@ script = ExtResource( 9 )
 position = Vector2( 790.377, 364.58 )
 rotation = -0.13453
 scale = Vector2( 0.464317, 0.464317 )
-texture = ExtResource( 10 )
+texture = ExtResource( 14 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies/KingApe" index="5"]
@@ -336,14 +353,14 @@ autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-"anims/Drop Kick" = SubResource( 2 )
-anims/Enter = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Leave = SubResource( 5 )
-anims/Punch = SubResource( 6 )
-anims/Taunt = SubResource( 7 )
+"anims/Drop Kick" = SubResource( 1 )
+anims/Enter = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Leave = SubResource( 4 )
+anims/Punch = SubResource( 5 )
+anims/Taunt = SubResource( 6 )
 blend_times = [  ]
-script = ExtResource( 11 )
+script = ExtResource( 15 )
 
 [node name="Alies" type="Node2D" parent="." index="3"]
 
@@ -351,7 +368,7 @@ script = ExtResource( 11 )
 
 editor/display_folded = true
 position = Vector2( 512, 300 )
-script = ExtResource( 12 )
+script = ExtResource( 16 )
 _sections_unfolded = [ "Transform" ]
 shake_x = 250.0
 shake_y = 300.0
@@ -384,11 +401,7 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
-[node name="GUI" parent="." index="5" instance=ExtResource( 13 )]
-
-[node name="NewsCaster" parent="GUI" index="1"]
-
-text_speed = 0.5
+[node name="GUI" parent="." index="5" instance=ExtResource( 17 )]
 
 
 [editable path="City/Park"]

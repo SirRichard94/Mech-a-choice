@@ -4,9 +4,9 @@ var MenuItemTheme = preload("res://GUI/Menu Items/menu_theme.tres")
 var menu_items = [] setget set_menu_items
 var title_text = "HERO CHOOSES BRAVE ACTION !"
 
-onready var title_label = $VBoxContainer/Title/MarginContainer/Label
-onready var item_container = $"VBoxContainer/Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items"
-onready var description_box = $"VBoxContainer/Rect/MarginContainer/HBoxContainer/CenterContainer/RichTextLabel"
+onready var title_label = $Title/MarginContainer/Label
+onready var item_container = $"Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items"
+onready var description_box = $"Rect/MarginContainer/HBoxContainer/CenterContainer/RichTextLabel"
 
 var menu_height = 250
 var tween_time = 0.7
@@ -17,27 +17,27 @@ func set_menu_items(new):
 
 
 func _ready():
-	pass
+	visible = false
 
 func appear():
 	visible = true
 	
-	$Tween.interpolate_property(self, "margin_top", margin_bottom, -menu_height
-		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
-	$Tween.start()
+#	$Tween.interpolate_property(self, "margin_top", margin_bottom, -menu_height
+#		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
+#	$Tween.start()
 	
-	yield($Tween,"tween_completed") #continue when completed
+#	yield($Tween,"tween_completed") #continue when completed
 	
 	item_container.get_child(0).grab_focus()
 
 func disappear():
 	
-	$Tween.interpolate_property(self, "margin_top",-menu_height, margin_bottom
-		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
-	$Tween.start()
+#	$Tween.interpolate_property(self, "margin_top",-menu_height, margin_bottom
+#		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
+#	$Tween.start()
 	release_focus()
 	
-	yield($Tween,"tween_completed") #continue when completed
+#	yield($Tween,"tween_completed") #continue when completed
 	
 	visible = false
 

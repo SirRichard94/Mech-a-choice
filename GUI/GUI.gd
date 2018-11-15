@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-export (NodePath) var action_menu_path = "Container/Container/Menu Panel"
-export (NodePath) var pause_menu_path = "Pause"
-export (NodePath) var newscaster_path = "NewsCaster"
+var action_menu_path = "Main/Screen/Menu Area/HBoxContainer/Menu"
+var pause_menu_path = "Pause"
+var newscaster_path = "NewsCaster"
 
 var action_menu
 var pause_menu

@@ -1,5 +1,7 @@
 extends "res://General/Unit.gd"
 
+export (Texture) var icon
+
 func get_paths():
 	assert get_node("Paths") != null
 	var list = []
