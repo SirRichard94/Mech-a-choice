@@ -213,7 +213,7 @@ tracks/1/keys = {
 "values": [ -7.70801, -7.70801 ]
 }
 
-[node name="MainGame" type="Node"]
+[node name="MainGame" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {

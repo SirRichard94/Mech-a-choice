@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var action_menu_path = "Main/Screen/Menu Area/HBoxContainer/Menu"
+var action_menu_path = "Main/Screen/Menu Area/Container/Menu"
 var pause_menu_path = "Pause"
 var newscaster_path = "NewsCaster"
 

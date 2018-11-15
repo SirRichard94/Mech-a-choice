@@ -8,13 +8,12 @@
 [ext_resource path="res://GUI/title_panel.png" type="Texture" id=6]
 [ext_resource path="res://GUI/news_panel.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=8]
-[ext_resource path="res://GUI/Panels/title.png" type="Texture" id=9]
-[ext_resource path="res://GUI/Panels/text_box.png" type="Texture" id=10]
-[ext_resource path="res://GUI/TurnList/TurnList.gd" type="Script" id=11]
-[ext_resource path="res://GUI/Newscaster/NewsCaster.tscn" type="PackedScene" id=12]
-[ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=13]
-[ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=14]
-[ext_resource path="res://GUI/Pause.gd" type="Script" id=15]
+[ext_resource path="res://GUI/Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://GUI/TurnList/TurnList.gd" type="Script" id=10]
+[ext_resource path="res://GUI/Newscaster/NewsCaster.tscn" type="PackedScene" id=11]
+[ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=12]
+[ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=13]
+[ext_resource path="res://GUI/Pause.gd" type="Script" id=14]
 
 [sub_resource type="GDScript" id=1]
 
@@ -32,10 +31,18 @@ func change_text(area):
 	$Icon.texture = area.icon
 	$Label.text = area.name"
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="DynamicFont" id=2]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 9 )
+_sections_unfolded = [ "Settings" ]
+
+[sub_resource type="ShaderMaterial" id=3]
 
 render_priority = 0
-shader = ExtResource( 13 )
+shader = ExtResource( 12 )
 shader_param/range = 0.01
 shader_param/noiseQuality = 230.0
 shader_param/noiseIntensity = 0.001
@@ -65,7 +72,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_constants/separation = 5
+custom_constants/separation = 0
 alignment = 2
 _sections_unfolded = [ "custom_constants" ]
 
@@ -76,7 +83,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1024.0
-margin_bottom = 565.0
+margin_bottom = 570.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -87,6 +94,7 @@ _sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 
 [node name="Live" type="Control" parent="Main/Screen" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -160,9 +168,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 21.0
-margin_right = 66.0
-margin_bottom = 43.0
+margin_left = 25.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = 38.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -200,6 +209,7 @@ _sections_unfolded = [ "Size Flags" ]
 
 [node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Live/HBoxContainer/NinePatchRect2" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -281,10 +291,7 @@ anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
 margin_top = -250.0
-margin_right = -10.0
-margin_bottom = -10.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -293,7 +300,7 @@ size_flags_horizontal = 5
 size_flags_vertical = 0
 _sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Main/Screen/Menu Area" index="0"]
+[node name="Container" type="MarginContainer" parent="Main/Screen/Menu Area" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -301,22 +308,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_constants/separation = 10
-alignment = 2
+custom_constants/margin_right = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 10
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="Menu" type="VBoxContainer" parent="Main/Screen/Menu Area/HBoxContainer" index="0"]
+[node name="Menu" type="VBoxContainer" parent="Main/Screen/Menu Area/Container" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 694.0
+margin_left = 30.0
+margin_right = 994.0
 margin_bottom = 240.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -328,7 +336,7 @@ alignment = 0
 script = ExtResource( 5 )
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Tween" type="Tween" parent="Main/Screen/Menu Area/HBoxContainer/Menu" index="0"]
+[node name="Tween" type="Tween" parent="Main/Screen/Menu Area/Container/Menu" index="0"]
 
 repeat = false
 playback_process_mode = 1
@@ -337,7 +345,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Title" type="NinePatchRect" parent="Main/Screen/Menu Area/HBoxContainer/Menu" index="1"]
+[node name="Title" type="NinePatchRect" parent="Main/Screen/Menu Area/Container/Menu" index="1"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -363,7 +371,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Title" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Menu Area/Container/Menu/Title" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -376,15 +384,16 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Label" type="Label" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Title/MarginContainer" index="0"]
+[node name="Label" type="Label" parent="Main/Screen/Menu Area/Container/Menu/Title/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
+margin_top = 3.0
 margin_right = 350.0
-margin_bottom = 43.0
+margin_bottom = 39.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -398,7 +407,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
-[node name="Rect" type="NinePatchRect" parent="Main/Screen/Menu Area/HBoxContainer/Menu" index="2"]
+[node name="Rect" type="NinePatchRect" parent="Main/Screen/Menu Area/Container/Menu" index="2"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -406,7 +415,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 46.0
-margin_right = 694.0
+margin_right = 964.0
 margin_bottom = 240.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -419,7 +428,7 @@ patch_margin_left = 14
 patch_margin_right = 14
 _sections_unfolded = [ "Axis Stretch", "Patch Margin", "Size Flags" ]
 
-[node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Menu Area/Container/Menu/Rect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -437,14 +446,15 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Screen/Menu Area/Container/Menu/Rect/MarginContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_right = 654.0
+margin_right = 924.0
 margin_bottom = 164.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -455,7 +465,7 @@ size_flags_vertical = 3
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect/MarginContainer/HBoxContainer" index="0"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/Screen/Menu Area/Container/Menu/Rect/MarginContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -477,7 +487,7 @@ scroll_vertical = 0
 scroll_deadzone = 0
 _sections_unfolded = [ "Anchor", "Scroll", "Size Flags" ]
 
-[node name="Menu Items" type="VBoxContainer" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="0"]
+[node name="Menu Items" type="VBoxContainer" parent="Main/Screen/Menu Area/Container/Menu/Rect/MarginContainer/HBoxContainer/ScrollContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -494,7 +504,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Focus", "Size Flags" ]
 
-[node name="VSeparator" type="VSeparator" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect/MarginContainer/HBoxContainer" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Main/Screen/Menu Area/Container/Menu/Rect/MarginContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -510,14 +520,14 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="CenterContainer" type="MarginContainer" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect/MarginContainer/HBoxContainer" index="2"]
+[node name="CenterContainer" type="MarginContainer" parent="Main/Screen/Menu Area/Container/Menu/Rect/MarginContainer/HBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 512.0
-margin_right = 646.0
+margin_right = 916.0
 margin_bottom = 164.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -527,14 +537,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Main/Screen/Menu Area/HBoxContainer/Menu/Rect/MarginContainer/HBoxContainer/CenterContainer" index="0"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Main/Screen/Menu Area/Container/Menu/Rect/MarginContainer/HBoxContainer/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_right = 134.0
+margin_right = 404.0
 margin_bottom = 164.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
@@ -556,118 +566,8 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode", "Focus", "Rect", "Size Flags", "Theme" ]
 
-[node name="Forecast" type="VBoxContainer" parent="Main/Screen/Menu Area/HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 704.0
-margin_right = 1004.0
-margin_bottom = 240.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Rect", "Size Flags" ]
-
-[node name="Title" type="NinePatchRect" parent="Main/Screen/Menu Area/HBoxContainer/Forecast" index="0"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 300.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 1
-texture = ExtResource( 9 )
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-_sections_unfolded = [ "Patch Margin", "Rect", "Size Flags" ]
-
-[node name="Label" type="Label" parent="Main/Screen/Menu Area/HBoxContainer/Forecast/Title" index="0"]
-
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -53.0
-margin_top = -21.5
-margin_right = 53.0
-margin_bottom = 21.5
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = ExtResource( 3 )
-text = "FORECAST"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
-[node name="rect" type="NinePatchRect" parent="Main/Screen/Menu Area/HBoxContainer/Forecast" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 44.0
-margin_right = 300.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 300, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 3
-texture = ExtResource( 10 )
-patch_margin_left = 14
-patch_margin_right = 14
-_sections_unfolded = [ "Axis Stretch", "Grow Direction", "Patch Margin", "Rect", "Size Flags", "Theme" ]
-
-[node name="Turn List" type="VBoxContainer" parent="Main/Screen/Menu Area/HBoxContainer/Forecast/rect" index="0"]
-
-anchor_left = 0.5
-anchor_top = 0.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -130.0
-margin_top = 11.0
-margin_right = 130.0
-margin_bottom = -23.0
-rect_min_size = Vector2( 240, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-script = ExtResource( 11 )
-_sections_unfolded = [ "Rect" ]
-max_trackers = 5
-
 [node name="Chyron" type="NinePatchRect" parent="Main" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -692,7 +592,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Main/Chyron" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Chyron" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -704,39 +604,62 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-use_top_left = false
+custom_constants/margin_right = 20
+custom_constants/margin_top = 3
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 3
+_sections_unfolded = [ "custom_constants" ]
 
-[node name="Label" type="Label" parent="Main/Chyron/CenterContainer" index="0"]
+[node name="Container" type="HBoxContainer" parent="Main/Chyron/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 45.0
-margin_top = 2.0
-margin_right = 978.0
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 1004.0
 margin_bottom = 27.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="Label" type="Label" parent="Main/Chyron/MarginContainer/Container" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 67.0
+margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-theme = ExtResource( 8 )
-text = "f dsafds f aags asdg sag sdgs gfd ga dfgsad gg  fdsasad g gsagd  asgsa ds dfgsag  AF F DSG gdsd g fd g dag sd s dfsa dg sg asd g adsg AF  DF gd sgda sg a s gs"
+custom_fonts/font = SubResource( 2 )
+text = "FORECAST: "
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Theme" ]
+_sections_unfolded = [ "custom_constants", "custom_fonts" ]
 
-[node name="MarginContainer" type="MarginContainer" parent="Main/Chyron" index="1"]
+[node name="VSeparator" type="VSeparator" parent="Main/Chyron/MarginContainer/Container" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 71.0
+margin_right = 75.0
+margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -744,9 +667,30 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="NewsCaster" parent="." index="1" instance=ExtResource( 12 )]
+[node name="Turn List" type="HBoxContainer" parent="Main/Chyron/MarginContainer/Container" index="2"]
 
-visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 79.0
+margin_right = 984.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 240, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_constants/separation = 10
+alignment = 0
+script = ExtResource( 10 )
+_sections_unfolded = [ "custom_constants" ]
+max_trackers = 5
+
+[node name="NewsCaster" parent="." index="1" instance=ExtResource( 11 )]
+
 _sections_unfolded = [ "Focus", "Mouse", "Size Flags" ]
 
 [node name="Pause" type="TextureRect" parent="." index="2"]
@@ -754,7 +698,7 @@ _sections_unfolded = [ "Focus", "Mouse", "Size Flags" ]
 pause_mode = 2
 editor/display_folded = true
 visible = false
-material = SubResource( 2 )
+material = SubResource( 3 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -765,10 +709,10 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 14 )
+texture = ExtResource( 13 )
 expand = true
 stretch_mode = 0
-script = ExtResource( 15 )
+script = ExtResource( 14 )
 _sections_unfolded = [ "Material" ]
 
 [node name="Label" type="Label" parent="Pause" index="0"]

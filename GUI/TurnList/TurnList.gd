@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Container
 
 var TurnTracker = preload("res://GUI/TurnList/Turn Tracker.tscn")
 
