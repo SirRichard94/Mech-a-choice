@@ -1,22 +1,26 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
-[ext_resource path="res://City/Area.tscn" type="PackedScene" id=2]
-[ext_resource path="res://City/Icons/park.png" type="Texture" id=3]
-[ext_resource path="res://City/Icons/military.png" type="Texture" id=4]
-[ext_resource path="res://City/Icons/comms.png" type="Texture" id=5]
-[ext_resource path="res://City/Icons/downtown.png" type="Texture" id=6]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemies/KingApe/KingApe.gd" type="Script" id=8]
+[ext_resource path="res://Entities/City/Area.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/City/Icons/park.png" type="Texture" id=3]
+[ext_resource path="res://Entities/City/Icons/military.png" type="Texture" id=4]
+[ext_resource path="res://Entities/City/Icons/comms.png" type="Texture" id=5]
+[ext_resource path="res://Entities/City/Icons/downtown.png" type="Texture" id=6]
+[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entities/Enemies/KingApe/KingApe.gd" type="Script" id=8]
 [ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=12]
-[ext_resource path="res://General/Actions/Attack.gd" type="Script" id=13]
-[ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=14]
+[ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=13]
+[ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=14]
 [ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=15]
 [ext_resource path="res://Camera.gd" type="Script" id=16]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=17]
+
+
+
+
 
 [sub_resource type="Animation" id=1]
 

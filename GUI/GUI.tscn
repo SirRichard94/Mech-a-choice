@@ -4,9 +4,9 @@
 [ext_resource path="res://GUI/Panels/highlight.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=3]
 [ext_resource path="res://GUI/Panels/basic.png" type="Texture" id=4]
-[ext_resource path="res://GUI/Menu.gd" type="Script" id=5]
-[ext_resource path="res://GUI/title_panel.png" type="Texture" id=6]
-[ext_resource path="res://GUI/news_panel.png" type="Texture" id=7]
+[ext_resource path="res://GUI/ActionMenu.gd" type="Script" id=5]
+[ext_resource path="res://GUI/Panels/title_panel.png" type="Texture" id=6]
+[ext_resource path="res://GUI/Panels/news_panel.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=8]
 [ext_resource path="res://GUI/Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://GUI/TurnList/TurnList.gd" type="Script" id=10]
@@ -14,6 +14,8 @@
 [ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=12]
 [ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=13]
 [ext_resource path="res://GUI/Pause.gd" type="Script" id=14]
+
+
 
 [sub_resource type="GDScript" id=1]
 
