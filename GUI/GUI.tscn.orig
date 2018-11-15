@@ -31,11 +31,7 @@ func change_text(area):
 	$Icon.texture = area.icon
 	$Label.text = area.name"
 
-<<<<<<< HEAD
 [sub_resource type="DynamicFont" id=2]
-=======
-[sub_resource type="DynamicFont" id=3]
->>>>>>> changed tracker to chyrion
 
 size = 20
 use_mipmaps = false
@@ -43,11 +39,7 @@ use_filter = false
 font_data = ExtResource( 9 )
 _sections_unfolded = [ "Settings" ]
 
-<<<<<<< HEAD
 [sub_resource type="ShaderMaterial" id=3]
-=======
-[sub_resource type="ShaderMaterial" id=2]
->>>>>>> changed tracker to chyrion
 
 render_priority = 0
 shader = ExtResource( 12 )
@@ -650,11 +642,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-<<<<<<< HEAD
 custom_fonts/font = SubResource( 2 )
-=======
-custom_fonts/font = SubResource( 3 )
->>>>>>> changed tracker to chyrion
 text = "FORECAST: "
 align = 1
 valign = 1
