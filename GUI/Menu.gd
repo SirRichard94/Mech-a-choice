@@ -1,44 +1,44 @@
 extends Control
 var MenuItemTheme = preload("res://GUI/Menu Items/menu_theme.tres")
+var ActionItem = preload("res://Components/ActionItem.gd")
 
-var menu_items = [] setget set_menu_items
-var title_text = "HERO CHOOSES BRAVE ACTION !"
+signal action_chosen(action)
 
 onready var title_label = $Title/MarginContainer/Label
 onready var item_container = $"Rect/MarginContainer/HBoxContainer/ScrollContainer/Menu Items"
 onready var description_box = $"Rect/MarginContainer/HBoxContainer/CenterContainer/RichTextLabel"
 
-var menu_height = 250
-var tween_time = 0.7
+var menu_items = [] setget set_menu_items
+var title_text = "HERO CHOOSES BRAVE ACTION !"
+
+var active = false setget set_active, is_active
+
+func set_active(v):
+	if v:
+		if not active:
+			appear()
+		active = true
+	else:
+		if active:
+			disappear()
+		active = false
+
+func is_active():
+	return active
+
+func appear():
+	visible = true
+	item_container.get_child(0).grab_focus()
+
+func disappear():
+	release_focus()
+	visible = false
 
 func set_menu_items(new):
 	menu_items = new
 	refresh_items()
 
-
 func _ready():
-	visible = false
-
-func appear():
-	visible = true
-	
-#	$Tween.interpolate_property(self, "margin_top", margin_bottom, -menu_height
-#		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
-#	$Tween.start()
-	
-#	yield($Tween,"tween_completed") #continue when completed
-	
-	item_container.get_child(0).grab_focus()
-
-func disappear():
-	
-#	$Tween.interpolate_property(self, "margin_top",-menu_height, margin_bottom
-#		, tween_time, Tween.TRANS_QUART, Tween.EASE_OUT )
-#	$Tween.start()
-	release_focus()
-	
-#	yield($Tween,"tween_completed") #continue when completed
-	
 	visible = false
 
 func refresh_items():
@@ -55,7 +55,8 @@ func refresh_items():
 		m_item.align = Button.ALIGN_LEFT
 		
 		# SET BEHAVIOUR
-		m_item.connect("pressed", item, "_do_action")
+		if item is ActionItem:
+			m_item.connect("pressed", item.get_action_manager(), "do_action", [item])
 		
 		# SET DESCRITION
 		var desc = item.get("description")

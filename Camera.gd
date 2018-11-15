@@ -7,6 +7,9 @@ export var max_rotation = .04
 
 var trauma = 0
 
+func _ready():
+	GlobalUtilities.cam_container = self
+
 func add_shake(f):
 	trauma+=f
 

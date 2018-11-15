@@ -1,8 +1,12 @@
 extends "res://Components/ActionItem.gd"
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+enum TargetType {PLAYER, CITY, ALLY, ENEMY }
+
+export var damage = 3
+export var colateral_damage = 1
+export (String) var tags = "physical, melee"
+export (String) var animation
+export (TargetType) var target
 
 func _do_action():
 	emit_signal("action_started")

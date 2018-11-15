@@ -18,7 +18,7 @@ func _on_death():
 func _on_damage_taken(damage):
 	gui.newscaster.announce(self.name + " has taken " + str(damage.amount) + " Damage")
 
-func attack(unit, amount, tags = ["Physical", "Melee"]):
+func attack(unit, amount, tags = ["physical", "melee"]):
 	var dmg = {}
 	dmg["amount"] = amount
 	dmg["source"] = self
@@ -31,13 +31,13 @@ func take_damage(damage):
 	if stats.has_stat("Shield") and stats.get_current("Shield") > 0:
 		# Armor halves energy damage
 		# Soaks the damage instead of the HP
-		var dmg = ceil(damage.amount/2) if damage.tags.has("Energy") else damage.amount
-		stats.add("shield", -dmg)
+		var dmg = ceil(damage.amount/2) if damage.tags.has("energy") else damage.amount
+		stats.add("Shield", -dmg)
 		shake = dmg /20.0
 	elif stats.has_stat("Armor") and stats.get_current("Armor") >0:
 		# Armor reduces damage to a min of 1
 		var dmg = damage.amount
-		if damage.tags.has("Energy"):
+		if damage.tags.has("energy"):
 			max(1, damage.amount - stats.get_current("Armor")) 
 		stats.add("HP", -dmg)
 		shake = dmg /10.0
@@ -46,8 +46,8 @@ func take_damage(damage):
 		var dmg = damage.amount
 		stats.add("HP", -dmg)
 		shake = dmg /10.0
-	var cam = get_tree().current_scene.get_node("Camera")
-	cam.add_shake(shake*screen_shake_modifier)
+	
+	GlobalUtilities.screen_shake(shake*screen_shake_modifier)
 	
 	if is_dead():
 		# micro pause the game based on how much hp the dead guy had

@@ -1,18 +1,17 @@
 extends Node
 var ActionManager = preload("res://Components/ActionsManager.gd")
 
-var description = "This Action Has a Description"
-var energy_cost = 0
+var description = "This Action Has a Description"  setget , _get_description
 
-signal action_started #When a signiificant action begins
-signal action_ended	#When a signiificant action ends
+var energy_cost = 0
 
 onready var gui = get_tree().current_scene.get_node("GUI")
 onready var player = get_tree().current_scene.get_node("Player")
 
 func _ready():
-	connect("action_started", get_action_manager(), "emit_signal", ["action_started", self])
-	connect("action_ended", get_action_manager(), "emit_signal", ["action_ended", self])
+#	connect("action_started", get_action_manager(), "emit_signal", ["action_started", self])
+#	connect("action_ended", get_action_manager(), "emit_signal", ["action_ended", self])
+	pass
 
 func get_action_manager():
 	var current_parent = get_parent()
@@ -22,6 +21,9 @@ func get_action_manager():
 			return null
 		current_parent = current_parent.get_parent()
 	return current_parent
+
+func _get_description():
+	return description
 
 func _do_action():
 	pass

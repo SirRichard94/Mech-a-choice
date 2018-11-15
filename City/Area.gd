@@ -16,9 +16,23 @@ func get_paths():
 func enemy_count():
 	return get_enemies().size()
 
+func get_player():
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	if player.get_node("AreaComponent").get_area() == self:
+		return player
+	return null
+	
+
 func get_enemies():
 	var enemies = []
 	for area_comp in get_tree().get_nodes_in_group("Area Components"):
 		if area_comp.owner.is_in_group("Enemies") and area_comp.get_area() == self:
 			enemies.append(area_comp.owner)
 	return enemies
+
+func get_allies():
+	var al = []
+	for area_comp in get_tree().get_nodes_in_group("Area Components"):
+		if area_comp.owner.is_in_group("Allies") and area_comp.get_area() == self:
+			al.append(area_comp.owner)
+	return al

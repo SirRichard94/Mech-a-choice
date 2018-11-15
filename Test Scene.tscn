@@ -12,7 +12,7 @@
 [ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Enemies/KingApe/Actions/Punch.gd" type="Script" id=13]
+[ext_resource path="res://General/Actions/Attack.gd" type="Script" id=13]
 [ext_resource path="res://Enemies/KingApe/KingApe.png" type="Texture" id=14]
 [ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=15]
 [ext_resource path="res://Camera.gd" type="Script" id=16]
@@ -324,11 +324,16 @@ one_shot = true
 
 [node name="Actions" parent="Enemies/KingApe" index="3" instance=ExtResource( 12 )]
 
-editor/display_folded = true
-
 [node name="Punch" type="Node" parent="Enemies/KingApe/Actions" index="0"]
 
 script = ExtResource( 13 )
+damage = 3
+colateral_damage = 1
+tags = "physical, melee"
+target_type = 0
+animation = "Punch"
+animation_has_event = true
+end_animation = "Idle"
 
 [node name="Throw" type="Node" parent="Enemies/KingApe/Actions" index="1"]
 
@@ -403,6 +408,8 @@ _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
 [node name="GUI" parent="." index="5" instance=ExtResource( 17 )]
 
+editor/display_folded = true
+
 
 [editable path="City/Park"]
 [editable path="City/Military"]
@@ -410,4 +417,3 @@ _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 [editable path="City/Powerplant"]
 [editable path="City/Downtown"]
 [editable path="Enemies/KingApe/StatBlock"]
-[editable path="GUI"]
