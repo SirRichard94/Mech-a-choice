@@ -18,10 +18,6 @@
 [ext_resource path="res://Camera.gd" type="Script" id=16]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=17]
 
-
-
-
-
 [sub_resource type="Animation" id=1]
 
 length = 1.5
@@ -331,6 +327,8 @@ one_shot = true
 [node name="Punch" type="Node" parent="Enemies/KingApe/Actions" index="0"]
 
 script = ExtResource( 13 )
+energy_cost = 0
+description = "This Action Has a Description"
 damage = 3
 colateral_damage = 1
 tags = "physical, melee"
