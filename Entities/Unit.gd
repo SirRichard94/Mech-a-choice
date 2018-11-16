@@ -24,7 +24,7 @@ func _on_death():
 	queue_free()
 
 func _on_damage_taken(damage):
-	gui.newscaster.announce(self.name + " has taken " + str(damage.amount) + " Damage")
+	gui.newscaster.announce(self.unit_name + " has taken " + str(damage.amount) + " Damage")
 
 func attack(unit, amount, tags = ["physical", "melee"]):
 	var dmg = {}
@@ -40,16 +40,16 @@ func take_damage(damage):
 	var shake = 0
 	var luck_coeficient = damage.source.stats.get_current("Luck") - (self.stats.get_current("Luck") *0.5)
 	luck_coeficient = luck_coeficient / 15.0
-	var is_crit = rand() < luck_coeficient
+	var is_crit = randf() < luck_coeficient
 	# Areas cant recive crits
 	is_crit = false if self.is_in_group("Areas") else is_crit
 	
 	for weak_to in weakness.split(",", false):
-		if tags.has(weak_to):
+		if damage.tags.has(weak_to):
 			damage.amount = damage.amount *2
 			break
 	for resist in resistance.split(",", false):
-		if tags.has(resist):
+		if damage.tags.has(resist):
 			damage.amount = damage.amount /2
 			break
 	

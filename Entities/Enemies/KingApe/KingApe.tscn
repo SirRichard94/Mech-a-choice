@@ -9,7 +9,7 @@
 [ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=8]
 [ext_resource path="res://Hit Ground.gd" type="Script" id=9]
-[ext_resource path="res://Entities/Player/Actions/MenuMoveToArea.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Entities/Player/Actions/PlayerMoveToArea.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=11]
 [ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=12]
 
@@ -214,6 +214,8 @@ tracks/1/keys = {
 
 script = ExtResource( 1 )
 screen_shake_modifier = 1.0
+resistance = ""
+weakness = ""
 
 [node name="FSM" type="Node" parent="." index="0"]
 
@@ -240,6 +242,10 @@ starting_area = "Park"
 
 editor/display_folded = false
 
+[node name="Luck" parent="StatBlock" index="4"]
+
+editor/display_folded = false
+
 [node name="ATBTimer" parent="." index="3" instance=ExtResource( 6 )]
 
 [node name="Actions" parent="." index="4" instance=ExtResource( 7 )]
@@ -249,6 +255,7 @@ editor/display_folded = true
 [node name="Punch" type="Node" parent="Actions" index="0"]
 
 script = ExtResource( 8 )
+ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
 target_type = null
@@ -262,6 +269,7 @@ end_animation = "Idle"
 [node name="Hit Ground" type="Node" parent="Actions" index="1"]
 
 script = ExtResource( 9 )
+ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
 target_type = null

@@ -1,6 +1,6 @@
 extends "res://Entities/Player/Actions/MenuAction.gd"
 
-var MoveToAction = preload("res://Entities/Player/Actions/MenuMoveToArea.tscn")
+var MoveToAction = preload("res://Entities/Player/Actions/PlayerMoveToArea.tscn")
 var BackAction = preload("res://Entities/Player/Actions/MenuBack.tscn")
 
 func _do_action():

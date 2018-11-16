@@ -12,6 +12,7 @@ func _init():
 	is_menu_action = true
 
 func _ready():
+	ends_action = false
 	for child in get_children():
 		child.owner = owner
 

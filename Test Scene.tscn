@@ -25,6 +25,8 @@ starting_area = "Park"
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+resistance = ""
+weakness = ""
 icon = ExtResource( 3 )
 
 [node name="Military" type="Node" parent="City/Park/Paths" index="0"]
@@ -38,6 +40,8 @@ editor/display_folded = true
 [node name="Military" parent="City" index="1" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+resistance = ""
+weakness = ""
 icon = ExtResource( 4 )
 
 [node name="Park" type="Node" parent="City/Military/Paths" index="0"]
@@ -49,6 +53,8 @@ editor/display_folded = true
 [node name="Comms Tower" parent="City" index="2" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+resistance = ""
+weakness = ""
 icon = ExtResource( 5 )
 
 [node name="Downtown" type="Node" parent="City/Comms Tower/Paths" index="0"]
@@ -60,6 +66,8 @@ editor/display_folded = true
 [node name="Powerplant" parent="City" index="3" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+resistance = ""
+weakness = ""
 icon = null
 
 [node name="StatBlock" parent="City/Powerplant" index="1"]
@@ -69,6 +77,8 @@ editor/display_folded = true
 [node name="Downtown" parent="City" index="4" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+resistance = ""
+weakness = ""
 icon = ExtResource( 6 )
 
 [node name="Paths" parent="City/Downtown" index="0"]
@@ -92,6 +102,9 @@ _sections_unfolded = [ "Pause", "Transform" ]
 [node name="Enemies" type="Node2D" parent="." index="2"]
 
 [node name="KingApe" parent="Enemies" index="0" instance=ExtResource( 8 )]
+
+resistance = ""
+weakness = ""
 
 [node name="Alies" type="Node2D" parent="." index="3"]
 

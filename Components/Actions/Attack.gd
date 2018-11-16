@@ -31,9 +31,9 @@ func get_target():
 func _do_action():
 	var target = get_target()
 	if target == null:
-		get_action_manager().emit_signal("action_ended", self)
 		print("No Target")
 		return
+	
 	
 	var animator = owner.get_node("AnimationPlayer")
 	if animation != null:
@@ -52,5 +52,4 @@ func _do_action():
 	
 	if end_animation != null:
 		animator.play(end_animation)
-
-	get_action_manager().emit_signal("action_ended", self)
+	

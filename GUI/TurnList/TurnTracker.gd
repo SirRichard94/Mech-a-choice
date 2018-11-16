@@ -9,6 +9,8 @@ func set_target(new):
 		return
 		
 	target = new
+	if not target.is_connected("tree_exiting", self, "queue_free"):
+		target.connect("tree_exiting", self, "queue_free")
 	
 	$Label.text = target.owner.unit_name
 	name = target.owner.name
@@ -21,6 +23,15 @@ func set_target(new):
 	if area != null:
 		$Icon.texture = area.icon
 
+func remove_target():
+	target = null
+	visible = false
+
+func get_time_left():
+	if target == null:
+		return target.time_left
+	else:
+		return INF
 
 func _ready():
 	self.target = get_tree().current_scene.get_node("Player/ATBTimer") #test

@@ -41,5 +41,3 @@ func _do_action():
 		yield(animator,"animation_finished")
 	if animator and end_animation:
 		animator.play(end_animation) 
-	
-	get_action_manager().emit_signal("action_ended", self)

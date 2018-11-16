@@ -5,6 +5,7 @@
 [node name="MoveToArea" type="Node"]
 
 script = ExtResource( 1 )
+ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
 target_type = 4

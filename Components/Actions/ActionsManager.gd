@@ -16,7 +16,7 @@ func do_action(action):
 	
 	if action != null:
 		GlobalUtilities.pause_ATB()
-		action._do_action()
+		action.do_action()
 	else:
 		print(owner.name+": Action " + action + " not found")
 

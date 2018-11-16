@@ -29,5 +29,3 @@ func _do_action():
 		scene.get_node("City").add_child(unit)
 	
 	unit.area_component.set_area(current_spawn_area)
-	
-	get_action_manager().emit_signal("action_ended", self)

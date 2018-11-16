@@ -19,10 +19,15 @@ func sort_trackers():
 			j = j-1
 		i = i+1
 
+func _process(delta):
+	update_trackers()
+
 func update_trackers():
 	var i = 0
 	
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):
+		if timer.owner.is_dead():
+			continue
 		if i >= get_child_count():
 			var t = TurnTracker.instance()
 			t.target = timer
@@ -30,15 +35,11 @@ func update_trackers():
 		else:
 			get_child(i).target = timer
 		i+=1
-		if not timer.is_connected("timeout", self, "update_trackers"):
-			timer.connect("timeout", self, "update_trackers")
-		if not timer.owner.is_connected("died", self, "update_trackers"):
-			timer.owner.connect("died", self, "update_trackers")
-	
+
 	sort_trackers()
 	i = 0
 	for tracker in get_children():
-		if tracker.target.owner.is_dead():
+		if tracker.target == null:
 			tracker.visible = false
 		elif i > max_trackers:
 			tracker.visible = false
@@ -47,4 +48,4 @@ func update_trackers():
 			i+= 1
 
 func compare(a, b): 
-	return a.target.time_left - b.target.time_left
+	return a.get_time_left() - b.get_time_left()

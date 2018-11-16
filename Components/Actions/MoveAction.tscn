@@ -6,6 +6,7 @@
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
+ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
 target_type = null
