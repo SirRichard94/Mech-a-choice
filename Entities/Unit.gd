@@ -1,14 +1,19 @@
 extends Node2D
 
+
 onready var gui = get_tree().current_scene.get_node("GUI")
 onready var stats = get_node("StatBlock")
+onready var area_component = get_node("AreaComponent")
 
 export var screen_shake_modifier = 1.0
+
+var unit_name = "Sabrino"
 
 signal died
 signal taken_damage
 
 func _ready():
+	unit_name = name.split("@", false)[0]
 	assert stats != null
 	assert is_in_group("Enemies") or is_in_group("Alies") or is_in_group("Areas") or is_in_group("Player")
 
@@ -32,19 +37,19 @@ func take_damage(damage):
 		# Armor halves energy damage
 		# Soaks the damage instead of the HP
 		var dmg = ceil(damage.amount/2) if damage.tags.has("energy") else damage.amount
-		stats.add("Shield", -dmg)
+		stats.add_to_current("Shield", -dmg)
 		shake = dmg /20.0
 	elif stats.has_stat("Armor") and stats.get_current("Armor") >0:
 		# Armor reduces damage to a min of 1
 		var dmg = damage.amount
 		if damage.tags.has("energy"):
 			max(1, damage.amount - stats.get_current("Armor")) 
-		stats.add("HP", -dmg)
+		stats.add_to_current("HP", -dmg)
 		shake = dmg /10.0
 	else:
 		# just take it
 		var dmg = damage.amount
-		stats.add("HP", -dmg)
+		stats.add_to_current("HP", -dmg)
 		shake = dmg /10.0
 	
 	GlobalUtilities.screen_shake(shake*screen_shake_modifier)

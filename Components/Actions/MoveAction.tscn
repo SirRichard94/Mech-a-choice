@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Components/Actions/MoveAction.gd" type="Script" id=1]
+
+[node name="MoveAction" type="Node"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
+energy_cost = 0
+description = "This Action Has a Description"
+target_type = null
+target_area = null
+chase = false
+chase_time = -1
+leave_animation = null
+retreat_animation = null
+arrive_animation = null
+end_animation = null
+
+

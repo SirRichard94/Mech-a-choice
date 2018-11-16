@@ -12,3 +12,10 @@ func resume_ATB():
 func screen_shake(amt):
 	if cam_container != null:
 		cam_container.add_shake(amt)
+
+func get_area(name):
+	var areas = get_tree().get_nodes_in_group("Areas")
+	for area in areas:
+		if area.name == name:
+			return area
+	return null

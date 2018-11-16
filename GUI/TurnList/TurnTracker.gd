@@ -10,7 +10,7 @@ func set_target(new):
 		
 	target = new
 	
-	$Label.text = target.owner.name
+	$Label.text = target.owner.unit_name
 	name = target.owner.name
 	
 	if new.owner.is_in_group("Areas"):

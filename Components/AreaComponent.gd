@@ -14,10 +14,11 @@ func _ready():
 	set_area(starting_area)
 
 func set_area(area_name):
-	set_area_node( main_scene.get_area(area_name) )
+	set_area_node(GlobalUtilities.get_area(area_name) )
 	
 func set_area_node(area):
 	assert area.is_in_group("Areas")
+	
 	area_node = area
 	owner.visible = area_node == main_scene.current_area
 	emit_signal("area_changed")

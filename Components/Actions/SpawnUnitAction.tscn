@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Components/Actions/SpawnUnitAction.gd" type="Script" id=1]
+
+[node name="SpawnUnitAction" type="Node"]
+
+script = ExtResource( 1 )
+energy_cost = 0
+description = "Spawn a unit"
+target_type = 4
+unit_scene = null
+amount = 1
+spawn_area = null
+spawn_animation = null
+end_animation = null
+
+

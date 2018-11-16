@@ -21,6 +21,11 @@ func _ready():
 		# First Stat is default, 2nd is the actual first level
 		set_level(stat.name, 1 if stat.level_value.size() > 1 else 0)
 
+func add_buff(stat_name, value,time=-1):
+	pass
+func add_multiplier(stat_name, value, time=-1):
+	pass
+
 func get_stat(stat_name):
 	var stat = stats[stat_name]
 	if stat == null:
@@ -52,7 +57,7 @@ func set_max(stat_name, value):
 	set_current(stat_name, stat.current + value - old ) #add diference
 	emit_signal("stat_max_changed", stat)
 
-func add(stat_name, value):
+func add_to_current(stat_name, value):
 	var stat = get_stat(stat_name)
 	if stat == null:
 		return false

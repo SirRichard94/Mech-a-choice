@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=1]
+
+[node name="Attack Action" type="Node"]
+
+script = ExtResource( 1 )
+energy_cost = 0
+description = "This Action Has a Description"
+target_type = null
+damage = 3
+colateral_damage = 1
+tags = "physical, melee"
+animation = null
+animation_has_event = false
+end_animation = null
+
+
