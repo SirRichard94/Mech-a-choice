@@ -1,8 +1,5 @@
 extends "res://Components/Actions/ActionItem.gd"
 
-
-
-
 export var damage = 3
 export var colateral_damage = 1
 export (String) var tags = "physical, melee"

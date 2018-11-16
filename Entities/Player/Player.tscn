@@ -1487,6 +1487,8 @@ __meta__ = {
 "_edit_vertical_guides_": [ 100.0, 240.0 ]
 }
 screen_shake_modifier = 1.0
+resistance = ""
+weakness = ""
 
 [node name="AreaComponent" type="Node" parent="." index="0"]
 
