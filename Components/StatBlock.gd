@@ -68,8 +68,8 @@ func set_current(stat_name, value):
 	if stat == null:
 		return false
 	
-	var new = max (value, stat.max)
-	stat.current = value
+	var new = clamp(value, 0,stat.max)
+	stat.current = new
 	emit_signal("stat_current_changed", stat)
 
 func set_level(stat_name, value):

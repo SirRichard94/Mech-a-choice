@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Components/StatBlock.gd" type="Script" id=1]
 
-[node name="StatBlock" type="Node"]
+[node name="StatBlock" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
