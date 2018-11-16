@@ -1477,7 +1477,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "Player",
 ]]
 
@@ -1529,8 +1529,11 @@ editor/display_folded = true
 
 [node name="Actions" parent="." index="3" instance=ExtResource( 5 )]
 
+editor/display_folded = true
+
 [node name="Menu" type="Node" parent="Actions" index="0"]
 
+editor/display_folded = true
 script = ExtResource( 6 )
 ends_action = false
 energy_cost = 0

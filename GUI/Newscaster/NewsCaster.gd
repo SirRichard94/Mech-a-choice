@@ -4,6 +4,7 @@ onready var text_label = get_node("Newscaster/TextBox/RichTextLabel")
 
 export var text_speed = 0.5
 export var message_stay = 1.0
+export var max_characters = 10000
 
 signal text_shown
 signal message_ended
@@ -45,11 +46,21 @@ func start_anouncement():
 	
 	while not message_queue.isEmpty:
 		item = message_queue.remove_root(true)
-		if item[0] <=1:
+		var message = item[1]
+		
+		if item[0] <=1: #priority 1 messages
 			$AnimationPlayer.play("Breaking")
 			yield($AnimationPlayer, "animation_finished")
-	
-		show_text(item[1])
+		#elif item[0] == 2: #priority 2 messages
+			#pass
+		else: #priority 3+
+			while message.length() < max_characters and message_queue.get_root_priority() > 2:
+				if message.length()+ message_queue.get_root_value().length() > max_characters:
+					break
+				item = message_queue.remove_root(true)
+				message = message+"\n"+item[1]
+		
+		show_text(message)
 		yield(self, "text_shown")
 	
 	$AnimationPlayer.play("Disappear")
@@ -63,7 +74,7 @@ func show_text(text):
 	$Tween.start()
 	yield($Tween,"tween_completed")
 	
-	$Timer.wait_time = message_stay
+	$Timer.wait_time = message_stay*text.length()
 	$Timer.start()
 	yield($Timer, "timeout")
 	

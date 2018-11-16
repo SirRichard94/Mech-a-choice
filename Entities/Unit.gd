@@ -21,6 +21,7 @@ func _ready():
 	assert is_in_group("Enemies") or is_in_group("Alies") or is_in_group("Areas") or is_in_group("Player")
 
 func _on_death():
+	gui.newscaster.announce(self.unit_name + " IS FUCKING DEAD", 2)
 	queue_free()
 
 func _on_damage_taken(damage):

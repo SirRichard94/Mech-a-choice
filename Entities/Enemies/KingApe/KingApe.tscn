@@ -1,17 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.gd" type="Script" id=1]
-[ext_resource path="res://Components/fsm/fsm.gd" type="Script" id=2]
-[ext_resource path="res://Entities/Enemies/KingApe/Default.gd" type="Script" id=3]
-[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=8]
-[ext_resource path="res://Hit Ground.gd" type="Script" id=9]
-[ext_resource path="res://Entities/Player/Actions/PlayerMoveToArea.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=11]
-[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=12]
+[ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=7]
+[ext_resource path="res://Hit Ground.gd" type="Script" id=8]
+[ext_resource path="res://Entities/Player/Actions/PlayerMoveToArea.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=10]
+[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -208,7 +207,7 @@ tracks/1/keys = {
 "values": [ -7.70801, -7.70801 ]
 }
 
-[node name="KingApe" type="Node2D" groups=[
+[node name="KingApe" type="Node2D" index="0" groups=[
 "Enemies",
 ]]
 
@@ -217,26 +216,17 @@ screen_shake_modifier = 1.0
 resistance = ""
 weakness = ""
 
-[node name="FSM" type="Node" parent="." index="0"]
+[node name="FSM" parent="." index="0" instance=ExtResource( 2 )]
 
-editor/display_folded = true
-script = ExtResource( 2 )
+initial_state = ""
 
-[node name="Default" type="Node" parent="FSM" index="0"]
-
-script = ExtResource( 3 )
-
-[node name="Low HP" type="Node" parent="FSM" index="1"]
-
-[node name="Kidnap" type="Node" parent="FSM" index="2"]
-
-[node name="Running" type="Node" parent="FSM" index="3"]
-
-[node name="AreaComponent" parent="." index="1" instance=ExtResource( 4 )]
+[node name="AreaComponent" parent="." index="1" instance=ExtResource( 3 )]
 
 starting_area = "Park"
 
-[node name="StatBlock" parent="." index="2" instance=ExtResource( 5 )]
+[node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
+
+editor/display_folded = true
 
 [node name="Speed" parent="StatBlock" index="1"]
 
@@ -246,19 +236,19 @@ editor/display_folded = false
 
 editor/display_folded = false
 
-[node name="ATBTimer" parent="." index="3" instance=ExtResource( 6 )]
+[node name="ATBTimer" parent="." index="3" instance=ExtResource( 5 )]
 
-[node name="Actions" parent="." index="4" instance=ExtResource( 7 )]
+shows_in_tracker = true
 
-editor/display_folded = true
+[node name="Actions" parent="." index="4" instance=ExtResource( 6 )]
 
 [node name="Punch" type="Node" parent="Actions" index="0"]
 
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
-target_type = null
+target_type = 0
 damage = 3
 colateral_damage = 1
 tags = "physical, melee"
@@ -268,13 +258,13 @@ end_animation = "Idle"
 
 [node name="Hit Ground" type="Node" parent="Actions" index="1"]
 
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
 target_type = null
 
-[node name="Move forward" parent="Actions" index="2" instance=ExtResource( 10 )]
+[node name="Move forward" parent="Actions" index="2" instance=ExtResource( 9 )]
 
 target_area = "Park"
 chase = false
@@ -288,7 +278,7 @@ end_animation = null
 position = Vector2( 790.377, 364.58 )
 rotation = -0.13453
 scale = Vector2( 0.464317, 0.464317 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
@@ -305,7 +295,7 @@ anims/Leave = SubResource( 4 )
 anims/Punch = SubResource( 5 )
 anims/Taunt = SubResource( 6 )
 blend_times = [  ]
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
 
 [editable path="StatBlock"]

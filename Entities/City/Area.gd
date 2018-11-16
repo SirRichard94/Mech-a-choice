@@ -2,6 +2,15 @@ extends "res://Entities/Unit.gd"
 
 export (Texture) var icon
 
+func _process(delta):
+	$FSM.update(delta)
+	
+func _fixed_process(delta):
+	$FSM.update(delta)
+
+func _input(event):
+	$FSM.handle_input(event)
+
 func get_paths():
 	assert get_node("Paths") != null
 	var list = []
@@ -21,7 +30,6 @@ func get_player():
 	if player.get_node("AreaComponent").get_area() == self:
 		return player
 	return null
-	
 
 func get_enemies():
 	var enemies = []

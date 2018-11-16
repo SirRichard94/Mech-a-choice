@@ -2,10 +2,23 @@ extends Node
 
 # thanks to karoffel for this code
 
+export var initial_state = ""
+
 var state = null
 
 var state_key = ""
 var next_state_key = ""
+
+func _ready():
+	owner = get_parent()
+	var timer = owner.get_node("ATBTimer")
+	timer.connect("timeout", self, "on_atb_turn" )
+
+func on_atb_turn():
+	if state:
+		state.on_atb_turn()
+		
+	_maybe_perform_transition()
 
 func fixed_update(delta):
 	if state:

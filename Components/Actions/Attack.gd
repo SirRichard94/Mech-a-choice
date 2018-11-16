@@ -14,6 +14,7 @@ func is_disabled():
 
 func get_target():
 	var target
+	print (target_type)
 	var area = owner.get_node("AreaComponent").get_area()
 	match target_type: 
 		PLAYER:
@@ -26,6 +27,7 @@ func get_target():
 			target = null if area.get_enemies().empty() else area.get_enemies()[0]
 		SELF: 
 			target = owner
+	print (target)
 	return target
 
 func _do_action():
