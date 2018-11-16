@@ -1,14 +1,19 @@
 extends Node
 var ActionManager = preload("res://Components/Actions/ActionsManager.gd")
 
+enum TargetType {PLAYER, CITY, ALLY, ENEMY, SELF }
+
 export var energy_cost = 0
 export var description = "This Action Has a Description"  setget , _get_description
+export (TargetType) var target_type = PLAYER
 
 onready var gui = get_tree().current_scene.get_node("GUI")
 onready var player = get_tree().current_scene.get_node("Player")
 
 var is_menu_action = false
 
+func _ready():
+	owner = get_action_manager().owner
 
 func get_action_manager():
 	var current_parent = get_parent()

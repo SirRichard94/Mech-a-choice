@@ -12,7 +12,4 @@ func _on_ATB_timeout():
 		$AnimationPlayer.play("Taunt")
 		return
 	
-	$Actions.do_action("Punch")
-	
-	yield($Actions,"action_ended")
-	$ATBTimer.start()
+	$Actions.do_action("Hit Ground")

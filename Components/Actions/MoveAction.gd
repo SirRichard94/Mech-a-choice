@@ -1,33 +1,45 @@
 extends "res://Components/Actions/ActionItem.gd"
 
-var target
+export (String) var target_area = null
+export var chase = false
+export var chase_time = -1
+export (String) var leave_animation = null
+export (String) var retreat_animation = null
+export (String) var arrive_animation = null
+export (String) var end_animation = null
 
-func _ready():
-	if target == null:
-		queue_free()
-		print ("invalid location")
-		return
-	description = target.name
+func _get_description():
+	description = target_area
 
 func _do_action():
-	emit_signal("action_started")
+	if target_area == null:
+		print ("Move Action: WTF dude, this area is literally non existant")
+		return false
 
-	var area_comp = player.get_node("AreaComponent")
-	var animator = player.get_node("AnimationPlayer")
+	var area_comp = owner.get_node("AreaComponent")
+	var animator = owner.get_node("AnimationPlayer")
 	
-	if area_comp.get_area().enemy_count() > 0:
-		animator.play("Retreat")
-	else:
-		animator.play("Leave")
+	if animator:
+		if area_comp.get_area().enemy_count() > 0:
+			if retreat_animation:
+				animator.play(retreat_animation)
+			elif leave_animation:
+					animator.play(leave_animation)
+		else:
+			if leave_animation:
+				animator.play(leave_animation)
 	
-	yield(animator,"animation_finished")
+		yield(animator,"animation_finished")
 	
-	area_comp.set_area( target.name )
-	get_tree().current_scene.set_current_area(target.name)
+	area_comp.set_area( target_area )
+	if chase:
+		get_tree().current_scene.set_current_area(target_area)
 	
-	animator.play("Arrive") 
+	if animator and arrive_animation:
+		animator.play(arrive_animation) 
 	
-	yield(animator,"animation_finished")
+		yield(animator,"animation_finished")
+	if animator and end_animation:
+		animator.play(end_animation) 
 	
-	animator.play("Idle") 
-	emit_signal("action_ended")
+	get_action_manager().emit_signal("action_ended", self)

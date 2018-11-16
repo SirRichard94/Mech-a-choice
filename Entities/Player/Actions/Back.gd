@@ -1,4 +1,4 @@
-extends "res://Components/Actions/ActionItem.gd"
+extends "res://Entities/Player/Actions/MenuAction.gd"
 
 # class member variables go here, for example:
 # var a = 2

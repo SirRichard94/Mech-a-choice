@@ -7,7 +7,7 @@
 [ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Player/Actions/MenuAction.gd" type="Script" id=6]
 [ext_resource path="res://Entities/Player/Actions/AttackMenu.gd" type="Script" id=7]
-[ext_resource path="res://Entities/Player/Actions/Back.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Entities/Player/Actions/MenuBack.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=9]
 [ext_resource path="res://Entities/Player/Actions/MoveMenu.gd" type="Script" id=10]
 [ext_resource path="res://Entities/Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=11]
@@ -1497,8 +1497,6 @@ one_shot = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-
 [node name="HP" parent="StatBlock" index="0"]
 
 editor/display_folded = false
@@ -1528,6 +1526,7 @@ editor/display_folded = false
 script = ExtResource( 6 )
 energy_cost = 0
 description = "This Action Has a Description"
+target_type = null
 title = "HERO CHOOSES BRAVE ACTION !"
 
 [node name="Attack" type="Node" parent="Actions/Menu" index="0"]
@@ -1535,22 +1534,24 @@ title = "HERO CHOOSES BRAVE ACTION !"
 script = ExtResource( 7 )
 energy_cost = 0
 description = "This Action Has a Description"
+target_type = null
 title = "HERO CHOOSES BRAVE ACTION !"
 
 [node name="Back" parent="Actions/Menu/Attack" index="0" instance=ExtResource( 8 )]
 
-energy_cost = 0
 description = "This Action Has a Description"
+target_type = null
+title = "HERO CHOOSES BRAVE ACTION !"
 
 [node name="Punch" type="Node" parent="Actions/Menu/Attack" index="1"]
 
 script = ExtResource( 9 )
 energy_cost = 0
 description = "This Action Has a Description"
+target_type = 3
 damage = 3
 colateral_damage = 1
 tags = "physical, melee"
-target_type = 3
 animation = "Punch"
 animation_has_event = true
 end_animation = "Idle"
@@ -1563,7 +1564,9 @@ end_animation = "Idle"
 
 script = ExtResource( 10 )
 energy_cost = 0
-description = "This Action Has a Description"
+description = "Move to another area"
+target_type = null
+title = "THE HERO IS ON THE MOVE"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 

@@ -1,11 +1,12 @@
 extends "res://Components/Actions/ActionItem.gd"
 
-enum TargetType {PLAYER, CITY, ALLY, ENEMY, SELF }
+
+
 
 export var damage = 3
 export var colateral_damage = 1
 export (String) var tags = "physical, melee"
-export (TargetType) var target_type = PLAYER
+
 
 export (String) var animation = null
 export var animation_has_event = false

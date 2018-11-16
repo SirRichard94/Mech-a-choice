@@ -2,9 +2,11 @@
 
 [ext_resource path="res://Entities/Player/Actions/Back.gd" type="Script" id=1]
 
-
-[node name="Back" type="Node"]
+[node name="Back" type="Node" index="0"]
 
 script = ExtResource( 1 )
+energy_cost = 0
+description = "Its time to go back"
+title = "BIG ROBO PONDERS"
 
 

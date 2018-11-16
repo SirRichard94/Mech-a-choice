@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Components/Actions/MoveAction.gd" type="Script" id=1]
+
+[node name="MoveToArea" type="Node"]
+
+script = ExtResource( 1 )
+energy_cost = 0
+description = "This Action Has a Description"
+target_type = 4
+target_area = "Null"
+chase = true
+chase_time = -1
+leave_animation = "Leave"
+retreat_animation = "Retreat"
+arrive_animation = "Arrive"
+end_animation = "Idle"
+
+
