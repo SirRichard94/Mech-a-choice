@@ -1477,7 +1477,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "Player",
 ]]
 
@@ -1499,7 +1499,7 @@ starting_area = "Park"
 [node name="ATBTimer" parent="." index="1" instance=ExtResource( 3 )]
 
 one_shot = true
-shows_in_tracker = true
+show_in_tracker = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -1529,11 +1529,8 @@ editor/display_folded = true
 
 [node name="Actions" parent="." index="3" instance=ExtResource( 5 )]
 
-editor/display_folded = true
-
 [node name="Menu" type="Node" parent="Actions" index="0"]
 
-editor/display_folded = true
 script = ExtResource( 6 )
 ends_action = false
 energy_cost = 0
@@ -1581,6 +1578,7 @@ title = "HERO CHOOSES BRAVE ACTION !"
 [node name="Combined Action" parent="Actions/Menu/Special" index="0" instance=ExtResource( 10 )]
 
 ends_action = true
+sequential = false
 
 [node name="Maek monkeys" parent="Actions/Menu/Special/Combined Action" index="0" instance=ExtResource( 11 )]
 

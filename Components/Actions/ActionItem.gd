@@ -28,7 +28,7 @@ func get_action_manager():
 	return current_parent
 
 func start_action():
-	_do_action()
+	call_deferred("_do_action")
 
 func end_action():
 	emit_signal("action_ended")
