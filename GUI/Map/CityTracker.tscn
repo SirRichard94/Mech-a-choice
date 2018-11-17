@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/Map/CityTracker.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Map/fg_circle.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Map/circle_fill.png" type="Texture" id=3]
+[ext_resource path="res://Entities/City/Icons/factory.png" type="Texture" id=4]
+
+[node name="CityTracker" type="Node2D"]
+
+script = ExtResource( 1 )
+critical_color = Color( 1, 0, 0, 1 )
+damaged_color = Color( 0.7, 0.7, 0, 1 )
+
+[node name="ATBBar" type="TextureProgress" parent="." index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.0
+margin_top = -69.0
+margin_right = 5.0
+margin_bottom = 5.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 91.718
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+fill_mode = 4
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Radial Fill", "Rect", "Textures" ]
+
+[node name="Container" type="CenterContainer" parent="ATBBar" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="Icon" type="TextureRect" parent="ATBBar/Container" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 58.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 42, 42 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="NameTag" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -35.0
+margin_top = 41.0
+margin_right = 36.0
+margin_bottom = 55.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Area Name"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HPTag" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -35.0
+margin_top = 56.0
+margin_right = 36.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "HP 30/30"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

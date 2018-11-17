@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Panels/highlight.png" type="Texture" id=2]
@@ -14,8 +14,7 @@
 [ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=12]
 [ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=13]
 [ext_resource path="res://GUI/Pause.gd" type="Script" id=14]
-
-
+[ext_resource path="res://GUI/Map/Map.tscn" type="PackedScene" id=15]
 
 [sub_resource type="GDScript" id=1]
 
@@ -52,7 +51,7 @@ shader_param/offsetIntensity = 0.02
 shader_param/colorOffsetIntensity = 0.3
 _sections_unfolded = [ "shader_param" ]
 
-[node name="GUI" type="CanvasLayer" index="0"]
+[node name="GUI" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -64,6 +63,7 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="Main" type="VBoxContainer" parent="." index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -688,7 +688,7 @@ custom_constants/separation = 10
 alignment = 0
 script = ExtResource( 10 )
 _sections_unfolded = [ "custom_constants" ]
-max_trackers = 5
+max_visible_trackers = 5
 
 [node name="NewsCaster" parent="." index="1" instance=ExtResource( 11 )]
 
@@ -739,5 +739,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Map" parent="." index="3" instance=ExtResource( 15 )]
+
+visible = false
 
 

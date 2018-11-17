@@ -24,14 +24,13 @@ starting_area = "Park"
 
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 icon = ExtResource( 3 )
 
 [node name="Paths" parent="City/Park" index="1"]
 
 editor/display_folded = true
 
-[node name="Military" type="Node" parent="City/Park/Paths" index="0"]
+[node name="Military Base" type="Node" parent="City/Park/Paths" index="0"]
 
 [node name="Downtown" type="Node" parent="City/Park/Paths" index="1"]
 
@@ -43,22 +42,12 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="Military" parent="City" index="1" instance=ExtResource( 2 )]
+[node name="Military Base" parent="City" index="1" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 icon = ExtResource( 4 )
 
-[node name="Paths" parent="City/Military" index="1"]
-
-editor/display_folded = true
-
-[node name="Park" type="Node" parent="City/Military/Paths" index="0"]
-
-[node name="StatBlock" parent="City/Military" index="2"]
-
-editor/display_folded = true
-
-[node name="FSM" parent="City/Military" index="3"]
+[node name="FSM" parent="City/Military Base" index="3"]
 
 editor/display_folded = true
 
@@ -66,10 +55,6 @@ editor/display_folded = true
 
 editor/display_folded = true
 icon = ExtResource( 5 )
-
-[node name="Paths" parent="City/Comms Tower" index="1"]
-
-editor/display_folded = true
 
 [node name="Downtown" type="Node" parent="City/Comms Tower/Paths" index="0"]
 
@@ -91,6 +76,7 @@ editor/display_folded = true
 
 [node name="Downtown" parent="City" index="4" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 icon = ExtResource( 6 )
 
 [node name="Paths" parent="City/Downtown" index="1"]
@@ -164,7 +150,7 @@ editor/display_folded = true
 
 
 [editable path="City/Park"]
-[editable path="City/Military"]
+[editable path="City/Military Base"]
 [editable path="City/Comms Tower"]
 [editable path="City/Powerplant"]
 [editable path="City/Downtown"]
