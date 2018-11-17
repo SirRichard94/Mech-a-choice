@@ -28,16 +28,16 @@ func update():
 	var timer = area.get_node("ATBTimer")
 	var hp = area.stats.get_current("HP")
 	var hp_max = area.stats.get_max("HP")
-	var hp_ratio = hp/hp_max
-	var color = Color(1,1,1)
+	var hp_ratio = float(hp)/float(hp_max)
+	var color = Color(1.0,1.0,1.0)
 	color = critical_color.linear_interpolate(color, hp_ratio) if hp > 0 else Color(0.3,0.3,0.3)
 	
-	atb_bar.modulate = color	
+	atb_bar.self_modulate = color	
 	atb_bar.min_value = 0
 	atb_bar.max_value = timer.wait_time
 	atb_bar.value = timer.time_left
 	
-	icon.modulate = color
+	icon.self_modulate = color
 	
 	hp_tag.text = "HP: "+str(hp)+"/" + str(hp_max)
 	

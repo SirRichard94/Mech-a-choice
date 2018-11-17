@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI/Map/Map.gd" type="Script" id=1]
-[ext_resource path="res://GUI/Map/MapLines.gd" type="Script" id=2]
-[ext_resource path="res://GUI/Map/CityTracker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/Panels/text_box.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Map/MapLines.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Map/CityTracker.tscn" type="PackedScene" id=4]
 
 [node name="Map" type="Control" index="0"]
 
@@ -18,7 +19,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
 
-[node name="Map Panel" type="Panel" parent="." index="0"]
+[node name="Map Panel" type="NinePatchRect" parent="." index="0"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -30,10 +31,14 @@ margin_right = 438.0
 margin_bottom = 240.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+texture = ExtResource( 2 )
+patch_margin_left = 15
+patch_margin_right = 15
+_sections_unfolded = [ "Patch Margin" ]
 
 [node name="Trackers" type="Control" parent="Map Panel" index="0"]
 
@@ -47,55 +52,55 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
-[node name="Harbor" parent="Map Panel/Trackers" index="0" instance=ExtResource( 3 )]
+[node name="Harbor" parent="Map Panel/Trackers" index="0" instance=ExtResource( 4 )]
 
 position = Vector2( 56, 230 )
 
-[node name="Military Base" parent="Map Panel/Trackers" index="1" instance=ExtResource( 3 )]
+[node name="Military Base" parent="Map Panel/Trackers" index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 206, 60 )
+position = Vector2( 166, 60 )
 
-[node name="Weapons Factory" parent="Map Panel/Trackers" index="2" instance=ExtResource( 3 )]
+[node name="Weapons Factory" parent="Map Panel/Trackers" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 206, 220 )
 
-[node name="Airfield" parent="Map Panel/Trackers" index="3" instance=ExtResource( 3 )]
+[node name="Airfield" parent="Map Panel/Trackers" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 216, 380 )
+position = Vector2( 256, 390 )
 
-[node name="Workshop" parent="Map Panel/Trackers" index="4" instance=ExtResource( 3 )]
+[node name="Workshop" parent="Map Panel/Trackers" index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 406, 60 )
 
-[node name="Power Plant" parent="Map Panel/Trackers" index="5" instance=ExtResource( 3 )]
+[node name="Power Plant" parent="Map Panel/Trackers" index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 516, 170 )
+position = Vector2( 556, 120 )
 
-[node name="Comms Tower" parent="Map Panel/Trackers" index="6" instance=ExtResource( 3 )]
+[node name="Comms Tower" parent="Map Panel/Trackers" index="6" instance=ExtResource( 4 )]
 
-position = Vector2( 346, 280 )
+position = Vector2( 376, 250 )
 
-[node name="University" parent="Map Panel/Trackers" index="7" instance=ExtResource( 3 )]
+[node name="University" parent="Map Panel/Trackers" index="7" instance=ExtResource( 4 )]
 
-position = Vector2( 596, 330 )
+position = Vector2( 576, 310 )
 
-[node name="Shield Generator" parent="Map Panel/Trackers" index="8" instance=ExtResource( 3 )]
+[node name="Shield Generator" parent="Map Panel/Trackers" index="8" instance=ExtResource( 4 )]
 
-position = Vector2( 456, 380 )
+position = Vector2( 446, 390 )
 
-[node name="Church" parent="Map Panel/Trackers" index="9" instance=ExtResource( 3 )]
+[node name="Church" parent="Map Panel/Trackers" index="9" instance=ExtResource( 4 )]
 
-position = Vector2( 716, 70 )
+position = Vector2( 746, 70 )
 
-[node name="Park" parent="Map Panel/Trackers" index="10" instance=ExtResource( 3 )]
+[node name="Park" parent="Map Panel/Trackers" index="10" instance=ExtResource( 4 )]
 
-position = Vector2( 706, 230 )
+position = Vector2( 716, 230 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Watchtower" parent="Map Panel/Trackers" index="11" instance=ExtResource( 3 )]
+[node name="Watchtower" parent="Map Panel/Trackers" index="11" instance=ExtResource( 4 )]
 
-position = Vector2( 766, 360 )
+position = Vector2( 756, 400 )
 
 

@@ -719,12 +719,11 @@ max_visible_trackers = 5
 [node name="NewsCaster" parent="." index="1" instance=ExtResource( 11 )]
 
 _sections_unfolded = [ "Focus", "Mouse", "Size Flags" ]
-message_stay = 2
-max_lines = 3
 
 [node name="Map" parent="." index="2" instance=ExtResource( 12 )]
 
 visible = false
+_sections_unfolded = [ "Visibility" ]
 
 [node name="Pause" type="TextureRect" parent="." index="3"]
 

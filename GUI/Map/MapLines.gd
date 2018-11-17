@@ -17,5 +17,4 @@ func _draw():
 				if b != null:
 					var from = a.position
 					var to = b.position
-					print("Drawing line from " +str(from) + " to "+str(to) )
 					draw_line(from, to, Color(1,1,1), 4, true)
