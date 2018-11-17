@@ -22,8 +22,6 @@ starting_area = "Park"
 
 [node name="City" type="Node" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true

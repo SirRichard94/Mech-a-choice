@@ -1,21 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Entities/City/Area.gd" type="Script" id=1]
-[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/City/Icons/downtown.png" type="Texture" id=2]
+[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=6]
 
-[node name="Area" type="Node2D" groups=[
+[node name="Area" type="Node2D" index="0" groups=[
 "Areas",
 ]]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
-screen_shake_modifier = 1.0
+screen_shake_modifier = 2.0
 resistance = ""
 weakness = ""
-icon = null
+icon = ExtResource( 2 )
 
 [node name="BG" type="TextureRect" parent="." index="0"]
 
@@ -38,9 +39,9 @@ stretch_mode = 5
 
 [node name="Paths" type="Node" parent="." index="1"]
 
-[node name="StatBlock" parent="." index="2" instance=ExtResource( 2 )]
+[node name="StatBlock" parent="." index="2" instance=ExtResource( 3 )]
 
-[node name="FSM" parent="." index="3" instance=ExtResource( 3 )]
+[node name="FSM" parent="." index="3" instance=ExtResource( 4 )]
 
 initial_state = ""
 
@@ -52,10 +53,10 @@ initial_state = ""
 
 [node name="Dead" type="Node" parent="FSM" index="3"]
 
-[node name="ATBTimer" parent="." index="4" instance=ExtResource( 4 )]
+[node name="ATBTimer" parent="." index="4" instance=ExtResource( 5 )]
 
 show_in_tracker = false
 
-[node name="Actions" parent="." index="5" instance=ExtResource( 5 )]
+[node name="Actions" parent="." index="5" instance=ExtResource( 6 )]
 
 

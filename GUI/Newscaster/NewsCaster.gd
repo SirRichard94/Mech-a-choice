@@ -3,8 +3,8 @@ extends Control
 onready var text_label = get_node("Newscaster/TextBox/RichTextLabel")
 
 export var text_speed = 0.5
-export var message_stay = 1.0
-export var max_characters = 10000
+export var message_stay = 2
+export var max_lines = 3
 
 signal text_shown
 signal message_ended
@@ -34,33 +34,32 @@ func _process(delta):
 func start_anouncement():
 	state = SPEAKING
 	
-	var item = message_queue.remove_root(true)
-	if item[0] <=1:
-		$AnimationPlayer.play("Breaking")
+	if message_queue.get_root_priority() <=1:
+		pass # Breaking gets show when processing mesages
 	else:
 		$AnimationPlayer.play("Appear")
-	yield($AnimationPlayer, "animation_finished")
-	
-	show_text(item[1])
-	yield(self, "text_shown")
+		yield($AnimationPlayer, "animation_finished")
 	
 	while not message_queue.isEmpty:
-		item = message_queue.remove_root(true)
-		var message = item[1]
+		var item = message_queue.remove_root(true)
 		
-		if item[0] <=1: #priority 1 messages
+		var message = item[1]
+		var time = message_stay
+		
+		if item[0] <=1: #priority 1 messages: show breaking animation
 			$AnimationPlayer.play("Breaking")
 			yield($AnimationPlayer, "animation_finished")
-		#elif item[0] == 2: #priority 2 messages
-			#pass
-		else: #priority 3+
-			while message.length() < max_characters and message_queue.get_root_priority() > 2:
-				if message.length()+ message_queue.get_root_value().length() > max_characters:
-					break
+		elif item[0] == 2: #priority 2 messages: show it alone
+			pass
+		else: #priority 3+ aggregate them in a single message
+			var lines = text_label.get_line_count()
+			while lines < max_lines-1 and message_queue.get_root_priority() > 2:
 				item = message_queue.remove_root(true)
 				message = message+"\n"+item[1]
+				time += message_stay/2
+				lines +=1
 		
-		show_text(message)
+		show_text(message, time)
 		yield(self, "text_shown")
 	
 	$AnimationPlayer.play("Disappear")
@@ -68,13 +67,13 @@ func start_anouncement():
 	state = HIDDEN
 	emit_signal("message_ended")
 
-func show_text(text):
+func show_text(text, time=2):
 	text_label.text = text
 	$Tween.interpolate_property(text_label, "percent_visible", 0,1,text_speed,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start()
 	yield($Tween,"tween_completed")
 	
-	$Timer.wait_time = message_stay*text.length()
+	$Timer.wait_time = time
 	$Timer.start()
 	yield($Timer, "timeout")
 	

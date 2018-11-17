@@ -77,7 +77,7 @@ func _input(ev):
 		$Tween.interpolate_property(self, \"modulate\",Color(1,1,1,1), Color(1,1,1,0),0.5,Tween.TRANS_SINE,Tween.EASE_IN)
 		$Tween.start()"
 
-[node name="GUI" type="CanvasLayer" index="0"]
+[node name="GUI" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -719,6 +719,8 @@ max_visible_trackers = 5
 [node name="NewsCaster" parent="." index="1" instance=ExtResource( 11 )]
 
 _sections_unfolded = [ "Focus", "Mouse", "Size Flags" ]
+message_stay = 2
+max_lines = 3
 
 [node name="Map" parent="." index="2" instance=ExtResource( 12 )]
 

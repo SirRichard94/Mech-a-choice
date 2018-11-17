@@ -168,8 +168,8 @@ size_flags_vertical = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Focus", "Mouse" ]
 text_speed = 0.5
-message_stay = 1.0
-max_characters = 10000
+message_stay = 2
+max_lines = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 
