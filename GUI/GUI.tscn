@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Panels/highlight.png" type="Texture" id=2]
@@ -50,6 +50,32 @@ shader_param/noiseIntensity = 0.001
 shader_param/offsetIntensity = 0.02
 shader_param/colorOffsetIntensity = 0.3
 _sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 250
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 9 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "extends Label
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+
+func _input(ev):
+	if ev is InputEventKey and ev.scancode == KEY_F and not ev.echo :
+		$Tween.interpolate_property(self, \"modulate\",Color(1,1,1,1), Color(1,1,1,0),0.5,Tween.TRANS_SINE,Tween.EASE_IN)
+		$Tween.start()"
 
 [node name="GUI" type="CanvasLayer" index="0"]
 
@@ -743,5 +769,41 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="Respect" type="Label" parent="." index="4"]
+
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -330.0
+margin_top = -150.0
+margin_right = 330.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "RESPECT"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 5 )
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
+
+[node name="Tween" type="Tween" parent="Respect" index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 

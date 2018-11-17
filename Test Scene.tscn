@@ -22,6 +22,8 @@ starting_area = "Park"
 
 [node name="City" type="Node" parent="." index="0"]
 
+editor/display_folded = true
+
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true
@@ -106,6 +108,7 @@ editor/display_folded = true
 
 [node name="Weapons Factory" parent="City" index="4" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 icon = ExtResource( 4 )
 
 [node name="Military Base" type="Node" parent="City/Weapons Factory/Paths" index="0"]
@@ -239,6 +242,7 @@ editor/display_folded = true
 
 [node name="Shield Generator" parent="City" index="11" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 icon = ExtResource( 5 )
 
 [node name="University" type="Node" parent="City/Shield Generator/Paths" index="0"]
