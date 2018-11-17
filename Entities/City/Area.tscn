@@ -54,7 +54,7 @@ initial_state = ""
 
 [node name="ATBTimer" parent="." index="4" instance=ExtResource( 4 )]
 
-shows_in_tracker = true
+show_in_tracker = false
 
 [node name="Actions" parent="." index="5" instance=ExtResource( 5 )]
 

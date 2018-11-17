@@ -35,7 +35,7 @@ func remove_target():
 	visible = false
 
 func is_target_valid():
-	return get_target() != null
+	return get_target() != null and get_target().show_in_tracker
 
 func get_priority():
 	if self.target:

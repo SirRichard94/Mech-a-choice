@@ -24,6 +24,7 @@ starting_area = "Park"
 
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 icon = ExtResource( 3 )
 
 [node name="Paths" parent="City/Park" index="1"]
@@ -42,14 +43,14 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="ATBTimer" parent="City/Park" index="4"]
-
-show_in_tracker = true
-
 [node name="Military" parent="City" index="1" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 icon = ExtResource( 4 )
+
+[node name="Paths" parent="City/Military" index="1"]
+
+editor/display_folded = true
 
 [node name="Park" type="Node" parent="City/Military/Paths" index="0"]
 
@@ -57,9 +58,9 @@ icon = ExtResource( 4 )
 
 editor/display_folded = true
 
-[node name="ATBTimer" parent="City/Military" index="4"]
+[node name="FSM" parent="City/Military" index="3"]
 
-show_in_tracker = true
+editor/display_folded = true
 
 [node name="Comms Tower" parent="City" index="2" instance=ExtResource( 2 )]
 
@@ -80,10 +81,6 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="ATBTimer" parent="City/Comms Tower" index="4"]
-
-show_in_tracker = true
-
 [node name="Powerplant" parent="City" index="3" instance=ExtResource( 2 )]
 
 editor/display_folded = true
@@ -92,13 +89,8 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="ATBTimer" parent="City/Powerplant" index="4"]
-
-show_in_tracker = true
-
 [node name="Downtown" parent="City" index="4" instance=ExtResource( 2 )]
 
-editor/display_folded = true
 icon = ExtResource( 6 )
 
 [node name="Paths" parent="City/Downtown" index="1"]
@@ -113,9 +105,9 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="ATBTimer" parent="City/Downtown" index="4"]
+[node name="FSM" parent="City/Downtown" index="3"]
 
-show_in_tracker = true
+editor/display_folded = true
 
 [node name="Player" parent="." index="1" groups=[
 "Area Members",
