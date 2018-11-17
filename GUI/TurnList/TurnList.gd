@@ -2,7 +2,8 @@ extends Container
 
 var TurnTracker = preload("res://GUI/TurnList/Turn Tracker.tscn")
 
-export var max_trackers = 5
+export var max_visible_trackers = 5
+var being_tracked=[]
 
 func _ready():
 	update_trackers()
@@ -23,29 +24,26 @@ func _process(delta):
 	update_trackers()
 
 func update_trackers():
-	var i = 0
-	
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):
-		if timer.owner.is_dead():
-			continue
-		if i >= get_child_count():
+		if being_tracked.has(timer):
+			pass
+		else:
 			var t = TurnTracker.instance()
 			t.target = timer
 			add_child(t)
-		else:
-			get_child(i).target = timer
-		i+=1
+			being_tracked.append(timer)
 
 	sort_trackers()
-	i = 0
+
+	var i = 0
 	for tracker in get_children():
-		if tracker.target == null:
-			tracker.visible = false
-		elif i > max_trackers:
+		if not tracker.is_target_valid():
+			tracker.queue_free()
+		elif i > max_visible_trackers:
 			tracker.visible = false
 		else:
 			tracker.visible = true
 			i+= 1
 
 func compare(a, b): 
-	return a.get_time_left() - b.get_time_left()
+	return b.get_priority() - a.get_priority()  

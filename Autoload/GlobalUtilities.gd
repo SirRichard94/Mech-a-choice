@@ -19,3 +19,6 @@ func get_area(name):
 		if area.name == name:
 			return area
 	return null
+
+func get_current_area():
+	return get_tree().current_scene.current_area

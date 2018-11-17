@@ -1,45 +1,59 @@
 extends Control
 
-var target setget set_target
-var area
+var target setget set_target, get_target
+var area setget , get_area
+
+func get_area():
+	return area if area==null else area.get_ref()
+func get_target():
+	return target if target == null else target.get_ref()
 
 func set_target(new):
 	if not new.is_in_group("ATB Timers"):
-		target = null
+		target = weakref(null)
 		return
 		
 	target = new
-	if not target.is_connected("tree_exiting", self, "queue_free"):
-		target.connect("tree_exiting", self, "queue_free")
 	
 	$Label.text = target.owner.unit_name
 	name = target.owner.name
 	
-	if new.owner.is_in_group("Areas"):
+	if target.owner.is_in_group("Areas"):
 		area = target.owner
 	elif target.owner.get_node("AreaComponent"):
 		area = target.owner.get_node("AreaComponent").get_area()
 	
 	if area != null:
 		$Icon.texture = area.icon
+	
+	area = weakref(area)
+	target = weakref(target)
 
 func remove_target():
 	target = null
+	area = null
 	visible = false
 
-func get_time_left():
-	if target == null:
-		return target.time_left
-	else:
-		return INF
+func is_target_valid():
+	return get_target() != null
 
-func _ready():
-	self.target = get_tree().current_scene.get_node("Player/ATBTimer") #test
+func get_priority():
+	if self.target:
+		var t = self.target
+		var priority = -t.time_left
+		if t.is_in_group("Player"):
+			priority += 500
+		if GlobalUtilities.get_current_area() == area:
+			priority += 50
+		return priority
+	else:
+		remove_target()
+		return -INF
 
 func _process(delta):
-	if not visible or target == null:
+	if not is_target_valid() or not visible:
 		return
 	
 	$Progress.min_value = 0
-	$Progress.max_value = target.wait_time
-	$Progress.value = target.time_left
+	$Progress.max_value = self.target.wait_time
+	$Progress.value = self.target.time_left

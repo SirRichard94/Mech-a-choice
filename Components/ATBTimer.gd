@@ -1,6 +1,6 @@
 extends Timer
 
-export var shows_in_tracker = true
+export var show_in_tracker = true
 
 func _ready():
 	owner = get_parent()
