@@ -55,3 +55,5 @@ func _do_action():
 	if end_animation != null:
 		animator.play(end_animation)
 	
+	end_action()
+	
