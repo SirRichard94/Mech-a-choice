@@ -4,14 +4,14 @@
 [ext_resource path="res://Entities/City/Area.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/City/Icons/park.png" type="Texture" id=3]
 [ext_resource path="res://Entities/City/Icons/military.png" type="Texture" id=4]
-[ext_resource path="res://Entities/City/Icons/comms.png" type="Texture" id=5]
-[ext_resource path="res://Entities/City/Icons/downtown.png" type="Texture" id=6]
+[ext_resource path="res://Entities/City/Icons/downtown.png" type="Texture" id=5]
+[ext_resource path="res://Entities/City/Icons/comms.png" type="Texture" id=6]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Camera.gd" type="Script" id=9]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=10]
 
-[node name="MainGame" type="Node" index="0"]
+[node name="MainGame" type="Node"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -24,15 +24,18 @@ starting_area = "Park"
 
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 icon = ExtResource( 3 )
 
 [node name="Paths" parent="City/Park" index="1"]
 
 editor/display_folded = true
 
-[node name="Military Base" type="Node" parent="City/Park/Paths" index="0"]
+[node name="Church" type="Node" parent="City/Park/Paths" index="0"]
 
-[node name="Downtown" type="Node" parent="City/Park/Paths" index="1"]
+[node name="Watchtower" type="Node" parent="City/Park/Paths" index="1"]
+
+[node name="Comms Tower" type="Node" parent="City/Park/Paths" index="2"]
 
 [node name="StatBlock" parent="City/Park" index="2"]
 
@@ -42,21 +45,147 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="Military Base" parent="City" index="1" instance=ExtResource( 2 )]
+[node name="Church" parent="City" index="1" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+icon = ExtResource( 3 )
+
+[node name="Workshop" type="Node" parent="City/Church/Paths" index="0"]
+
+[node name="Power Plant" type="Node" parent="City/Church/Paths" index="1"]
+
+[node name="Park" type="Node" parent="City/Church/Paths" index="2"]
+
+[node name="StatBlock" parent="City/Church" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Church" index="3"]
+
+editor/display_folded = true
+
+[node name="Workshop" parent="City" index="2" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+icon = ExtResource( 3 )
+
+[node name="Paths" parent="City/Workshop" index="1"]
+
+editor/display_folded = true
+
+[node name="Church" type="Node" parent="City/Workshop/Paths" index="0"]
+
+[node name="Power Plant" type="Node" parent="City/Workshop/Paths" index="1"]
+
+[node name="Military Base" type="Node" parent="City/Workshop/Paths" index="2"]
+
+[node name="StatBlock" parent="City/Workshop" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Workshop" index="3"]
+
+editor/display_folded = true
+
+[node name="Military Base" parent="City" index="3" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 icon = ExtResource( 4 )
+
+[node name="Workshop" type="Node" parent="City/Military Base/Paths" index="0"]
+
+[node name="Power Plant" type="Node" parent="City/Military Base/Paths" index="1"]
+
+[node name="Weapons Factory" type="Node" parent="City/Military Base/Paths" index="2"]
+
+[node name="Harbor" type="Node" parent="City/Military Base/Paths" index="3"]
 
 [node name="FSM" parent="City/Military Base" index="3"]
 
 editor/display_folded = true
 
-[node name="Comms Tower" parent="City" index="2" instance=ExtResource( 2 )]
+[node name="Weapons Factory" parent="City" index="4" instance=ExtResource( 2 )]
+
+icon = ExtResource( 4 )
+
+[node name="Military Base" type="Node" parent="City/Weapons Factory/Paths" index="0"]
+
+[node name="Airfield" type="Node" parent="City/Weapons Factory/Paths" index="1"]
+
+[node name="FSM" parent="City/Weapons Factory" index="3"]
+
+editor/display_folded = true
+
+[node name="Power Plant" parent="City" index="5" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+
+[node name="Church" type="Node" parent="City/Power Plant/Paths" index="0"]
+
+[node name="Workshop" type="Node" parent="City/Power Plant/Paths" index="1"]
+
+[node name="Military Base" type="Node" parent="City/Power Plant/Paths" index="2"]
+
+[node name="StatBlock" parent="City/Power Plant" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Power Plant" index="3"]
+
+editor/display_folded = true
+
+[node name="Harbor" parent="City" index="6" instance=ExtResource( 2 )]
 
 editor/display_folded = true
 icon = ExtResource( 5 )
 
-[node name="Downtown" type="Node" parent="City/Comms Tower/Paths" index="0"]
+[node name="Military Base" type="Node" parent="City/Harbor/Paths" index="0"]
+
+[node name="Airfield" type="Node" parent="City/Harbor/Paths" index="1"]
+
+[node name="StatBlock" parent="City/Harbor" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Harbor" index="3"]
+
+editor/display_folded = true
+
+[node name="Airfield" parent="City" index="7" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+icon = ExtResource( 5 )
+
+[node name="Paths" parent="City/Airfield" index="1"]
+
+editor/display_folded = true
+
+[node name="Weapons Factory" type="Node" parent="City/Airfield/Paths" index="0"]
+
+[node name="Harbor" type="Node" parent="City/Airfield/Paths" index="1"]
+
+[node name="Comms Tower" type="Node" parent="City/Airfield/Paths" index="2"]
+
+[node name="StatBlock" parent="City/Airfield" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Airfield" index="3"]
+
+editor/display_folded = true
+
+[node name="Comms Tower" parent="City" index="8" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+icon = ExtResource( 6 )
+
+[node name="Paths" parent="City/Comms Tower" index="1"]
+
+editor/display_folded = true
+
+[node name="Airfield" type="Node" parent="City/Comms Tower/Paths" index="0"]
+
+[node name="Park" type="Node" parent="City/Comms Tower/Paths" index="1"]
 
 [node name="StatBlock" parent="City/Comms Tower" index="2"]
 
@@ -66,32 +195,61 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="Powerplant" parent="City" index="3" instance=ExtResource( 2 )]
+[node name="University" parent="City" index="9" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+icon = ExtResource( 5 )
+
+[node name="Airfield" type="Node" parent="City/University/Paths" index="0"]
+
+[node name="Shield Generator" type="Node" parent="City/University/Paths" index="1"]
+
+[node name="Watchtower" type="Node" parent="City/University/Paths" index="2"]
+
+[node name="StatBlock" parent="City/University" index="2"]
 
 editor/display_folded = true
 
-[node name="StatBlock" parent="City/Powerplant" index="2"]
+[node name="FSM" parent="City/University" index="3"]
 
 editor/display_folded = true
 
-[node name="Downtown" parent="City" index="4" instance=ExtResource( 2 )]
+[node name="Watchtower" parent="City" index="10" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-icon = ExtResource( 6 )
+icon = ExtResource( 5 )
 
-[node name="Paths" parent="City/Downtown" index="1"]
-
-editor/display_folded = true
-
-[node name="Park" type="Node" parent="City/Downtown/Paths" index="0"]
-
-[node name="Comms Tower" type="Node" parent="City/Downtown/Paths" index="1"]
-
-[node name="StatBlock" parent="City/Downtown" index="2"]
+[node name="Paths" parent="City/Watchtower" index="1"]
 
 editor/display_folded = true
 
-[node name="FSM" parent="City/Downtown" index="3"]
+[node name="University" type="Node" parent="City/Watchtower/Paths" index="0"]
+
+[node name="Shield Generator" type="Node" parent="City/Watchtower/Paths" index="1"]
+
+[node name="Park" type="Node" parent="City/Watchtower/Paths" index="2"]
+
+[node name="StatBlock" parent="City/Watchtower" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Watchtower" index="3"]
+
+editor/display_folded = true
+
+[node name="Shield Generator" parent="City" index="11" instance=ExtResource( 2 )]
+
+icon = ExtResource( 5 )
+
+[node name="University" type="Node" parent="City/Shield Generator/Paths" index="0"]
+
+[node name="Watchtower" type="Node" parent="City/Shield Generator/Paths" index="1"]
+
+[node name="StatBlock" parent="City/Shield Generator" index="2"]
+
+editor/display_folded = true
+
+[node name="FSM" parent="City/Shield Generator" index="3"]
 
 editor/display_folded = true
 
@@ -150,7 +308,14 @@ editor/display_folded = true
 
 
 [editable path="City/Park"]
+[editable path="City/Church"]
+[editable path="City/Workshop"]
 [editable path="City/Military Base"]
+[editable path="City/Weapons Factory"]
+[editable path="City/Power Plant"]
+[editable path="City/Harbor"]
+[editable path="City/Airfield"]
 [editable path="City/Comms Tower"]
-[editable path="City/Powerplant"]
-[editable path="City/Downtown"]
+[editable path="City/University"]
+[editable path="City/Watchtower"]
+[editable path="City/Shield Generator"]

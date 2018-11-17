@@ -4,7 +4,7 @@
 [ext_resource path="res://GUI/Map/MapLines.gd" type="Script" id=2]
 [ext_resource path="res://GUI/Map/CityTracker.tscn" type="PackedScene" id=3]
 
-[node name="Map" type="Control"]
+[node name="Map" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -57,7 +57,7 @@ position = Vector2( 56, 230 )
 
 position = Vector2( 206, 60 )
 
-[node name="Weapon Factory" parent="Map Panel/Trackers" index="2" instance=ExtResource( 3 )]
+[node name="Weapons Factory" parent="Map Panel/Trackers" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 206, 220 )
 
@@ -67,11 +67,11 @@ position = Vector2( 216, 380 )
 
 [node name="Workshop" parent="Map Panel/Trackers" index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 386, 80 )
+position = Vector2( 406, 60 )
 
 [node name="Power Plant" parent="Map Panel/Trackers" index="5" instance=ExtResource( 3 )]
 
-position = Vector2( 526, 140 )
+position = Vector2( 516, 170 )
 
 [node name="Comms Tower" parent="Map Panel/Trackers" index="6" instance=ExtResource( 3 )]
 
@@ -94,7 +94,7 @@ position = Vector2( 716, 70 )
 position = Vector2( 706, 230 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Watch Tower" parent="Map Panel/Trackers" index="11" instance=ExtResource( 3 )]
+[node name="Watchtower" parent="Map Panel/Trackers" index="11" instance=ExtResource( 3 )]
 
 position = Vector2( 766, 360 )
 

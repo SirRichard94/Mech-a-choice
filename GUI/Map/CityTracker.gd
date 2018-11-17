@@ -32,8 +32,6 @@ func update():
 	var color = Color(1,1,1)
 	color = critical_color.linear_interpolate(color, hp_ratio) if hp > 0 else Color(0.3,0.3,0.3)
 	
-	
-	
 	atb_bar.modulate = color	
 	atb_bar.min_value = 0
 	atb_bar.max_value = timer.wait_time
@@ -42,3 +40,7 @@ func update():
 	icon.modulate = color
 	
 	hp_tag.text = "HP: "+str(hp)+"/" + str(hp_max)
+	
+	$PlayerIcon.visible = area.get_player() != null
+	$EnemyIcon.visible = not area.get_enemies().empty()
+	$AllyIcon.visible = not area.get_allies().empty()
