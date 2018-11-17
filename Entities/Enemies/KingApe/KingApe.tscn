@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.gd" type="Script" id=1]
 [ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Entities/Player/Actions/PlayerMoveToArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=10]
 [ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=11]
+[ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -207,7 +208,7 @@ tracks/1/keys = {
 "values": [ -7.70801, -7.70801 ]
 }
 
-[node name="KingApe" type="Node2D" index="0" groups=[
+[node name="KingApe" type="Node2D" groups=[
 "Enemies",
 ]]
 
@@ -238,7 +239,7 @@ editor/display_folded = false
 
 [node name="ATBTimer" parent="." index="3" instance=ExtResource( 5 )]
 
-shows_in_tracker = true
+show_in_tracker = true
 
 [node name="Actions" parent="." index="4" instance=ExtResource( 6 )]
 
@@ -296,6 +297,10 @@ anims/Punch = SubResource( 5 )
 anims/Taunt = SubResource( 6 )
 blend_times = [  ]
 script = ExtResource( 11 )
+
+[node name="Stat Bubble" parent="." index="7" instance=ExtResource( 12 )]
+
+position = Vector2( 970, 170 )
 
 
 [editable path="StatBlock"]

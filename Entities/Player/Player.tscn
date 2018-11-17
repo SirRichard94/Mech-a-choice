@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Components/AreaComponent.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Entities/Player/Robot/Robo-part-4.png" type="Texture" id=29]
 [ext_resource path="res://Entities/Player/Robot/Robo-part-5.png" type="Texture" id=30]
 [ext_resource path="res://Entities/Player/Robot/Robo-part-6.png" type="Texture" id=31]
+[ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Animation" id=1]
 
@@ -1477,7 +1478,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" index="0" groups=[
+[node name="Player" type="Node2D" groups=[
 "Player",
 ]]
 
@@ -1528,6 +1529,8 @@ editor/display_folded = true
 [node name="4" type="Node" parent="StatBlock/Poise" index="4"]
 
 [node name="Actions" parent="." index="3" instance=ExtResource( 5 )]
+
+editor/display_folded = true
 
 [node name="Menu" type="Node" parent="Actions" index="0"]
 
@@ -1802,6 +1805,10 @@ position = Vector2( 80.86, 80.86 )
 __meta__ = {
 "_edit_bone_": true
 }
+
+[node name="Stat Bubble" parent="." index="6" instance=ExtResource( 32 )]
+
+position = Vector2( 60, 110 )
 
 
 [editable path="StatBlock"]

@@ -2,8 +2,7 @@ extends Node
 
 var stats = {}
 
-signal stat_current_changed(stat)
-signal stat_max_changed(stat)
+signal stat_changed(stat)
 
 func _ready():
 	owner = get_parent()
@@ -55,7 +54,7 @@ func set_max(stat_name, value):
 	var old = stat.max
 	stat.max = value
 	set_current(stat_name, stat.current + value - old ) #add diference
-	emit_signal("stat_max_changed", stat)
+	emit_signal("stat_changed", stat.name)
 
 func add_to_current(stat_name, value):
 	var stat = get_stat(stat_name)
@@ -70,7 +69,7 @@ func set_current(stat_name, value):
 	
 	var new = clamp(value, 0,stat.max)
 	stat.current = new
-	emit_signal("stat_current_changed", stat)
+	emit_signal("stat_changed", stat.name)
 
 func set_level(stat_name, value):
 	var stat = get_stat(stat_name)

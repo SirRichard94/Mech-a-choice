@@ -34,6 +34,7 @@ func _do_action():
 	var target = get_target()
 	if target == null:
 		print("No Target")
+		end_action()
 		return
 	
 	
