@@ -1,20 +1,21 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Panels/highlight.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Fonts/BIG_FONT.tres" type="DynamicFont" id=3]
 [ext_resource path="res://GUI/Panels/basic.png" type="Texture" id=4]
-[ext_resource path="res://GUI/ActionMenu.gd" type="Script" id=5]
-[ext_resource path="res://GUI/Panels/title_panel.png" type="Texture" id=6]
-[ext_resource path="res://GUI/Panels/news_panel.png" type="Texture" id=7]
-[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=8]
-[ext_resource path="res://GUI/Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://GUI/TurnList/TurnList.gd" type="Script" id=10]
-[ext_resource path="res://GUI/Newscaster/NewsCaster.tscn" type="PackedScene" id=11]
-[ext_resource path="res://GUI/Map/Map.tscn" type="PackedScene" id=12]
-[ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=13]
-[ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=14]
-[ext_resource path="res://GUI/Pause.gd" type="Script" id=15]
+[ext_resource path="res://GUI/loading_bar.png" type="Texture" id=5]
+[ext_resource path="res://GUI/ActionMenu.gd" type="Script" id=6]
+[ext_resource path="res://GUI/Panels/title_panel.png" type="Texture" id=7]
+[ext_resource path="res://GUI/Panels/news_panel.png" type="Texture" id=8]
+[ext_resource path="res://GUI/Menu Items/menu_theme.tres" type="Theme" id=9]
+[ext_resource path="res://GUI/Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://GUI/TurnList/TurnList.gd" type="Script" id=11]
+[ext_resource path="res://GUI/Newscaster/NewsCaster.tscn" type="PackedScene" id=12]
+[ext_resource path="res://GUI/Map/Map.tscn" type="PackedScene" id=13]
+[ext_resource path="res://GUI/Scanlines.shader" type="Shader" id=14]
+[ext_resource path="res://GUI/Menu Items/menu_item_mask.png" type="Texture" id=15]
+[ext_resource path="res://GUI/Pause.gd" type="Script" id=16]
 
 [sub_resource type="GDScript" id=1]
 
@@ -32,18 +33,48 @@ func change_text(area):
 	$Icon.texture = area.icon
 	$Label.text = area.name"
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends TextureProgress
+
+var area_ref
+
+func _ready():
+	var scene = get_tree().current_scene
+	scene.connect(\"area_changed\", self, \"change_area\")
+
+func _process(delta):
+	if area_ref == null: 
+		return
+	var area = null
+	if area_ref.get_ref():
+		area = area_ref.get_ref()
+	else:
+		return
+	
+	min_value = 0
+	max_value = area.stats.get_max(\"HP\")
+	value = area.stats.get_current(\"HP\")
+	self_modulate = Color(1.0,0.0,0.0).linear_interpolate(Color(1.0,1.0,1.0), float(value)/float(max_value) )
+	
+
+func change_area(area):
+	if area != null:
+		area_ref = weakref(area)
+	"
+
+[sub_resource type="DynamicFont" id=3]
 
 size = 20
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 _sections_unfolded = [ "Settings" ]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 
 render_priority = 0
-shader = ExtResource( 13 )
+shader = ExtResource( 14 )
 shader_param/range = 0.01
 shader_param/noiseQuality = 230.0
 shader_param/noiseIntensity = 0.001
@@ -51,15 +82,15 @@ shader_param/offsetIntensity = 0.02
 shader_param/colorOffsetIntensity = 0.3
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 
 size = 250
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=6]
 
 script/source = "extends Label
 
@@ -77,7 +108,7 @@ func _input(ev):
 		$Tween.interpolate_property(self, \"modulate\",Color(1,1,1,1), Color(1,1,1,0),0.5,Tween.TRANS_SINE,Tween.EASE_IN)
 		$Tween.start()"
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -89,7 +120,6 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="Main" type="VBoxContainer" parent="." index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -137,33 +167,15 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Patch Margin" ]
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Main/Screen/Live" index="0"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Main/Screen/Live" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Main/Screen/Live/HBoxContainer" index="0"]
-
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 88.0
+margin_right = 80.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -175,7 +187,7 @@ size_flags_stretch_ratio = 2.0
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="Main/Screen/Live/HBoxContainer/NinePatchRect" index="0"]
+[node name="CenterContainer" type="CenterContainer" parent="Main/Screen/Live/NinePatchRect" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -190,15 +202,15 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 
-[node name="Label" type="Label" parent="Main/Screen/Live/HBoxContainer/NinePatchRect/CenterContainer" index="0"]
+[node name="Label" type="Label" parent="Main/Screen/Live/NinePatchRect/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 25.0
+margin_left = 21.0
 margin_top = 2.0
-margin_right = 63.0
+margin_right = 59.0
 margin_bottom = 38.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -216,15 +228,30 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="Main/Screen/Live/HBoxContainer" index="1"]
+[node name="Control" type="Control" parent="Main/Screen/Live" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 88.0
+margin_left = 80.0
 margin_right = 220.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Area Name" type="NinePatchRect" parent="Main/Screen/Live/Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 140.0
+margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -235,7 +262,7 @@ size_flags_stretch_ratio = 3.0
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Live/HBoxContainer/NinePatchRect2" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Main/Screen/Live/Control/Area Name" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -253,7 +280,7 @@ custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 _sections_unfolded = [ "custom_constants" ]
 
-[node name="Label" type="HBoxContainer" parent="Main/Screen/Live/HBoxContainer/NinePatchRect2/MarginContainer" index="0"]
+[node name="Label" type="HBoxContainer" parent="Main/Screen/Live/Control/Area Name/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -262,7 +289,7 @@ anchor_bottom = 0.0
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 135.0
-margin_bottom = 35.0
+margin_bottom = 25.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -272,14 +299,14 @@ size_flags_vertical = 1
 alignment = 0
 script = SubResource( 1 )
 
-[node name="Icon" type="TextureRect" parent="Main/Screen/Live/HBoxContainer/NinePatchRect2/MarginContainer/Label" index="0"]
+[node name="Icon" type="TextureRect" parent="Main/Screen/Live/Control/Area Name/MarginContainer/Label" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 32.0
-margin_bottom = 30.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 32, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -291,16 +318,16 @@ expand = true
 stretch_mode = 6
 _sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="Label" type="Label" parent="Main/Screen/Live/HBoxContainer/NinePatchRect2/MarginContainer/Label" index="1"]
+[node name="Label" type="Label" parent="Main/Screen/Live/Control/Area Name/MarginContainer/Label" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 36.0
-margin_top = 8.0
+margin_top = 3.0
 margin_right = 130.0
-margin_bottom = 22.0
+margin_bottom = 17.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -311,6 +338,37 @@ text = "Text goes here"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Area HP" type="TextureProgress" parent="Main/Screen/Live/Control" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 30.0
+margin_right = 140.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 75.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 4 )
+texture_over = null
+texture_progress = ExtResource( 5 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = true
+script = SubResource( 2 )
+_sections_unfolded = [ "Textures" ]
 
 [node name="Menu Area" type="Control" parent="Main/Screen" index="1"]
 
@@ -360,7 +418,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 alignment = 0
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Size Flags" ]
 
 [node name="Tween" type="Tween" parent="Main/Screen/Menu Area/Container/Menu" index="0"]
@@ -388,7 +446,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 0
 size_flags_vertical = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 patch_margin_left = 11
 patch_margin_top = 11
 patch_margin_right = 11
@@ -450,7 +508,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 patch_margin_left = 14
 patch_margin_right = 14
 _sections_unfolded = [ "Axis Stretch", "Patch Margin", "Size Flags" ]
@@ -579,7 +637,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 bbcode_enabled = true
 bbcode_text = "Hello Text and descripion here"
 visible_characters = -1
@@ -609,7 +667,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
@@ -669,7 +727,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "FORECAST: "
 align = 1
 valign = 1
@@ -712,15 +770,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_constants/separation = 10
 alignment = 0
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "custom_constants" ]
 max_visible_trackers = 5
 
-[node name="NewsCaster" parent="." index="1" instance=ExtResource( 11 )]
+[node name="NewsCaster" parent="." index="1" instance=ExtResource( 12 )]
 
+visible = false
 _sections_unfolded = [ "Focus", "Mouse", "Size Flags" ]
 
-[node name="Map" parent="." index="2" instance=ExtResource( 12 )]
+[node name="Map" parent="." index="2" instance=ExtResource( 13 )]
 
 visible = false
 _sections_unfolded = [ "Visibility" ]
@@ -730,7 +789,7 @@ _sections_unfolded = [ "Visibility" ]
 pause_mode = 2
 editor/display_folded = true
 visible = false
-material = SubResource( 3 )
+material = SubResource( 4 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -741,10 +800,10 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 expand = true
 stretch_mode = 0
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 _sections_unfolded = [ "Material" ]
 
 [node name="Label" type="Label" parent="Pause" index="0"]
@@ -788,14 +847,14 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "RESPECT"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = SubResource( 5 )
+script = SubResource( 6 )
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="Tween" type="Tween" parent="Respect" index="0"]
