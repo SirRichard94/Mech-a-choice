@@ -6,7 +6,7 @@ enum TargetType {PLAYER, CITY, ALLY, ENEMY, SELF }
 export var ends_action = true
 export var energy_cost = 0
 export var description = "This Action Has a Description"  setget , _get_description
-export (TargetType) var target_type = PLAYER
+export (TargetType) var target_type = TargetType.PLAYER
 
 signal action_ended
 
@@ -26,6 +26,25 @@ func get_action_manager():
 			return null
 		current_parent = current_parent.get_parent()
 	return current_parent
+
+func get_target():
+	var target_type = self.target_type if self.target_type != null else TargetType.SELF
+	var target
+	var area = owner.get_area()
+	
+	match target_type: 
+		PLAYER:
+			target= area.get_player()
+		CITY:
+			target = area
+		ALLY: # TODO: change to target specific ally
+			target = null if area.get_allies().empty() else area.get_allies()[0]
+		ENEMY: # TODO: change to target specific enemy
+			target = null if area.get_enemies().empty() else area.get_enemies()[0]
+		SELF: 
+			target = owner
+
+	return target
 
 func start_action():
 	call_deferred("_do_action")

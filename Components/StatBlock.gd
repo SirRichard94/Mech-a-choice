@@ -16,32 +16,41 @@ func _ready():
 		stat["level"] = 0
 		stat["max"] = stat.level_value[0]
 		stat["current"] = stat.max
+		stat["temp"] = 0
 		stats[stat.name] = stat
 		# First Stat is default, 2nd is the actual first level
 		set_level(stat.name, 1 if stat.level_value.size() > 1 else 0)
 
-func add_buff(stat_name, value,time=-1):
-	pass
-func add_multiplier(stat_name, value, time=-1):
-	pass
+func set_temp(stat_name, value, time, is_relative = true):
+	var stat = get_stat(stat_name)
+	if stat:
+		stat.temp += value
+		yield(get_tree().create_timer(time), "timeout")
+		stat.temp -= value
 
+func get_temp(stat_name):
+	var stat = stats[stat_name]
+	if stat == null:
+		print("Stat \""+ stat_name + "\" not found in node " + owner.get_name() )
+	return stat.temp
+		
 func get_stat(stat_name):
 	var stat = stats[stat_name]
 	if stat == null:
 		print("Stat \""+ stat_name + "\" not found in node " + owner.get_name() )
 	return stat
 
-func get_current(stat_name):
+func get_current(stat_name, no_temp=false):
 	var stat = get_stat(stat_name)
 	if stat == null:
 		return false
-	return stat.current
+	return stat.current if no_temp else stat.current+stat.temp
 
-func get_max(stat_name):
+func get_max(stat_name, no_temp=false):
 	var stat = get_stat(stat_name)
 	if stat == null:
 		return false
-	return stat.max
+	return stat.max if no_temp else stat.current+stat.temp
 
 func has_stat(stat_name):
 	return stats.has(stat_name)

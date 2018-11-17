@@ -12,24 +12,6 @@ export (String) var end_animation = null
 func is_disabled():
 	return get_target() == null
 
-func get_target():
-	var target
-	print (target_type)
-	var area = owner.get_node("AreaComponent").get_area()
-	match target_type: 
-		PLAYER:
-			target= area.get_player()
-		CITY:
-			target = area
-		ALLY: # TODO: change to target specific ally
-			target = null if area.get_allies().empty() else area.get_allies()[0]
-		ENEMY: # TODO: change to target specific enemy
-			target = null if area.get_enemies().empty() else area.get_enemies()[0]
-		SELF: 
-			target = owner
-	print (target)
-	return target
-
 func _do_action():
 	var target = get_target()
 	if target == null:

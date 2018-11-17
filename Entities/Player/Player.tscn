@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Components/AreaComponent.gd" type="Script" id=2]
@@ -12,26 +12,27 @@
 [ext_resource path="res://Components/Actions/Combined Action.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Components/Actions/SpawnUnitAction.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Entities/Player/Actions/MoveMenu.gd" type="Script" id=13]
-[ext_resource path="res://Entities/Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=14]
-[ext_resource path="res://Entities/Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=15]
-[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=16]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-16.png" type="Texture" id=17]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-15.png" type="Texture" id=18]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-3.png" type="Texture" id=19]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-14.png" type="Texture" id=20]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-2.png" type="Texture" id=21]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-7.png" type="Texture" id=22]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-8.png" type="Texture" id=23]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-12.png" type="Texture" id=24]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-13.png" type="Texture" id=25]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-9.png" type="Texture" id=26]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-11.png" type="Texture" id=27]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-10.png" type="Texture" id=28]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-4.png" type="Texture" id=29]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-5.png" type="Texture" id=30]
-[ext_resource path="res://Entities/Player/Robot/Robo-part-6.png" type="Texture" id=31]
-[ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Components/Actions/Change Stat Action.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Entities/Player/Actions/MoveMenu.gd" type="Script" id=14]
+[ext_resource path="res://Entities/Player/Robot/Animations/Anim_Idle.tres" type="Animation" id=15]
+[ext_resource path="res://Entities/Player/Robot/Animations/Anim_Punch.tres.anim" type="Animation" id=16]
+[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=17]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-16.png" type="Texture" id=18]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-15.png" type="Texture" id=19]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-3.png" type="Texture" id=20]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-14.png" type="Texture" id=21]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-2.png" type="Texture" id=22]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-7.png" type="Texture" id=23]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-8.png" type="Texture" id=24]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-12.png" type="Texture" id=25]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-13.png" type="Texture" id=26]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-9.png" type="Texture" id=27]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-11.png" type="Texture" id=28]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-10.png" type="Texture" id=29]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-4.png" type="Texture" id=30]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-5.png" type="Texture" id=31]
+[ext_resource path="res://Entities/Player/Robot/Robo-part-6.png" type="Texture" id=32]
+[ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=33]
 
 [sub_resource type="Animation" id=1]
 
@@ -1453,12 +1454,12 @@ tracks/38/keys = {
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "Front",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 20 ) ],
 "loop": true,
 "name": "Back",
 "speed": 5.0
@@ -1467,18 +1468,18 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=5]
 
 animations = [ {
-"frames": [ ExtResource( 20 ) ],
+"frames": [ ExtResource( 21 ) ],
 "loop": true,
 "name": "Front",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 21 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "Back",
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D" groups=[
+[node name="Player" type="Node2D" index="0" groups=[
 "Player",
 ]]
 
@@ -1530,8 +1531,6 @@ editor/display_folded = true
 
 [node name="Actions" parent="." index="3" instance=ExtResource( 5 )]
 
-editor/display_folded = true
-
 [node name="Menu" type="Node" parent="Actions" index="0"]
 
 script = ExtResource( 6 )
@@ -1578,8 +1577,14 @@ description = "This Action Has a Description"
 target_type = null
 title = "HERO CHOOSES BRAVE ACTION !"
 
-[node name="Combined Action" parent="Actions/Menu/Special" index="0" instance=ExtResource( 10 )]
+[node name="Back" parent="Actions/Menu/Special" index="0" instance=ExtResource( 8 )]
 
+description = "This Action Has a Description"
+title = "HERO CHOOSES BRAVE ACTION !"
+
+[node name="Combined Action" parent="Actions/Menu/Special" index="1" instance=ExtResource( 10 )]
+
+editor/display_folded = true
 ends_action = true
 sequential = false
 
@@ -1604,16 +1609,18 @@ animation = "Punch"
 animation_has_event = true
 end_animation = "Idle"
 
-[node name="Back" parent="Actions/Menu/Special" index="1" instance=ExtResource( 8 )]
+[node name="Heal" parent="Actions/Menu/Special" index="2" instance=ExtResource( 13 )]
 
-description = "This Action Has a Description"
-title = "HERO CHOOSES BRAVE ACTION !"
+description = "Heal away my worries"
+value = 8
+is_multiplier = true
+is_relative = false
 
 [node name="Defend" type="Node" parent="Actions/Menu" index="2"]
 
 [node name="Move" type="Node" parent="Actions/Menu" index="3"]
 
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 ends_action = false
 energy_cost = 0
 description = "Move to another area"
@@ -1628,12 +1635,12 @@ playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Arrive = SubResource( 1 )
-anims/Idle = ExtResource( 14 )
+anims/Idle = ExtResource( 15 )
 anims/Leave = SubResource( 2 )
-anims/Punch = ExtResource( 15 )
+anims/Punch = ExtResource( 16 )
 anims/Retreat = SubResource( 3 )
 blend_times = [  ]
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="Root" type="Node2D" parent="." index="5"]
 
@@ -1645,7 +1652,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Hips" type="Sprite" parent="Root" index="0"]
 
 position = Vector2( 11.9962, -23.2265 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 offset = Vector2( 3.16732, 40.8775 )
 
 [node name="Torso" type="AnimatedSprite" parent="Root/Hips" index="0"]
@@ -1678,7 +1685,7 @@ __meta__ = {
 [node name="R arm" type="Sprite" parent="Root/Hips/Torso" index="1"]
 
 position = Vector2( -88.4851, -176.173 )
-texture = ExtResource( 22 )
+texture = ExtResource( 23 )
 offset = Vector2( -18.4325, 47.8727 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -1688,7 +1695,7 @@ __meta__ = {
 [node name="R forearm" type="Sprite" parent="Root/Hips/Torso/R arm" index="0"]
 
 position = Vector2( -57.7036, 122.774 )
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 offset = Vector2( 24.5547, 62.6145 )
 __meta__ = {
 "_edit_bone_": true
@@ -1705,7 +1712,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 69.8928, -178.628 )
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 offset = Vector2( 29.4656, 46.6539 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1716,7 +1723,7 @@ __meta__ = {
 
 position = Vector2( 42.9707, 109.268 )
 rotation = -0.103351
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 offset = Vector2( 25.7825, 95.7634 )
 _sections_unfolded = [ "Z Index" ]
 __meta__ = {
@@ -1734,7 +1741,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 52.9467, 62.353 )
-texture = ExtResource( 26 )
+texture = ExtResource( 27 )
 offset = Vector2( 4.50994, 82.0331 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1745,7 +1752,7 @@ __meta__ = {
 [node name="L Sheen" type="Sprite" parent="Root/Hips/L Leg" index="0"]
 
 position = Vector2( 11.6884, 172.892 )
-texture = ExtResource( 27 )
+texture = ExtResource( 28 )
 offset = Vector2( 22.9764, 120.157 )
 __meta__ = {
 "_edit_bone_": true
@@ -1755,7 +1762,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( 17.3394, 222.243 )
-texture = ExtResource( 28 )
+texture = ExtResource( 29 )
 offset = Vector2( 37.901, 23.043 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1772,7 +1779,7 @@ __meta__ = {
 [node name="R Leg" type="Sprite" parent="Root/Hips" index="2"]
 
 position = Vector2( -61.0141, 63.8947 )
-texture = ExtResource( 29 )
+texture = ExtResource( 30 )
 offset = Vector2( -13.8778, 82.2058 )
 __meta__ = {
 "_edit_bone_": true,
@@ -1782,7 +1789,7 @@ __meta__ = {
 [node name="R Sheen" type="Sprite" parent="Root/Hips/R Leg" index="0"]
 
 position = Vector2( -40.8879, 174.286 )
-texture = ExtResource( 30 )
+texture = ExtResource( 31 )
 offset = Vector2( -28.2379, 112.952 )
 __meta__ = {
 "_edit_bone_": true
@@ -1792,7 +1799,7 @@ __meta__ = {
 
 show_behind_parent = true
 position = Vector2( -43.2678, 214.297 )
-texture = ExtResource( 31 )
+texture = ExtResource( 32 )
 offset = Vector2( 22.7391, 52.9626 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
@@ -1806,7 +1813,7 @@ __meta__ = {
 "_edit_bone_": true
 }
 
-[node name="Stat Bubble" parent="." index="6" instance=ExtResource( 32 )]
+[node name="Stat Bubble" parent="." index="6" instance=ExtResource( 33 )]
 
 position = Vector2( 60, 110 )
 

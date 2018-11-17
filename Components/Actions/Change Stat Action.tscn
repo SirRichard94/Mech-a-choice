@@ -1,5 +1,21 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Components/Actions/Change Stat Action.gd" type="Script" id=1]
 
 [node name="Change Stat Action" type="Node"]
+
+script = ExtResource( 1 )
+ends_action = true
+energy_cost = 0
+description = "This Action Has a Description"
+target_type = null
+stat_name = "HP"
+value = 1
+temp_time = -1
+is_level_change = false
+is_multiplier = false
+is_relative = true
+animation = null
+end_animation = null
 
 

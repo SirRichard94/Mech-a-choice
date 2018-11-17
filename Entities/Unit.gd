@@ -1,9 +1,8 @@
 extends Node2D
-
+var AreaUnit = preload("res://Entities/City/Area.gd")
 
 onready var gui = get_tree().current_scene.get_node("GUI")
 onready var stats = get_node("StatBlock")
-onready var area_component = get_node("AreaComponent")
 
 export var screen_shake_modifier = 1.0
 export(String) var resistance = ""
@@ -14,6 +13,14 @@ var unit_name = "Sabrino"
 signal died
 signal taken_damage(danage)
 signal taken_crit(damage)
+
+func get_area():
+	var area = GlobalUtilities.get_current_area()
+	if self is AreaUnit:
+		area = self
+	elif get_node("AreaComponent"):
+		area = get_node("AreaComponent").get_area()
+	return area
 
 func _ready():
 	unit_name = name.split("@", false)[0]

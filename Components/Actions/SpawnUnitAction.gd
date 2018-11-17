@@ -10,7 +10,7 @@ export (String) var end_animation = null
 func _do_action():
 	var current_spawn_area
 	if spawn_area == null:
-		current_spawn_area = owner.area_component.get_area().name
+		current_spawn_area = owner.get_area().name
 	else:
 		current_spawn_area = spawn_area
 	
@@ -28,6 +28,6 @@ func _do_action():
 		print("Nigga, you adding areas now??")
 		scene.get_node("City").add_child(unit)
 	
-	unit.area_component.set_area(current_spawn_area)
+	unit.get_node("AreaComponent").set_area(current_spawn_area)
 
 	end_action()
