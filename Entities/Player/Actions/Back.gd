@@ -12,4 +12,4 @@ func _ready():
 func _do_action():
 	gui.action_menu.title_text = "HERO PONDERS: "+ get_parent().get_parent().name 
 	gui.action_menu.menu_items = get_parent().get_parent().get_children()
-	
+	end_action()

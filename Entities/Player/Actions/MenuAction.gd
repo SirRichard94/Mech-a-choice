@@ -23,3 +23,5 @@ func _do_action():
 	action_menu.title_text = self.title
 	action_menu.menu_items = get_children()
 	action_menu.active = true
+	
+	end_action()

@@ -3,12 +3,7 @@ extends Node
 signal action_ended(action)
 
 func _ready():
-	connect("action_ended", self, "_on_action_ended")
-	
-	owner = get_parent()
-	for child in get_children():
-		child.owner = owner
-		
+	owner = get_parent()		
 
 func do_action(action):
 	if typeof(action) == TYPE_STRING:
@@ -16,9 +11,8 @@ func do_action(action):
 	
 	if action != null:
 		GlobalUtilities.pause_ATB()
-		action.do_action()
+		action.start_action()
+		yield(self, "action_ended")
+		GlobalUtilities.resume_ATB()
 	else:
 		print(owner.name+": Action " + action + " not found")
-
-func _on_action_ended(action):
-	GlobalUtilities.resume_ATB()

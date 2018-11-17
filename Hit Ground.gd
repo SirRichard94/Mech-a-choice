@@ -7,3 +7,4 @@ extends "res://Components/Actions/ActionItem.gd"
 func _do_action():
 	print ( "HOOOOOOO " )
 	owner.get_node("StatBlock").add_to_current("HP", 10)
+	end_action()

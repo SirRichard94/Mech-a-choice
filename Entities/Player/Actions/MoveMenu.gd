@@ -32,6 +32,7 @@ func _do_action():
 	
 	gui.action_menu.title_text = "HERO ON THE MOVE"
 	gui.action_menu.menu_items = get_children()
+	end_action()
 
 func is_disabled():
 	var area = player.get_node("AreaComponent").get_area()

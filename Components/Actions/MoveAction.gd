@@ -14,6 +14,7 @@ func _get_description():
 func _do_action():
 	if target_area == null:
 		print ("Move Action: WTF dude, this area is literally non existant")
+		end_action()
 		return false
 
 	var area_comp = owner.get_node("AreaComponent")
@@ -41,3 +42,5 @@ func _do_action():
 		yield(animator,"animation_finished")
 	if animator and end_animation:
 		animator.play(end_animation) 
+	
+	end_action()
