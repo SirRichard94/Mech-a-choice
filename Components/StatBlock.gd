@@ -25,8 +25,12 @@ func set_temp(stat_name, value, time, is_relative = true):
 	var stat = get_stat(stat_name)
 	if stat:
 		stat.temp += value
-		yield(get_tree().create_timer(time), "timeout")
+		emit_signal("stat_changed", stat_name)
+		var timer = get_tree().create_timer(time)
+		timer.add_to_group("ATB Timers")
+		yield(timer , "timeout")
 		stat.temp -= value
+		emit_signal("stat_changed", stat_name)
 
 func get_temp(stat_name):
 	var stat = stats[stat_name]
@@ -50,7 +54,7 @@ func get_max(stat_name, no_temp=false):
 	var stat = get_stat(stat_name)
 	if stat == null:
 		return false
-	return stat.max if no_temp else stat.current+stat.temp
+	return stat.max if no_temp else stat.max+stat.temp
 
 func has_stat(stat_name):
 	return stats.has(stat_name)

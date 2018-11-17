@@ -1612,7 +1612,8 @@ end_animation = "Idle"
 [node name="Heal" parent="Actions/Menu/Special" index="2" instance=ExtResource( 13 )]
 
 description = "Heal away my worries"
-value = 8
+value = 20
+temp_time = 3
 is_multiplier = true
 is_relative = false
 

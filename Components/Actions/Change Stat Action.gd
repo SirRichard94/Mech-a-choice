@@ -42,7 +42,7 @@ func _do_action():
 		stats.set_level(stat_name, value + stats.get_level() if is_relative else value)
 	else:
 		if temp_time > 0:
-			stats.set_temp(stat_name, final_value, is_relative, temp_time)
+			stats.set_temp(stat_name, final_value, temp_time, is_relative)
 		else:
 			stats.set_current(stat_name, final_value)
 	
