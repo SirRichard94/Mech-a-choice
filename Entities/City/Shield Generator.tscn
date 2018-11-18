@@ -53,13 +53,7 @@ editor/display_folded = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-
-[node name="Speed" parent="StatBlock" index="1"]
-
-editor/display_folded = false
-
-[node name="2" type="Node" parent="StatBlock/Speed" index="1"]
+[node name="4" type="Node" parent="StatBlock/Speed" index="1"]
 
 [node name="Shield" parent="StatBlock" index="2"]
 
@@ -74,6 +68,7 @@ initial_state = ""
 script = ExtResource( 6 )
 action = "DefaultAction"
 value = 1
+temp_time = 5
 message = "shielded the player"
 
 [node name="Weak" type="Node" parent="FSM" index="1"]
@@ -81,6 +76,7 @@ message = "shielded the player"
 script = ExtResource( 6 )
 action = "DefaultAction"
 value = 1
+temp_time = 5
 message = "shielded the player"
 
 [node name="Weakest" type="Node" parent="FSM" index="2"]
@@ -88,6 +84,7 @@ message = "shielded the player"
 script = ExtResource( 6 )
 action = "DefaultAction"
 value = 1
+temp_time = 5
 message = "shielded the player"
 
 [node name="Dead" type="Node" parent="FSM" index="3"]
@@ -104,7 +101,9 @@ show_in_tracker = false
 [node name="DefaultAction" parent="Actions" index="0" instance=ExtResource( 10 )]
 
 target_type = 0
+local = false
 stat_name = "Shield"
+is_relative = false
 
 
 [editable path="StatBlock"]

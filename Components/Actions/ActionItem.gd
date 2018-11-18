@@ -7,6 +7,7 @@ export var ends_action = true
 export var energy_cost = 0
 export var description = "This Action Has a Description"  setget , _get_description
 export (TargetType) var target_type = TargetType.PLAYER
+export var local = true
 
 signal action_ended
 
@@ -32,17 +33,30 @@ func get_target():
 	var target
 	var area = owner.get_area()
 	
-	match target_type: 
-		PLAYER:
-			target= area.get_player()
-		CITY:
-			target = area
-		ALLY: # TODO: change to target specific ally
-			target = null if area.get_allies().empty() else area.get_allies()[0]
-		ENEMY: # TODO: change to target specific enemy
-			target = null if area.get_enemies().empty() else area.get_enemies()[0]
-		SELF: 
-			target = owner
+	if local:
+		match target_type: 
+			PLAYER:
+				target= area.get_player()
+			CITY:
+				target = area
+			ALLY: # TODO: change to target specific ally
+				target = null if area.get_allies().empty() else area.get_allies()[0]
+			ENEMY: # TODO: change to target specific enemy
+				target = null if area.get_enemies().empty() else area.get_enemies()[0]
+			SELF: 
+				target = owner
+	else:
+		match target_type: 
+			PLAYER:
+				target= get_tree().get_nodes_in_group("Player")[0]
+			CITY:
+				target = get_tree().get_nodes_in_group("Areas")[0]
+			ALLY: # TODO: change to target specific ally
+				target = get_tree().get_nodes_in_group("Allies")[0]
+			ENEMY: # TODO: change to target specific enemy
+				target = get_tree().get_nodes_in_group("Enemies")[0]
+			SELF: 
+				target = owner
 
 	return target
 

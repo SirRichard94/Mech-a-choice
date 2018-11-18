@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
 [ext_resource path="res://Entities/City/Park.tscn" type="PackedScene" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Camera.gd" type="Script" id=16]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Event System.gd" type="Script" id=18]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Components/Actions/SpawnUnitAction.tscn" type="PackedScene" id=20]
 
 [node name="MainGame" type="Node"]
 
@@ -38,6 +41,22 @@ visible = false
 
 editor/display_folded = true
 visible = false
+
+[node name="Normal" parent="City/Church/FSM" index="0"]
+
+temp_time = 5
+
+[node name="Weak" parent="City/Church/FSM" index="1"]
+
+temp_time = 5
+
+[node name="Weakest" parent="City/Church/FSM" index="2"]
+
+temp_time = 5
+
+[node name="DefaultAction" parent="City/Church/Actions" index="0"]
+
+local = true
 
 [node name="Workshop" parent="City" index="2" instance=ExtResource( 4 )]
 
@@ -133,6 +152,17 @@ _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 editor/display_folded = true
 
 [node name="Event System" type="Node" parent="." index="6"]
+
+script = ExtResource( 18 )
+
+[node name="Actions" parent="Event System" index="0" instance=ExtResource( 19 )]
+
+[node name="SpawnKing" parent="Event System/Actions" index="0" instance=ExtResource( 20 )]
+
+ends_action = false
+target_type = 1
+local = true
+unit_scene = ExtResource( 15 )
 
 
 [editable path="City/Park"]

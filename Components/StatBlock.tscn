@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Components/StatBlock.gd" type="Script" id=1]
 
-[node name="StatBlock" type="Node" index="0"]
+[node name="StatBlock" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -14,9 +14,7 @@ editor/display_folded = true
 
 [node name="Speed" type="Node" parent="." index="1"]
 
-editor/display_folded = true
-
-[node name="6" type="Node" parent="Speed" index="0"]
+[node name="5" type="Node" parent="Speed" index="0"]
 
 [node name="Shield" type="Node" parent="." index="2"]
 

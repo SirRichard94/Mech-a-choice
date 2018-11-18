@@ -2,17 +2,19 @@ extends "res://Components/fsm/fsm_state.gd"
 
 export var action = "DefaultAction"
 export var value = 2
+export var temp_time = 5
 export var message = "buffed the player"
+
 
 func on_atb_turn():
 	fsm_owner.get_node("Actions").do_action(action)
 	GlobalUtilities.broadcast_message("Live from "+fsm_owner.unit_name+": \n"+message, 2)
 
 func on_init():
-	if fsm_owner.get_node("Actions/"+action).get("temp_time"):
+	if fsm_owner.get_node("Actions/"+action).get("value"):
 		fsm_owner.get_node("Actions/"+action).value = value
-	if fsm_owner.get_node("Actions/"+action).get("temp_time"):
-		fsm_owner.get_node("Actions/"+action).temp_time = 60.0/(fsm_owner.stats.get_current("Speed")+ fsm_owner.stats.get_current("HP"))
+	if temp_time > 0 and fsm_owner.get_node("Actions/"+action).get("temp_time"):
+		fsm_owner.get_node("Actions/"+action).temp_time = temp_time + fsm_owner.stats.get_current("HP")
 	
 func on_finalize():
 	pass

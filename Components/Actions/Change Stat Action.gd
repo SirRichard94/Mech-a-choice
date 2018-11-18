@@ -18,7 +18,7 @@ func _ready():
 func _do_action():
 	var target = get_target()
 	if not target:
-		print ("Change stat: No target")
+		print (owner.name+ ": Change stat: No target")
 		end_action()
 		return
 	

@@ -11,7 +11,7 @@
 [ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Components/Actions/Change Stat Action.tscn" type="PackedScene" id=10]
 
-[node name="Power Plant" type="Node2D" index="0" groups=[
+[node name="Power Plant" type="Node2D" groups=[
 "Areas",
 ]]
 
@@ -64,6 +64,7 @@ initial_state = ""
 script = ExtResource( 6 )
 action = "Give Energy"
 value = 3
+temp_time = 5
 message = "buffed the player"
 
 [node name="Weak" type="Node" parent="FSM" index="1"]
@@ -71,6 +72,7 @@ message = "buffed the player"
 script = ExtResource( 6 )
 action = "Give Energy"
 value = 2
+temp_time = 5
 message = "buffed the player"
 
 [node name="Weakest" type="Node" parent="FSM" index="2"]
@@ -78,6 +80,7 @@ message = "buffed the player"
 script = ExtResource( 6 )
 action = "Give Energy"
 value = 1
+temp_time = 5
 message = "buffed the player"
 
 [node name="Dead" type="Node" parent="FSM" index="3"]
@@ -93,6 +96,7 @@ show_in_tracker = false
 [node name="Give Energy" parent="Actions" index="0" instance=ExtResource( 10 )]
 
 target_type = 0
+local = false
 stat_name = "Energy"
 value = 3
 

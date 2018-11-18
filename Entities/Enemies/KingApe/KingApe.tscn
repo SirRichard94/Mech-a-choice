@@ -1,13 +1,13 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://Entities/Enemies/KingApe/KingApe.gd" type="Script" id=1]
+[ext_resource path="res://Entities/FSMUnit.gd" type="Script" id=1]
 [ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=7]
-[ext_resource path="res://Hit Ground.gd" type="Script" id=8]
+[ext_resource path="res://Entities/Enemies/KingApe/Default.gd" type="Script" id=3]
+[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Components/Actions/Attack.gd" type="Script" id=8]
 [ext_resource path="res://Entities/Player/Actions/PlayerMoveToArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=10]
 [ext_resource path="res://Entities/Enemies/KingApe/hostage0000.png" type="Texture" id=11]
@@ -17,7 +17,7 @@
 [ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=15]
 [ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=16]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
@@ -26,7 +26,7 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
@@ -35,7 +35,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 
 length = 1.5
 loop = false
@@ -63,66 +63,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ -8.99136, -9.76519, 21.6389, 76.6042, 76.6042, 65.2009, 84.0759, -8.99136 ]
-}
-
-[sub_resource type="Animation" id=2]
-
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1264.35, 42.2414 ), Vector2( 1020.67, 109.026 ), Vector2( 777.901, 394.216 ), Vector2( 775.194, 349.994 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.795736, 39.1333, -10.4733, 2.03291 ]
-}
-
-[sub_resource type="Animation" id=3]
-
-length = 1.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -7.70801, 12.8501, -7.70801 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 790.377, 364.58 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -156,6 +96,66 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=5]
+
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -7.70801, 12.8501, -7.70801 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 790.377, 364.58 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1264.35, 42.2414 ), Vector2( 1020.67, 109.026 ), Vector2( 777.901, 394.216 ), Vector2( 775.194, 349.994 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.795736, 39.1333, -10.4733, 2.03291 ]
+}
+
+[sub_resource type="Animation" id=7]
 
 length = 1.0
 loop = false
@@ -199,9 +199,8 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 
-resource_name = "Taunt"
 length = 1.0
 loop = true
 step = 0.1
@@ -230,7 +229,38 @@ tracks/1/keys = {
 "values": [ -7.70801, -7.70801 ]
 }
 
-[node name="KingApe" type="Node2D" groups=[
+[sub_resource type="Animation" id=9]
+
+resource_name = "Trash"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 795.819, 399.95 ), Vector2( 613.689, 150.979 ), Vector2( 613.689, 150.979 ), Vector2( 540.229, 420.333 ), Vector2( 653.14, 296.539 ), Vector2( 795.819, 399.95 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -7.708, 22.8714, -55.4848, 21.6345, -7.708 ]
+}
+
+[node name="KingApe" type="Node2D" index="0" groups=[
 "Enemies",
 ]]
 
@@ -238,42 +268,44 @@ script = ExtResource( 1 )
 screen_shake_modifier = 1.0
 resistance = ""
 weakness = ""
+initial_state = null
 
 [node name="FSM" parent="." index="0" instance=ExtResource( 2 )]
 
 initial_state = ""
 
-[node name="AreaComponent" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Default" type="Node" parent="FSM" index="0"]
+
+script = ExtResource( 3 )
+
+[node name="AreaComponent" parent="." index="1" instance=ExtResource( 4 )]
 
 starting_area = "Park"
 
-[node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
+[node name="StatBlock" parent="." index="2" instance=ExtResource( 5 )]
 
-editor/display_folded = true
+[node name="15" type="Node" parent="StatBlock/HP" index="1"]
 
-[node name="Speed" parent="StatBlock" index="1"]
-
-editor/display_folded = false
+[node name="8" type="Node" parent="StatBlock/Speed" index="1"]
 
 [node name="Luck" parent="StatBlock" index="4"]
 
 editor/display_folded = false
 
-[node name="ATBTimer" parent="." index="3" instance=ExtResource( 5 )]
+[node name="ATBTimer" parent="." index="3" instance=ExtResource( 6 )]
 
-show_in_tracker = true
-
-[node name="Actions" parent="." index="4" instance=ExtResource( 6 )]
+[node name="Actions" parent="." index="4" instance=ExtResource( 7 )]
 
 [node name="Punch" type="Node" parent="Actions" index="0"]
 
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
 target_type = 0
+local = true
 damage = 3
-colateral_damage = 1
+colateral_damage = 2
 tags = "physical, melee"
 animation = "Punch"
 animation_has_event = true
@@ -285,20 +317,25 @@ script = ExtResource( 8 )
 ends_action = true
 energy_cost = 0
 description = "This Action Has a Description"
-target_type = null
+target_type = 1
+local = true
+damage = 4
+colateral_damage = 0
+tags = "physical, melee"
+animation = "Trash"
+animation_has_event = false
+end_animation = "Idle"
 
-[node name="Move forward" parent="Actions" index="2" instance=ExtResource( 9 )]
+[node name="Move Random" parent="Actions" index="2" instance=ExtResource( 9 )]
 
-target_area = "Park"
-chase = false
-leave_animation = null
+local = true
+chase_time = 2
 retreat_animation = null
-arrive_animation = null
 end_animation = null
 
 [node name="Sprite" type="Sprite" parent="." index="5"]
 
-position = Vector2( 790.377, 364.58 )
+position = Vector2( 795.819, 399.95 )
 rotation = -0.13453
 scale = Vector2( 0.464317, 0.464317 )
 texture = ExtResource( 10 )
@@ -307,14 +344,15 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="Hostage" type="AnimatedSprite" parent="Sprite" index="0"]
 
 position = Vector2( -29.6635, -370.628 )
-frames = SubResource( 7 )
+frames = SubResource( 1 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="Tank" type="AnimatedSprite" parent="Sprite" index="1"]
 
 position = Vector2( 301.167, -346.546 )
-frames = SubResource( 8 )
+frames = SubResource( 2 )
 animation = "default"
 frame = 1
 playing = true
@@ -326,12 +364,13 @@ autoplay = "Idle"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-"anims/Drop Kick" = SubResource( 1 )
-anims/Enter = SubResource( 2 )
-anims/Idle = SubResource( 3 )
-anims/Leave = SubResource( 4 )
-anims/Punch = SubResource( 5 )
-anims/Taunt = SubResource( 6 )
+"anims/Drop Kick" = SubResource( 3 )
+anims/Enter = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Leave = SubResource( 6 )
+anims/Punch = SubResource( 7 )
+anims/Taunt = SubResource( 8 )
+anims/Trash = SubResource( 9 )
 blend_times = [  ]
 script = ExtResource( 15 )
 

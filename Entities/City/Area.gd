@@ -2,7 +2,7 @@ extends "res://Entities/FSMUnit.gd"
 
 export (Texture) var icon
 
-func _player_bonus():
+func _on_death():
 	pass
 
 func get_paths():

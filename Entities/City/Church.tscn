@@ -11,7 +11,7 @@
 [ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Components/Actions/Change Stat Action.tscn" type="PackedScene" id=10]
 
-[node name="Church" type="Node2D" index="0" groups=[
+[node name="Church" type="Node2D" groups=[
 "Areas",
 ]]
 
@@ -55,11 +55,9 @@ editor/display_folded = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-
 [node name="15" type="Node" parent="StatBlock/HP" index="1"]
 
-[node name="9" type="Node" parent="StatBlock/Speed" index="1"]
+[node name="3" type="Node" parent="StatBlock/Speed" index="1"]
 
 [node name="FSM" parent="." index="3" instance=ExtResource( 5 )]
 
@@ -70,6 +68,7 @@ initial_state = ""
 script = ExtResource( 6 )
 action = "DefaultAction"
 value = 3
+temp_time = 5
 message = "sent luck to player"
 
 [node name="Weak" type="Node" parent="FSM" index="1"]
@@ -77,6 +76,7 @@ message = "sent luck to player"
 script = ExtResource( 6 )
 action = "DefaultAction"
 value = 2
+temp_time = 5
 message = "sent luck to player"
 
 [node name="Weakest" type="Node" parent="FSM" index="2"]
@@ -84,6 +84,7 @@ message = "sent luck to player"
 script = ExtResource( 6 )
 action = "DefaultAction"
 value = 1
+temp_time = 5
 message = "sent luck to player"
 
 [node name="Dead" type="Node" parent="FSM" index="3"]
@@ -99,6 +100,7 @@ show_in_tracker = false
 [node name="DefaultAction" parent="Actions" index="0" instance=ExtResource( 10 )]
 
 target_type = 0
+local = false
 stat_name = "Luck"
 temp_time = 5
 

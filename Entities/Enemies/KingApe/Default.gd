@@ -1,15 +1,15 @@
 extends "res://Components/fsm/fsm_state.gd"
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func on_atb_turn():
+	if not owner.get_area().get_player():
+		if owner.get_area().is_dead():
+			owner.get_node("Actions").do_action("Move Random")
+		else:
+			owner.get_node("Actions").do_action("Hit Ground")
+	else:
+		if (randf() < 0.2):
+			owner.get_node("Actions").do_action("Move Random")
+		elif (randf() < 0.4):
+			owner.get_node("Actions").do_action("Hit Ground")
+		else:
+			owner.get_node("Actions").do_action("Punch")

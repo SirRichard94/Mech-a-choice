@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Components/ATBTimer.gd" type="Script" id=1]
 
-[node name="ATBTimer" type="Timer" index="0" groups=[
+[node name="ATBTimer" type="Timer" groups=[
 "ATB Timers",
 ]]
 

@@ -12,13 +12,17 @@ func _get_description():
 	description = target_area
 
 func _do_action():
-	if target_area == null:
-		print ("Move Action: WTF dude, this area is literally non existant")
+	while target_area == null:
+		var paths = owner.get_area().get_paths()
+		target_area = paths[rand_i()%paths.size()].name
+	var target_unit = get_target()
+	
+	if target_unit == null:
 		end_action()
-		return false
-
-	var area_comp = owner.get_node("AreaComponent")
-	var animator = owner.get_node("AnimationPlayer")
+		return
+	
+	var area_comp = target_unit.get_node("AreaComponent")
+	var animator = target_unit.get_node("AnimationPlayer")
 	
 	if animator:
 		if area_comp.get_area().enemy_count() > 0:
