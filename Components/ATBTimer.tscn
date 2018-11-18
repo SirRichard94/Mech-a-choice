@@ -11,5 +11,6 @@ wait_time = 1.0
 one_shot = false
 autostart = true
 script = ExtResource( 1 )
+show_in_tracker = true
 
 

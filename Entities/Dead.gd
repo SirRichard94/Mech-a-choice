@@ -4,12 +4,9 @@ extends "res://Components/fsm/fsm_state.gd"
 # var a = 2
 # var b = "textvar"
 
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func on_init():
+	fsm_owner.get_node("AnimationPlayer").play("Die")
+	fsm_owner.get_node("ATBTimer").wait_time = 999
+	yield(get_tree().create_timer(3), "timeout")
+	queue_free()

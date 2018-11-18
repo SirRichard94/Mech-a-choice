@@ -2,6 +2,10 @@ extends Node
 
 var cam_container
 
+func broadcast_message(message, priority=3):
+	var gui = get_tree().current_scene.get_node("GUI")
+	gui.newscaster.announce(message, priority)
+
 func pause_ATB():
 	for timer in get_tree().get_nodes_in_group("ATB Timers"):
 		timer.paused = true

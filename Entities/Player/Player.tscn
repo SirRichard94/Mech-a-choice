@@ -1505,15 +1505,15 @@ show_in_tracker = true
 
 [node name="StatBlock" parent="." index="2" instance=ExtResource( 4 )]
 
-editor/display_folded = true
-
-[node name="20" type="Node" parent="StatBlock/Speed" index="1"]
-
-[node name="Luck" parent="StatBlock" index="4"]
+[node name="HP" parent="StatBlock" index="0"]
 
 editor/display_folded = false
 
-[node name="8" type="Node" parent="StatBlock/Luck" index="1"]
+[node name="12" type="Node" parent="StatBlock/HP" index="1"]
+
+[node name="15" type="Node" parent="StatBlock/Speed" index="1"]
+
+[node name="2" type="Node" parent="StatBlock/Luck" index="1"]
 
 [node name="Poise" type="Node" parent="StatBlock" index="5"]
 
@@ -1530,6 +1530,8 @@ editor/display_folded = true
 [node name="4" type="Node" parent="StatBlock/Poise" index="4"]
 
 [node name="Actions" parent="." index="3" instance=ExtResource( 5 )]
+
+editor/display_folded = true
 
 [node name="Menu" type="Node" parent="Actions" index="0"]
 
@@ -1817,6 +1819,12 @@ __meta__ = {
 [node name="Stat Bubble" parent="." index="6" instance=ExtResource( 33 )]
 
 position = Vector2( 60, 110 )
+
+[node name="Stat Bubble2" parent="." index="7" instance=ExtResource( 33 )]
+
+position = Vector2( 40, 200 )
+stat_name = "Shield"
+color = Color( 0.042038, 0.480377, 0.566406, 1 )
 
 
 [editable path="StatBlock"]

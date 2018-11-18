@@ -5,7 +5,6 @@ onready var fsm_owner = fsm.get_parent()
 
 func on_atb_turn():
 	pass
-
 func on_init():
 	pass
 
@@ -17,6 +16,7 @@ func fixed_update(delta):
 	
 func update(delta):
 	pass
+
 
 func handle_input(event):
 	pass

@@ -2,6 +2,9 @@ extends "res://Entities/FSMUnit.gd"
 
 export (Texture) var icon
 
+func _player_bonus():
+	pass
+
 func get_paths():
 	assert get_node("Paths") != null
 	var list = []

@@ -8,3 +8,5 @@ func _ready():
 	var stats = owner.get_node("StatBlock")
 	if stats:
 		self.wait_time = 60/stats.get_current("Speed")
+	else:
+		self.wait_time = rand_range(1,4)

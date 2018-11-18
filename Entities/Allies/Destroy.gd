@@ -20,7 +20,8 @@ func fixed_update(delta):
 	pass
 
 func update(delta):
-	pass
+	if fsm_owner.is_dead():
+		fsm.switch_state("Dead")
 
 func handle_input(event):
 	pass
