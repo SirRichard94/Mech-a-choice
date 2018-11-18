@@ -17,4 +17,4 @@ func do_action(action, stop_atb = true):
 		if stop_atb:
 			GlobalUtilities.resume_ATB()
 	else:
-		print(owner.name+": Action " + action + " not found")
+		print(owner.name+": Action  not found")

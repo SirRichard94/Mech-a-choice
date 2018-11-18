@@ -1,0 +1,451 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Entities/FSMUnit.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Allies/tank.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Allies/tank_s.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Allies/tank_ded0000.png" type="Texture" id=4]
+[ext_resource path="res://Entities/Allies/tank_ded0001.png" type="Texture" id=5]
+[ext_resource path="res://Entities/Explosion.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entities/Allies/Search.gd" type="Script" id=8]
+[ext_resource path="res://Entities/Allies/Destroy.gd" type="Script" id=9]
+[ext_resource path="res://Entities/Dead.gd" type="Script" id=10]
+[ext_resource path="res://Components/AreaComponent.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Components/Actions/Attack Action.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Components/Actions/MoveAction.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "dead",
+"speed": 12.0
+} ]
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "Die"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "dead" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -2.6268 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite/Explosion:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("AnimatedSprite/Explosion")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Enter"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -4, -4 ),
+"update": 0,
+"values": [ Vector2( -100, 460 ), Vector2( 440, 460 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, -4 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, -4 ),
+"update": 0,
+"values": [ Vector2( 0.52994, 0.52994 ), Vector2( 0.52994, 0.52994 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "default" ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimatedSprite:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "Leave"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.527985, 1 ),
+"update": 0,
+"values": [ Vector2( 440, 460 ), Vector2( 1160.33, 461.36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -29.031, -29.031, 27.0446 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.52994, 0.52994 ), Vector2( 0.52994, 0.52994 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "default" ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimatedSprite:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "Shoot"
+length = 1.0
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "shoot" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2, 0.3, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 4, -4 ),
+"update": 0,
+"values": [ Vector2( 440, 460 ), Vector2( 440, 460 ), Vector2( 270, 460 ), Vector2( 270, 460 ), Vector2( 270, 460 ), Vector2( 440, 460 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -24.5962, 12.1848, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AnimatedSprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.52994, 0.52994 ), Vector2( 0.52994, 0.52994 ), Vector2( 0.52994, 0.52994 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "default"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 360, 460 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.52994, 0.52994 ) ]
+}
+
+[node name="Tank" type="Node2D" index="0" groups=[
+"Allies",
+]]
+
+script = ExtResource( 1 )
+screen_shake_modifier = 1.0
+resistance = ""
+weakness = ""
+initial_state = null
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 440, 460 )
+scale = Vector2( 0.52994, 0.52994 )
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="Explosion" parent="AnimatedSprite" index="0" instance=ExtResource( 6 )]
+
+_sections_unfolded = [ "Visibility" ]
+
+[node name="AnimatedSprite" parent="AnimatedSprite/Explosion" index="1"]
+
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 3, 3 )
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Die = SubResource( 5 )
+anims/Enter = SubResource( 2 )
+anims/Leave = SubResource( 6 )
+anims/Shoot = SubResource( 3 )
+anims/default = SubResource( 4 )
+blend_times = [  ]
+
+[node name="FSM" parent="." index="2" instance=ExtResource( 7 )]
+
+initial_state = ""
+
+[node name="Search" type="Node" parent="FSM" index="0"]
+
+script = ExtResource( 8 )
+
+[node name="Destroy" type="Node" parent="FSM" index="1"]
+
+script = ExtResource( 9 )
+
+[node name="Dead" type="Node" parent="FSM" index="2"]
+
+script = ExtResource( 10 )
+
+[node name="AreaComponent" parent="." index="3" instance=ExtResource( 11 )]
+
+starting_area = "Military Base"
+
+[node name="StatBlock" parent="." index="4" instance=ExtResource( 12 )]
+
+[node name="2" type="Node" parent="StatBlock/HP" index="1"]
+
+[node name="Speed" parent="StatBlock" index="1"]
+
+editor/display_folded = false
+
+[node name="30" type="Node" parent="StatBlock/Speed" index="1"]
+
+[node name="Actions" parent="." index="5" instance=ExtResource( 13 )]
+
+[node name="Shoot" parent="Actions" index="0" instance=ExtResource( 14 )]
+
+ends_action = true
+target_type = 3
+damage = 1
+colateral_damage = 0
+tags = "physical, ranged"
+animation = "Shoot"
+end_animation = "Null"
+
+[node name="MoveForward" parent="Actions" index="1" instance=ExtResource( 15 )]
+
+target_type = 4
+target_area = "Null"
+chase = true
+chase_time = 1
+leave_animation = "Leave"
+arrive_animation = "Enter"
+
+[node name="ATBTimer" parent="." index="6" instance=ExtResource( 16 )]
+
+show_in_tracker = true
+
+
+[editable path="AnimatedSprite/Explosion"]
+[editable path="StatBlock"]

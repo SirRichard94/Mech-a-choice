@@ -26,8 +26,10 @@ func set_temp(stat_name, value, time, is_relative = true):
 	if stat:
 		stat.temp += value
 		emit_signal("stat_changed", stat_name)
-		var timer = get_tree().create_timer(time)
+		var timer = Timer.new()
+		timer.wait_time = time
 		timer.add_to_group("ATB Timers")
+		add_child(timer)
 		yield(timer , "timeout")
 		stat.temp -= value
 		emit_signal("stat_changed", stat_name)

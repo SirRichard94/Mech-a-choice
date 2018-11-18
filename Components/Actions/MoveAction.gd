@@ -24,21 +24,20 @@ func _do_action():
 		if area_comp.get_area().enemy_count() > 0:
 			if retreat_animation:
 				animator.play(retreat_animation)
+				yield(animator,"animation_finished")
 			elif leave_animation:
 					animator.play(leave_animation)
-		else:
-			if leave_animation:
-				animator.play(leave_animation)
-	
-		yield(animator,"animation_finished")
+					yield(animator,"animation_finished")
+		elif leave_animation:
+			animator.play(leave_animation)
+			yield(animator,"animation_finished")
 	
 	area_comp.set_area( target_area )
 	if chase:
-		get_tree().current_scene.set_current_area(target_area)
+		get_tree().current_scene.set_current_area(target_area, chase_time)
 	
 	if animator and arrive_animation:
 		animator.play(arrive_animation) 
-	
 		yield(animator,"animation_finished")
 	if animator and end_animation:
 		animator.play(end_animation) 

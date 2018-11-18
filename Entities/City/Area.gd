@@ -1,15 +1,6 @@
-extends "res://Entities/Unit.gd"
+extends "res://Entities/FSMUnit.gd"
 
 export (Texture) var icon
-
-func _process(delta):
-	$FSM.update(delta)
-	
-func _fixed_process(delta):
-	$FSM.update(delta)
-
-func _input(event):
-	$FSM.handle_input(event)
 
 func get_paths():
 	assert get_node("Paths") != null

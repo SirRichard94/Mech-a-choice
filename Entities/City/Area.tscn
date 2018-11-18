@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Entities/City/Area.gd" type="Script" id=1]
 [ext_resource path="res://Entities/City/Icons/downtown.png" type="Texture" id=2]
 [ext_resource path="res://Components/StatBlock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/fsm/fsm_state.gd" type="Script" id=5]
+[ext_resource path="res://Components/ATBTimer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/ActionsManager.tscn" type="PackedScene" id=7]
 
 [node name="Area" type="Node2D" groups=[
 "Areas",
@@ -16,6 +17,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 screen_shake_modifier = 2.0
 resistance = ""
 weakness = ""
+initial_state = null
 icon = ExtResource( 2 )
 
 [node name="BG" type="TextureRect" parent="." index="0"]
@@ -47,16 +49,24 @@ initial_state = ""
 
 [node name="Normal" type="Node" parent="FSM" index="0"]
 
+script = ExtResource( 5 )
+
 [node name="Weak" type="Node" parent="FSM" index="1"]
+
+script = ExtResource( 5 )
 
 [node name="Weakest" type="Node" parent="FSM" index="2"]
 
+script = ExtResource( 5 )
+
 [node name="Dead" type="Node" parent="FSM" index="3"]
 
-[node name="ATBTimer" parent="." index="4" instance=ExtResource( 5 )]
+script = ExtResource( 5 )
+
+[node name="ATBTimer" parent="." index="4" instance=ExtResource( 6 )]
 
 show_in_tracker = false
 
-[node name="Actions" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Actions" parent="." index="5" instance=ExtResource( 7 )]
 
 

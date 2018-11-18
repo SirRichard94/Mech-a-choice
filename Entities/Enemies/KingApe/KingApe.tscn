@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.gd" type="Script" id=1]
 [ext_resource path="res://Components/FSM.tscn" type="PackedScene" id=2]
@@ -10,8 +10,30 @@
 [ext_resource path="res://Hit Ground.gd" type="Script" id=8]
 [ext_resource path="res://Entities/Player/Actions/PlayerMoveToArea.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.png" type="Texture" id=10]
-[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=11]
-[ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Entities/Enemies/KingApe/hostage0000.png" type="Texture" id=11]
+[ext_resource path="res://Entities/Enemies/KingApe/hostage0001.png" type="Texture" id=12]
+[ext_resource path="res://Entities/Allies/tank_ded0000.png" type="Texture" id=13]
+[ext_resource path="res://Entities/Allies/tank_ded0001.png" type="Texture" id=14]
+[ext_resource path="res://Components/CustomAnimationPlayer.gd" type="Script" id=15]
+[ext_resource path="res://GUI/Stat Bubble.tscn" type="PackedScene" id=16]
+
+[sub_resource type="SpriteFrames" id=7]
+
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=1]
 
@@ -282,6 +304,21 @@ scale = Vector2( 0.464317, 0.464317 )
 texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
+[node name="Hostage" type="AnimatedSprite" parent="Sprite" index="0"]
+
+position = Vector2( -29.6635, -370.628 )
+frames = SubResource( 7 )
+animation = "default"
+playing = true
+
+[node name="Tank" type="AnimatedSprite" parent="Sprite" index="1"]
+
+position = Vector2( 301.167, -346.546 )
+frames = SubResource( 8 )
+animation = "default"
+frame = 1
+playing = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 
 root_node = NodePath("..")
@@ -296,11 +333,12 @@ anims/Leave = SubResource( 4 )
 anims/Punch = SubResource( 5 )
 anims/Taunt = SubResource( 6 )
 blend_times = [  ]
-script = ExtResource( 11 )
+script = ExtResource( 15 )
 
-[node name="Stat Bubble" parent="." index="7" instance=ExtResource( 12 )]
+[node name="Stat Bubble" parent="." index="7" instance=ExtResource( 16 )]
 
 position = Vector2( 970, 170 )
 
 
+[editable path="FSM"]
 [editable path="StatBlock"]

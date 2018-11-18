@@ -25,7 +25,7 @@ func get_area():
 func _ready():
 	unit_name = name.split("@", false)[0]
 	assert stats != null
-	assert is_in_group("Enemies") or is_in_group("Alies") or is_in_group("Areas") or is_in_group("Player")
+	assert is_in_group("Enemies") or is_in_group("Allies") or is_in_group("Areas") or is_in_group("Player")
 
 func _on_death():
 	gui.newscaster.announce(self.unit_name + " IS FUCKING DEAD", 2)

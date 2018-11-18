@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
 [ext_resource path="res://Entities/City/Area.tscn" type="PackedScene" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Entities/City/Icons/comms.png" type="Texture" id=5]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/Enemies/KingApe/KingApe.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Camera.gd" type="Script" id=8]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Entities/Tank.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Camera.gd" type="Script" id=9]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=10]
 
 [node name="MainGame" type="Node"]
 
@@ -21,9 +22,12 @@ starting_area = "Park"
 
 [node name="City" type="Node" parent="." index="0"]
 
+editor/display_folded = true
+
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 icon = ExtResource( 3 )
 
 [node name="Paths" parent="City/Park" index="1"]
@@ -47,6 +51,7 @@ editor/display_folded = true
 [node name="Church" parent="City" index="1" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 icon = ExtResource( 3 )
 
 [node name="Workshop" type="Node" parent="City/Church/Paths" index="0"]
@@ -66,6 +71,7 @@ editor/display_folded = true
 [node name="Workshop" parent="City" index="2" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 icon = ExtResource( 3 )
 
 [node name="Paths" parent="City/Workshop" index="1"]
@@ -89,6 +95,7 @@ editor/display_folded = true
 [node name="Military Base" parent="City" index="3" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 icon = ExtResource( 4 )
 
 [node name="Workshop" type="Node" parent="City/Military Base/Paths" index="0"]
@@ -106,6 +113,7 @@ editor/display_folded = true
 [node name="Weapons Factory" parent="City" index="4" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 icon = ExtResource( 4 )
 
 [node name="Military Base" type="Node" parent="City/Weapons Factory/Paths" index="0"]
@@ -119,6 +127,7 @@ editor/display_folded = true
 [node name="Power Plant" parent="City" index="5" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 
 [node name="Church" type="Node" parent="City/Power Plant/Paths" index="0"]
 
@@ -137,6 +146,7 @@ editor/display_folded = true
 [node name="Harbor" parent="City" index="6" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 
 [node name="Military Base" type="Node" parent="City/Harbor/Paths" index="0"]
 
@@ -153,6 +163,7 @@ editor/display_folded = true
 [node name="Airfield" parent="City" index="7" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 
 [node name="Paths" parent="City/Airfield" index="1"]
 
@@ -175,6 +186,7 @@ editor/display_folded = true
 [node name="Comms Tower" parent="City" index="8" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 icon = ExtResource( 5 )
 
 [node name="Paths" parent="City/Comms Tower" index="1"]
@@ -196,6 +208,7 @@ editor/display_folded = true
 [node name="University" parent="City" index="9" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 
 [node name="Airfield" type="Node" parent="City/University/Paths" index="0"]
 
@@ -214,6 +227,7 @@ editor/display_folded = true
 [node name="Watchtower" parent="City" index="10" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 
 [node name="Paths" parent="City/Watchtower" index="1"]
 
@@ -236,6 +250,7 @@ editor/display_folded = true
 [node name="Shield Generator" parent="City" index="11" instance=ExtResource( 2 )]
 
 editor/display_folded = true
+initial_state = null
 
 [node name="University" type="Node" parent="City/Shield Generator/Paths" index="0"]
 
@@ -261,11 +276,15 @@ _sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="Alies" type="Node2D" parent="." index="3"]
 
+[node name="Tank" parent="Alies" index="0" instance=ExtResource( 8 )]
+
+initial_state = null
+
 [node name="Camera" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 position = Vector2( 512, 300 )
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 _sections_unfolded = [ "Transform" ]
 shake_x = 250.0
 shake_y = 300.0
@@ -298,9 +317,11 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
-[node name="GUI" parent="." index="5" instance=ExtResource( 9 )]
+[node name="GUI" parent="." index="5" instance=ExtResource( 10 )]
 
 editor/display_folded = true
+
+[node name="Event System" type="Node" parent="." index="6"]
 
 
 [editable path="City/Park"]

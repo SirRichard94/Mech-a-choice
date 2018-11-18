@@ -9,8 +9,8 @@ func get_target():
 	return target if target == null else target.get_ref()
 
 func set_target(new):
-	if not new.is_in_group("ATB Timers"):
-		target = weakref(null)
+	if not new.is_in_group("ATB Timers") or not new.get("show_in_tracker"):
+		target = null
 		return
 		
 	target = new
