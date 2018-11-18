@@ -1,17 +1,29 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://MainGame.gd" type="Script" id=1]
 [ext_resource path="res://Entities/City/Area.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/City/Icons/park.png" type="Texture" id=3]
-[ext_resource path="res://Entities/City/Icons/military.png" type="Texture" id=4]
-[ext_resource path="res://Entities/City/Icons/comms.png" type="Texture" id=5]
-[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Entities/Enemies/KingApe/KingApe.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Entities/Tank.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Camera.gd" type="Script" id=9]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Entities/City/Backgrounds/park.png" type="Texture" id=4]
+[ext_resource path="res://Entities/City/Backgrounds/church.png" type="Texture" id=5]
+[ext_resource path="res://Entities/City/Backgrounds/workshop.png" type="Texture" id=6]
+[ext_resource path="res://Entities/City/Icons/military.png" type="Texture" id=7]
+[ext_resource path="res://Entities/City/Backgrounds/base.png" type="Texture" id=8]
+[ext_resource path="res://Entities/City/Backgrounds/factory.png" type="Texture" id=9]
+[ext_resource path="res://Entities/City/Backgrounds/powrerplant.png" type="Texture" id=10]
+[ext_resource path="res://Entities/City/Backgrounds/beach.png" type="Texture" id=11]
+[ext_resource path="res://Entities/City/Backgrounds/airfield.png" type="Texture" id=12]
+[ext_resource path="res://Entities/City/Icons/comms.png" type="Texture" id=13]
+[ext_resource path="res://Entities/City/Backgrounds/comms.png" type="Texture" id=14]
+[ext_resource path="res://Entities/City/Backgrounds/university.png" type="Texture" id=15]
+[ext_resource path="res://Entities/City/Backgrounds/watch.png" type="Texture" id=16]
+[ext_resource path="res://Entities/City/Backgrounds/shield_gen.png" type="Texture" id=17]
+[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Entities/Enemies/KingApe/KingApe.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Entities/Tank.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Camera.gd" type="Script" id=21]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=22]
 
-[node name="MainGame" type="Node"]
+[node name="MainGame" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -22,13 +34,14 @@ starting_area = "Park"
 
 [node name="City" type="Node" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="Park" parent="City" index="0" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
 icon = ExtResource( 3 )
+
+[node name="BG" parent="City/Park" index="0"]
+
+texture = ExtResource( 4 )
 
 [node name="Paths" parent="City/Park" index="1"]
 
@@ -51,8 +64,11 @@ editor/display_folded = true
 [node name="Church" parent="City" index="1" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
 icon = ExtResource( 3 )
+
+[node name="BG" parent="City/Church" index="0"]
+
+texture = ExtResource( 5 )
 
 [node name="Workshop" type="Node" parent="City/Church/Paths" index="0"]
 
@@ -71,8 +87,11 @@ editor/display_folded = true
 [node name="Workshop" parent="City" index="2" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
 icon = ExtResource( 3 )
+
+[node name="BG" parent="City/Workshop" index="0"]
+
+texture = ExtResource( 6 )
 
 [node name="Paths" parent="City/Workshop" index="1"]
 
@@ -95,8 +114,11 @@ editor/display_folded = true
 [node name="Military Base" parent="City" index="3" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
-icon = ExtResource( 4 )
+icon = ExtResource( 7 )
+
+[node name="BG" parent="City/Military Base" index="0"]
+
+texture = ExtResource( 8 )
 
 [node name="Workshop" type="Node" parent="City/Military Base/Paths" index="0"]
 
@@ -113,8 +135,11 @@ editor/display_folded = true
 [node name="Weapons Factory" parent="City" index="4" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
-icon = ExtResource( 4 )
+icon = ExtResource( 7 )
+
+[node name="BG" parent="City/Weapons Factory" index="0"]
+
+texture = ExtResource( 9 )
 
 [node name="Military Base" type="Node" parent="City/Weapons Factory/Paths" index="0"]
 
@@ -127,7 +152,10 @@ editor/display_folded = true
 [node name="Power Plant" parent="City" index="5" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
+
+[node name="BG" parent="City/Power Plant" index="0"]
+
+texture = ExtResource( 10 )
 
 [node name="Church" type="Node" parent="City/Power Plant/Paths" index="0"]
 
@@ -146,7 +174,10 @@ editor/display_folded = true
 [node name="Harbor" parent="City" index="6" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
+
+[node name="BG" parent="City/Harbor" index="0"]
+
+texture = ExtResource( 11 )
 
 [node name="Military Base" type="Node" parent="City/Harbor/Paths" index="0"]
 
@@ -163,7 +194,10 @@ editor/display_folded = true
 [node name="Airfield" parent="City" index="7" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
+
+[node name="BG" parent="City/Airfield" index="0"]
+
+texture = ExtResource( 12 )
 
 [node name="Paths" parent="City/Airfield" index="1"]
 
@@ -186,8 +220,11 @@ editor/display_folded = true
 [node name="Comms Tower" parent="City" index="8" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
-icon = ExtResource( 5 )
+icon = ExtResource( 13 )
+
+[node name="BG" parent="City/Comms Tower" index="0"]
+
+texture = ExtResource( 14 )
 
 [node name="Paths" parent="City/Comms Tower" index="1"]
 
@@ -208,7 +245,10 @@ editor/display_folded = true
 [node name="University" parent="City" index="9" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
+
+[node name="BG" parent="City/University" index="0"]
+
+texture = ExtResource( 15 )
 
 [node name="Airfield" type="Node" parent="City/University/Paths" index="0"]
 
@@ -227,7 +267,10 @@ editor/display_folded = true
 [node name="Watchtower" parent="City" index="10" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
+
+[node name="BG" parent="City/Watchtower" index="0"]
+
+texture = ExtResource( 16 )
 
 [node name="Paths" parent="City/Watchtower" index="1"]
 
@@ -250,7 +293,10 @@ editor/display_folded = true
 [node name="Shield Generator" parent="City" index="11" instance=ExtResource( 2 )]
 
 editor/display_folded = true
-initial_state = null
+
+[node name="BG" parent="City/Shield Generator" index="0"]
+
+texture = ExtResource( 17 )
 
 [node name="University" type="Node" parent="City/Shield Generator/Paths" index="0"]
 
@@ -266,25 +312,23 @@ editor/display_folded = true
 
 [node name="Player" parent="." index="1" groups=[
 "Area Members",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 18 )]
 
 _sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="Enemies" type="Node2D" parent="." index="2"]
 
-[node name="KingApe" parent="Enemies" index="0" instance=ExtResource( 7 )]
+[node name="KingApe" parent="Enemies" index="0" instance=ExtResource( 19 )]
 
 [node name="Alies" type="Node2D" parent="." index="3"]
 
-[node name="Tank" parent="Alies" index="0" instance=ExtResource( 8 )]
-
-initial_state = null
+[node name="Tank" parent="Alies" index="0" instance=ExtResource( 20 )]
 
 [node name="Camera" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 position = Vector2( 512, 300 )
-script = ExtResource( 9 )
+script = ExtResource( 21 )
 _sections_unfolded = [ "Transform" ]
 shake_x = 250.0
 shake_y = 300.0
@@ -317,7 +361,7 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Editor", "Offset", "Transform" ]
 
-[node name="GUI" parent="." index="5" instance=ExtResource( 10 )]
+[node name="GUI" parent="." index="5" instance=ExtResource( 22 )]
 
 editor/display_folded = true
 
